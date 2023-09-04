@@ -1,0 +1,69 @@
+@use "../../styles/index"as *;
+
+
+.menu {
+    @include flex;
+
+    &-wrapper {
+        button {
+            background: transparent;
+        }
+    }
+
+    &-content {
+        border: .0625rem solid darken($color: #fff, $amount: 85);
+        border-radius: 1.25rem;
+        position: absolute;
+        top: -1rem;
+        left: 0;
+        width: 100%;
+        padding: .75rem 1rem 1rem 1.5rem;
+        background-color: var(--black);
+
+        .content-wrapper {
+            .close-menu {
+                width: 100%;
+                @include flex($j:flex-end);
+                margin-bottom: 1rem;
+            }
+
+            .navigation {
+                @include flex($d:column, $a:flex-start);
+                gap: .875rem;
+
+                li {
+                    font-family: var(--ff-clash);
+                    font-weight: var(--fw-mid);
+                    font-size: .875rem;
+
+                    a {
+                        &::first-letter {
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+
+            .search {
+                width: 100%;
+                margin-top: 1.25rem;
+                border-radius: .625rem;
+                background-color: var(--white);
+                @include flex($j:space-between);
+                padding: .25rem;
+                overflow: hidden;
+
+                input {
+                    font-family: var(--ff-clash);
+                    font-size: 1rem;
+                    padding-inline: .5rem;
+                    font-weight: var(--fw-mid);
+                }
+
+                span {
+                    @include flex;
+                }
+            }
+        }
+    }
+}
