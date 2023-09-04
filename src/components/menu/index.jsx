@@ -1,5 +1,5 @@
-import { navLinks } from '../../assets/data';
 import { CloseMenu, Hamburger, Search } from '../../assets/icons';
+import { navLinks } from '../../assets/data';
 import './index.scss';
 
 import { useState } from 'react';
