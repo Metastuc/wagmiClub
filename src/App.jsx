@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Media from "react-media";
+
 import { Landing } from "./routes";
 
 
@@ -15,9 +17,22 @@ const
 
 const App = () => {
     return (
-        <section className="container">
-            <RouterProvider router={router} />
-        </section>
+        <>
+            <Media query={`(max-width:40em)`} >
+                {
+                    matches => {
+                        return matches ?
+                            <section className="container">
+                                <RouterProvider router={router} />
+                            </section>
+                            :
+                            <section className="query">
+                                display none
+                            </section>;
+                    }
+                }
+            </Media>
+        </>
     );
 };
 

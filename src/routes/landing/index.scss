@@ -6,6 +6,7 @@
     .hero {
         padding-inline: 2.875rem;
         margin-top: 2.5rem;
+        position: relative;
 
         &-wrapper {
             @include flex($d:column);
@@ -37,6 +38,109 @@
                 font-size: inherit;
                 font-weight: inherit;
                 color: var(--green-200);
+            }
+        }
+
+        .bg-container {
+            position: absolute;
+            z-index: -5;
+            left: 0;
+            top: 0;
+            outline: .25px solid blue;
+            width: 100%;
+            @include flex;
+            overflow: hidden;
+            height: 80svh;
+            display: none;
+
+            figure {
+                // border: .25px solid yellow;
+                width: 100%;
+                position: absolute;
+                // height: 100vh;
+
+                img {
+                    border: .25px solid green;
+                    width: inherit;
+                    // @include flex;
+                    // position: absolute;
+                    // display: block;
+                }
+
+                &:first-of-type {
+                    top: -2.25rem;
+                }
+
+                &:last-of-type {
+                    right: -2rem;
+                    top: -12rem;
+                    // top: 0rem;
+                    // scale: .75;
+                }
+
+            }
+        }
+    }
+
+    .about {
+        padding-inline: 4.25rem;
+
+        @include bp-max($ss-sm) {
+            padding-inline: 3.5rem;
+        }
+
+        &-wrapper {
+            @include flex($d:column);
+            gap: 16px;
+        }
+
+        p {
+            text-align: center;
+            font-family: var(--ff-clash);
+            font-weight: var(--fw-mid);
+            font-size: 1rem;
+
+            @include bp-max($ss-sm) {
+                font-size: .875rem;
+            }
+
+            span {
+                color: var(--yellow-100);
+            }
+        }
+
+        button {
+            width: 90%;
+            border-radius: .5rem;
+            padding-block: .475rem;
+            background-color: var(--black-200);
+            @include flex;
+            gap: .25rem;
+
+            span {
+                &:first-of-type {
+                    @include equal(1.25rem);
+                    overflow: hidden;
+                    @include flex;
+                    border-radius: 50%;
+                    position: relative;
+
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        border: 1px solid var(--white);
+                        border-radius: inherit;
+                        opacity: .5;
+                    }
+                }
+
+                &:last-of-type {
+                    color: var(--white);
+                    font-family: var(--ff-clash);
+                    font-weight: var(--fw-mid);
+                    font-size: .875rem;
+                }
             }
         }
     }

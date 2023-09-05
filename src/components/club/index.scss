@@ -1,0 +1,12 @@
+@use "../../styles/index"as *;
+
+
+.club {
+    margin: 1.5625rem 0 1.875rem 0;
+    outline: .25px solid red;
+
+    &-wrapper {
+        height: 145px;
+        position: relative;
+    }
+}
