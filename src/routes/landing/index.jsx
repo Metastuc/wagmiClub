@@ -1,10 +1,10 @@
-import { Line2 } from '../../assets/icons';
-import { Club, Navbar } from '../../components';
+import { Club, Navbar, Profile } from '../../components';
 import './index.scss';
 
 const Landing = () => {
     return (
         <section className="landing">
+            {/* navbar-component */}
             <Navbar />
 
             <section className="hero">
@@ -25,12 +25,11 @@ const Landing = () => {
                     </figure>
                     <figure>
                         <img src="/bg-2.svg" />
-
-                        {/* <Line2 /> */}
                     </figure>
                 </div>
             </section>
 
+            {/* club component */}
             <Club />
 
             <section className='about'>
@@ -50,6 +49,9 @@ const Landing = () => {
                     </button>
                 </div>
             </section>
+
+            {/* profile component */}
+            <Profile />
 
         </section>
     );

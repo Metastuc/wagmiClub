@@ -8,18 +8,28 @@
         button {
             background: transparent;
         }
+
+        .active-menu-background {
+            z-index: 5;
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            margin: 0 auto;
+            @include flex;
+            backdrop-filter: blur(15px);
+        }
     }
 
     &-content {
         border: .0625rem solid darken($color: #fff, $amount: 85);
         border-radius: 1.25rem;
         position: absolute;
-        top: -1rem;
-        left: 0;
-        width: 100%;
+        top: 1.125rem;
+        width: 85%;
         padding: .75rem 1rem 1rem 1.5rem;
         background-color: var(--black);
-        z-index: 5;
 
         .content-wrapper {
             .close-menu {

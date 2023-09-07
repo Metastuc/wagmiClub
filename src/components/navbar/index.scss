@@ -3,10 +3,10 @@
 
 .navbar {
     padding: 2.1875rem 1.5625rem;
+    position: relative;
 
     &-wrapper {
         @include flex($j:space-between);
-        position: relative;
     }
 
     .logo-wrapper {
