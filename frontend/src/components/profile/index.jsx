@@ -1,4 +1,4 @@
-import { Arrow, Options, Verified } from '../../assets/icons';
+import { Arrow, Badge, Creator, Location, Options, Verified } from '../../assets/icons';
 import './index.scss';
 
 const Profile = () => {
@@ -9,53 +9,50 @@ const Profile = () => {
                 <h2>create profile</h2>
 
                 <div className="profile-ui-container">
-                    <div className="top">
-                        <div>
-                            <button>
-                                <Arrow />
-                            </button>
+                    <div>
 
-                            <button>
-                                <Options />
-                            </button>
-                        </div>
+                        <section className="profile-top-content">
 
-                        <span>
-                            <img src="/defi_pfp.jpg" />
-                        </span>
-                    </div>
+                            <div className="profile-picture">
+                                <span>
+                                    <img src="/defi_pfp.jpg" />
+                                </span>
+                            </div>
 
-                    <div className="bottom">
+                            <div className="profile-action-buttons">
+                                <button>
+                                    <span>status</span>
+                                </button>
 
-                        <div className="follow-button">
-                            <button>
-                                <span>follow</span>
-                            </button>
-                        </div>
+                                <button>
+                                    <span>follow</span>
+                                </button>
+                            </div>
 
-                        <section className="user">
-                            {/* <div className="user-display"> */}
-                            <div className="user-display">
+                        </section>
+
+                        <section className="profile-middle-content">
+
+                            <div className="username">
                                 <div className="top">
-                                    <span className="display-name">
+                                    <span>
                                         jehee
                                     </span>
 
-                                    <div className="badges">
+                                    <div className="verified">
                                         <span><Verified /></span>
-                                        <span>badge</span>
+                                        <span><Badge /></span>
                                     </div>
                                 </div>
 
                                 <div className="bottom">
-                                    <span className="username">
+                                    <span>
                                         @defiprince_
                                     </span>
                                 </div>
                             </div>
-                            {/* </div> */}
 
-                            <div className="user-bio">
+                            <div className="userbio">
                                 <p>
                                     web3 products & contents -building @wagmiclub <br />
                                     contributor to creator economy 🪲🖇
@@ -63,13 +60,19 @@ const Profile = () => {
 
                                 <div className="top">
                                     <div className="user-location">
-                                        <span>icon</span>
+                                        <span>
+                                            <Location />
+                                        </span>
                                         <span>canada</span>
-                                        <span>flag</span>
+                                        <span>
+                                            <img src="https://flagsapi.com/CA/shiny/64.png" />
+                                        </span>
                                     </div>
 
                                     <div className="user-category">
-                                        <span>icon</span>
+                                        <span>
+                                            <Creator />
+                                        </span>
                                         <span>creator</span>
                                     </div>
                                 </div>
@@ -88,11 +91,12 @@ const Profile = () => {
 
                         <section className="badges">
 
+                            {/* </section> */}
                         </section>
                     </div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 

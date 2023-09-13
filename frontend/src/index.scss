@@ -5,6 +5,10 @@ html {
     body {
         background-color: var(--black);
         color: var(--white);
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
     }
 
     * {

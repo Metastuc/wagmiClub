@@ -9,8 +9,12 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
+  "browserslist": [
+    "cover 99.5%"
+  ],
   "dependencies": {
     "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.29",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-media": "^1.10.0",
