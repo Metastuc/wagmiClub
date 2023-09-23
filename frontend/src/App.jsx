@@ -1,16 +1,39 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Media from "react-media";
 
-import { Landing } from "./routes";
+import { Create, Landing } from "./routes";
+import { CreateNavUI } from "./views";
+import { Scroll } from "./hooks";
 
 
 const
+
+    UI_CreateNavigationBar = () => {
+        return (
+            <>
+                {/* <Scroll /> */}
+                <CreateNavUI />
+                <Outlet />
+            </>
+        );
+    },
 
     router = createBrowserRouter([
         {
             path: "/",
             element: <Landing />
+        },
+
+        // {
+        //     path: "/",
+        //     element: <UI_CreateNavigationBar />,
+        //     children: [
+        {
+            path: "create",
+            element: <Create />
         }
+        //     ]
+        // }
     ]);
 
 

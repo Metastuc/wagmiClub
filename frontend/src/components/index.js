@@ -3,6 +3,7 @@ import Menu from "./menu";
 import Club from "./club";
 import Profile from "./profile";
 import BadgeProfile from "./badge";
+import Logo from "./logo";
 
 
 export {
@@ -10,5 +11,6 @@ export {
     Menu,
     Club,
     Profile,
-    BadgeProfile
+    BadgeProfile,
+    Logo
 };

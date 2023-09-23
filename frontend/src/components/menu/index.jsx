@@ -1,14 +1,15 @@
 import { CloseMenu, Hamburger, Search } from '../../assets/icons';
 import { navLinks } from '../../assets/data';
+import { Toggle } from '../../hooks';
 import './index.scss';
 
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 
 const Menu = () => {
 
-    const [menuActive, setMenuActive] = useState(false);
+    const { status: menuActive, toggleStatus } = Toggle();
 
     useEffect(
         // toggle background vertical scroll when menu is active
@@ -24,7 +25,7 @@ const Menu = () => {
         <section className="menu">
             <div className="menu-wrapper">
                 <button
-                    onClick={() => { setMenuActive(!menuActive); }}
+                    onClick={() => { toggleStatus(); }}
                 >
                     <Hamburger />
                 </button>
@@ -36,7 +37,7 @@ const Menu = () => {
 
                                 <div className="close-menu">
                                     <button
-                                        onClick={() => { setMenuActive(!menuActive); }}
+                                        onClick={() => { toggleStatus(); }}
                                     >
                                         <CloseMenu />
                                     </button>

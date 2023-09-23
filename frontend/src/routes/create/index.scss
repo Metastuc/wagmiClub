@@ -1,0 +1,57 @@
+@use"../../styles"as *;
+
+
+.create {
+    &-wrapper {
+        @include flex($d:column);
+        gap: 2.5rem;
+        border: 1px solid red;
+        margin-inline: 1.25rem;
+    }
+
+    .tab-switcher {
+        @include flex($j:flex-end);
+        width: 100%;
+        padding-inline-end: 1rem;
+
+        >div {
+            @include flex;
+            padding-block: .5rem;
+            padding-inline: 1.5rem;
+            background-color: var(--black-300);
+
+            &.active {
+                border-radius: .3125rem;
+                background-color: var(--black-400);
+            }
+
+            span {
+                font-family: var(--ff-clash);
+                font-size: .625rem;
+                text-transform: capitalize;
+                font-weight: var(--fw-reg);
+            }
+        }
+    }
+
+    .tab-display {
+        background-color: var(--black-300);
+        border-radius: 1.5rem;
+        width: 100%;
+        padding: .5rem .625rem;
+
+        >section {
+            padding: 4.375rem 0 0 0;
+            border: 1px solid lighten($color: #000, $amount: 30);
+            border-radius: inherit;
+        }
+    }
+
+    .badge-tab-container {
+        // padding: 4.375rem 0 0 0;
+    }
+
+    .medal-tab-container {
+        // padding: 4.375rem 0 0 0;
+    }
+}

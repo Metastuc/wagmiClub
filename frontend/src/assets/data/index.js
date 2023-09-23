@@ -12,7 +12,7 @@ export const
             id: 1,
             value: {
                 title: "Create profile",
-                to: "",
+                to: "/create",
             }
         },
         {

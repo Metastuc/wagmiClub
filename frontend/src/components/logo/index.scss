@@ -1,15 +1,8 @@
-@use "../../styles"as *;
+@use "../../index.scss"as *;
 
 
-.navbar {
-    padding: 2.1875rem 1.5625rem;
-    position: relative;
-
+.logo {
     &-wrapper {
-        @include flex($j:space-between);
-    }
-
-    .logo-wrapper {
         span {
             font-size: 1rem;
             font-family: var(--ff-clash);
