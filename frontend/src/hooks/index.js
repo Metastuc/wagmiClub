@@ -21,4 +21,8 @@ export const
         }, [pathname]);
 
         return null;
+    },
+
+    formatDate = function (text) {
+        return text;
     };

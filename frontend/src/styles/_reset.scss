@@ -19,12 +19,13 @@ a {
     font-family: inherit;
 }
 
-input[type="text"] {
+input[type="text"],
+textarea {
     border: none;
     outline: none;
 }
 
-img{
+img {
     max-width: 100%;
     object-fit: cover;
 }

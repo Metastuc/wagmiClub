@@ -205,4 +205,63 @@ export const
                 />
             </svg>
         );
-    };
+    },
+
+    UploadImage = function(){
+        return(
+            <svg xmlns="http://www.w3.org/2000/svg" width={87} height={85} fill="none">
+                <rect
+                    width={86.6}
+                    height={84.6}
+                    x={0.2}
+                    y={0.2}
+                    fill="url(#a)"
+                    stroke="url(#b)"
+                    strokeWidth={0.4}
+                    rx={22.8}
+                />
+                <path
+                    fill="#CDCEBF"
+                    fillRule="evenodd"
+                    d="M36.555 45.454c1.383-.625 2.5-.238 3.582.138.816.283 1.66.576 2.828.576.908 0 1.443-.773 2.217-2.049.77-1.268 1.727-2.846 3.662-2.846 2.688 0 4.354 1.634 5.483 2.84a28.4 28.4 0 0 0 .048-1.613c0-8.099-2.977-10.969-11.375-10.969s-11.375 2.87-11.375 10.97c0 3.02.415 5.313 1.372 7.001.602-1.144 1.911-3.302 3.558-4.048Z"
+                    clipRule="evenodd"
+                    opacity={0.4}
+                />
+                <path
+                    fill="#CDCEBF"
+                    fillRule="evenodd"
+                    d="M53.77 46.023c-.171-.17-.353-.364-.548-.575-1.031-1.108-2.316-2.488-4.378-2.488-.868 0-1.392.76-2.15 2.011-.781 1.286-1.75 2.885-3.73 2.885-1.473 0-2.552-.375-3.42-.677-1.022-.356-1.55-.513-2.243-.197-1.321.598-2.646 3.013-3.045 3.892-.024.054-.06.098-.094.145 1.794 1.732 4.638 2.45 8.839 2.45 6.952 0 10.181-1.978 11.09-7.25a.866.866 0 0 1-.32-.196Z"
+                    clipRule="evenodd"
+                />
+                <path
+                    fill="#CDCEBF"
+                    d="M41.949 38.882c0-1.402-1.184-2.544-2.638-2.544-1.453 0-2.638 1.142-2.638 2.544 0 1.402 1.184 2.543 2.638 2.543s2.638-1.141 2.638-2.543Z"
+                />
+                <defs>
+                    <linearGradient
+                        id="a"
+                        x1={43.5}
+                        x2={-25.219}
+                        y1={0}
+                        y2={96.825}
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="#D4FFB9" stopOpacity={0.44} />
+                        <stop offset={0.563} stopColor="#95958E" stopOpacity={0.438} />
+                        <stop offset={1} stopColor="#D9D9D9" stopOpacity={0} />
+                    </linearGradient>
+                    <linearGradient
+                        id="b"
+                        x1={43.5}
+                        x2={43.5}
+                        y1={0}
+                        y2={85}
+                        gradientUnits="userSpaceOnUse"
+                    >
+                        <stop stopColor="#EBED8F" stopOpacity={0.67} />
+                        <stop offset={1} stopColor="#CBF3E2" stopOpacity={0} />
+                    </linearGradient>
+                </defs>
+            </svg>
+        )
+    }
