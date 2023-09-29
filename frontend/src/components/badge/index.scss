@@ -1,4 +1,228 @@
 @use "../../styles"as *;
 
 
-.badge {}
+.badge {
+
+	// error styles
+	&-image,
+	&-title,
+	&-description,
+	&-receiver,
+	&-timestamp,
+	&-validator,
+	&-information {
+		&__error {
+			font-size: 0.5rem;
+			font-family: var(--ff-clash);
+			font-weight: 100;
+			color: #ffc0cb;
+		}
+	}
+
+	// label styles
+	&-image,
+	&-title,
+	&-description,
+	&-receiver,
+	&-timestamp,
+	&-validator,
+	&-information,
+	&-rating {
+		@include flex($d: column, $a: flex-start);
+		margin-block: 2rem;
+
+		&__label {
+			font-family: var(--ff-clash);
+			font-size: 0.8125rem;
+			font-weight: var(--fw-mid);
+		}
+	}
+
+	// similar components styles
+	&-title,
+	&-description,
+	&-receiver,
+	&-validator,
+	&-information {
+		&__wrapper {
+			@extend %badge-wrapper;
+			@include flex($j:flex-start);
+			position: relative;
+			margin: 0.5rem 0 0.25rem 0;
+		}
+
+		&__input {
+			@extend %badge-input;
+			font-size: .875rem;
+			transition: all ease-in-out 150ms;
+
+			&.input {
+				height: 2.25rem;
+				padding-inline: .75rem;
+			}
+
+			&.textarea {
+				height: 4.5rem;
+				padding: .25rem;
+			}
+		}
+
+		&__edit {
+			@extend %badge-edit;
+			right: .75rem;
+		}
+	}
+
+	&-image {
+		margin-bottom: 2.875rem;
+		@include flex($d: column);
+
+		&__input {
+			display: none;
+		}
+
+		&__preview {
+			@include flex;
+			@include equal(5.5rem);
+			border-radius: 1.5rem;
+			overflow: hidden;
+
+			&img {
+				@include equal(100%);
+			}
+		}
+
+		&__label {
+			margin: 1rem 0 0.25rem 0;
+		}
+	}
+
+	&-timestamp {
+		gap: .5rem;
+
+		&__wrapper {
+			@extend %badge-wrapper;
+			overflow: visible;
+			padding: .875rem;
+			@include flex($d:column);
+			gap: 1.125rem;
+		}
+
+		&__date {
+			width: 100%;
+			position: relative;
+			@include flex($j:flex-start);
+			gap: .75rem;
+
+			&-title {
+				font-family: var(--ff-clash);
+				font-size: .8125rem;
+				width: 2rem;
+				text-transform: capitalize;
+				color: rgba($color: #fff, $alpha: .6);
+			}
+
+			&-wrapper {
+				background-color: #050505;
+				flex: 1px;
+				border-radius: .3125rem;
+				border: 1px solid lighten($color: #000, $amount: 30);
+
+				>div {
+					width: 100%;
+				}
+
+				input {
+					@extend %badge-input;
+					font-size: .625rem;
+					padding: .625rem .75rem;
+				}
+
+				&::before {
+					@extend %badge-edit;
+					content: "edit";
+					top: 40%;
+					right: 1.5rem;
+				}
+			}
+		}
+
+		&__working {
+			@include flex($j:space-between);
+			width: 100%;
+
+			&-label {
+				font-family: var(--ff-clash);
+				font-size: .8125rem;
+				color: rgba($color: #fff, $alpha: .6);
+			}
+
+			&-input {
+				display: none;
+
+				&:checked~.badge-timestamp__working-toggle {
+					background-color: rgba($color: #cbcc95, $alpha: .52);
+
+					&::after {
+						transform: translateX(1rem);
+					}
+				}
+			}
+
+			&-toggle {
+				position: relative;
+				width: 1.75rem;
+				height: .75rem;
+				border-radius: .875rem;
+				background-color: #050505;
+				transition: 200ms ease-in-out all;
+
+				&::after {
+					content: "";
+					position: absolute;
+					top: 0;
+					left: 0;
+					height: inherit;
+					width: .75rem;
+					background-color: white;
+					border-radius: 50%;
+					transition: 200ms ease-in-out all;
+				}
+			}
+		}
+	}
+
+	&-rating {
+		@include flex($j:flex-start);
+		gap: .875rem;
+
+		&__wrapper {
+			padding-bottom: .25rem;
+		}
+	}
+
+	&-submit {
+		@include flex;
+		margin-top: 3.5rem;
+
+		&__button {
+			height: 2.75rem;
+			font-size: .75rem;
+			@include flex;
+			border-radius: .3125rem;
+			background-color: var(--green-300);
+
+			span {
+				padding-inline: calc(3rem - .25rem);
+				margin-inline: .3125rem;
+				height: calc(100% - .5rem);
+				border: 1px solid lighten($color: #000, $amount: 30);
+				text-transform: capitalize;
+				@include flex;
+				font-family: var(--ff-clash);
+				font-weight: var(--fw-mid);
+				border-radius: inherit;
+			}
+		}
+	}
+}

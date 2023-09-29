@@ -1,1 +1,25 @@
+@use "./functions"as *;
+
 $ss-sm: 25em;
+
+%badge-wrapper {
+    background-color: hexToRgba(#313131, 0.55);
+    overflow: hidden;
+    border-radius: .3125rem;
+    width: 100%;
+}
+
+%badge-input {
+    background-color: transparent;
+    color: rgba($color: #fff, $alpha: .75);
+    width: 100%;
+    font-family: var(--ff-clash);
+}
+
+%badge-edit {
+    position: absolute;
+    font-size: .4375rem;
+    font-family: var(--ff-clash);
+    color: rgba($color: #cbcc95, $alpha: .52);
+    width: max-content;
+}
