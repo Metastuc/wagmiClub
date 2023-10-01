@@ -2,21 +2,20 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Media from "react-media";
 
 import { Create, Landing } from "./routes";
-import { CreateNavUI } from "./views";
-import { Scroll } from "./hooks";
+import { useScrollReset } from "./hooks";
 
 
 const
 
-    UI_CreateNavigationBar = () => {
-        return (
-            <>
-                {/* <Scroll /> */}
-                <CreateNavUI />
-                <Outlet />
-            </>
-        );
-    },
+    // UI_CreateNavigationBar = () => {
+    //     return (
+    //         <>
+    //             {/* <Scroll /> */}
+    //             <CreateNavUI />
+    //             <Outlet />
+    //         </>
+    //     );
+    // },
 
     router = createBrowserRouter([
         {

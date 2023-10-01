@@ -1,27 +1,10 @@
 @use "../../styles"as *;
 
 
-.navbar {
-    padding: 2.1875rem 1.5625rem;
-    position: relative;
+.primaryNav {
+    @extend %navbar-container;
 
-    &-wrapper {
+    &__wrapper {
         @include flex($j:space-between);
-    }
-
-    .logo-wrapper {
-        span {
-            font-size: 1rem;
-            font-family: var(--ff-clash);
-            font-weight: var(--fw-mid);
-
-            &:first-of-type {
-                text-transform: capitalize;
-            }
-
-            &:last-of-type {
-                color: var(--green-100);
-            }
-        }
     }
 }

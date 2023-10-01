@@ -39,9 +39,9 @@ const FormField = ({
 						onChange={handleFormChange}
 						onBlur={handleBlur}
 					/>
-					{title == "" && (
+					{/* {title == "" && (
 						<span className="badge-title__edit">edit</span>
-					)}
+					)} */}
 				</div>
 
 				{errors.title && touched.title && (
@@ -65,9 +65,9 @@ const FormField = ({
 						onChange={handleFormChange}
 						onBlur={handleBlur}
 					></textarea>
-					{description == "" && (
+					{/* {description == "" && (
 						<span className="badge-title__edit">edit</span>
-					)}
+					)} */}
 				</div>
 
 				{errors.description && touched.description && (
@@ -237,10 +237,9 @@ const FormField = ({
 						onChange={handleFormChange}
 						onBlur={handleBlur}
 					></textarea>
-
-					{additionalInfo == "" && (
+					{/* {additionalInfo == "" && (
 						<span className="badge-title__edit">edit</span>
-					)}
+					)} */}
 				</div>
 			</div>
 		</>

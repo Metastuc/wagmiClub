@@ -34,8 +34,6 @@ const Badge = () => {
 			},
 		});
 
-	console.log(values.rating);
-
 	return (
 		<section className="badge-tab">
 			<form

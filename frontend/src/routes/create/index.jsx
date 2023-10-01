@@ -1,45 +1,24 @@
-import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { CreateNavUI } from "../../views";
-import { Badge } from "../../components";
+import { useBodyOverflow, useTabSwitcher } from "../../hooks";
+import { Badge, CreateTabs as Tab } from "../../components";
+import { SecondaryNavbar as Navbar } from "../../views";
 import "./index.scss";
 
 const Create = () => {
-	const [tab, setTab] = useState("badge"),
+	useBodyOverflow();
+
+	const { activeTab, handleTabClick, tabIsActive } = useTabSwitcher("medal"),
+		Medal = function () {
+			return <section className="medal-tab-container"></section>;
+		},
+		// 
 		tabComponents = {
 			badge: <Badge />,
-			// medal: <Medal />,
+			medal: <Medal />,
 		};
-	// Medal = function () {
-	// 	return <section className="medal-tab-container"></section>;
-	// };
 
 	function renderTab() {
-		return tabComponents[tab] || null;
-	}
-
-	function TabSwitcher({ activeTab, onTabChange }) {
-		return (
-			<section className="tab-switcher">
-				<div
-					className={activeTab === "badge" ? "active" : null}
-					onClick={() => {
-						onTabChange("badge");
-					}}
-				>
-					<span>badge</span>
-				</div>
-
-				<div
-					className={activeTab === "medal" ? "active" : null}
-					onClick={() => {
-						onTabChange("medal");
-					}}
-				>
-					<span>medal</span>
-				</div>
-			</section>
-		);
+		return tabComponents[activeTab] || null;
 	}
 
 	return (
@@ -48,14 +27,14 @@ const Create = () => {
 				<title>Claim Profile - WagmiClub</title>
 			</Helmet>
 
-			<CreateNavUI />
+			<Navbar />
 
 			<div className="create-wrapper">
-				<TabSwitcher
-					activeTab={tab}
-					onTabChange={setTab}
+				<Tab
+					initialTab={activeTab}
+					onTabChange={handleTabClick}
+					tabIsActive={tabIsActive}
 				/>
-
 				<section className="tab-display">{renderTab()}</section>
 			</div>
 		</section>

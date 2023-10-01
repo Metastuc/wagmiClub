@@ -1,6 +1,3 @@
-import CreateNavUI from "./create-navbar";
+import { PrimaryNavbar, SecondaryNavbar } from "./navbar";
 
-
-export {
-    CreateNavUI
-};
+export { PrimaryNavbar, SecondaryNavbar };

@@ -2,6 +2,13 @@
 
 $ss-sm: 25em;
 
+// navbar shared styles
+%navbar-container {
+    margin-block: 2.25rem;
+    padding-inline: 1.75rem;
+}
+
+// badge component shared styles
 %badge-wrapper {
     background-color: hexToRgba(#313131, 0.55);
     overflow: hidden;
