@@ -1,20 +1,16 @@
 import { Helmet } from "react-helmet";
 import { useBodyOverflow, useTabSwitcher } from "../../hooks";
 import { Badge, CreateTabs as Tab } from "../../components";
-import { SecondaryNavbar as Navbar } from "../../views";
+import { SecondaryNavbar as Navbar, Medal } from "../../views";
 import "./index.scss";
 
 const Create = () => {
 	useBodyOverflow();
 
-	const { activeTab, handleTabClick, tabIsActive } = useTabSwitcher("medal"),
-		Medal = function () {
-			return <section className="medal-tab-container"></section>;
-		},
-		// 
+	const { activeTab, handleTabClick, tabIsActive } = useTabSwitcher("badge"),
 		tabComponents = {
-			badge: <Badge />,
-			medal: <Medal />,
+			badge: <Badge group={"badge"} />,
+			medal: <Medal group={"medal"} />,
 		};
 
 	function renderTab() {

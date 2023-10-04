@@ -45,6 +45,7 @@ const Badge = () => {
 					handleBlur={handleBlur}
 					errors={errors}
 					touched={touched}
+					group="badge"
 				/>
 
 				<FormField
@@ -54,6 +55,7 @@ const Badge = () => {
 					handleBlur={handleBlur}
 					errors={errors}
 					touched={touched}
+					group="badge"
 				/>
 
 				<Rating

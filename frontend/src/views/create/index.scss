@@ -1,0 +1,198 @@
+@use "../../styles"as *;
+
+// Medal component styles
+.medal {
+
+    // Styles for medal image section
+    &-image {
+        @include flex($d: column);
+        margin: 2rem 0 2.875rem 0;
+
+        &__label {
+            font-family: var(--ff-clash);
+            font-size: 0.8125rem;
+            font-weight: var(--fw-mid);
+        }
+
+        // Hidden input for image upload
+        &__input {
+            display: none; // Hide input element
+        }
+
+        // Preview of uploaded image
+        &__preview {
+            @include flex;
+            @include equal(5.5rem);
+            border-radius: 1.5rem;
+            overflow: hidden;
+
+            img {
+                @include equal(100%);
+            }
+        }
+
+        // Label for the image section
+        &__label {
+            margin: 1rem 0 0.25rem 0; // Spacing for the label
+        }
+    }
+
+    // Text and Select Field Styles
+    &__text,
+    &__select,
+    &__textarea {
+        &-field {
+            @include flex($d: column, $a: flex-start);
+            margin-block: 2rem; // Vertical margin for the field
+        }
+
+        &-label {
+            font: {
+                family: var(--ff-clash);
+                size: 0.8125rem;
+                weight: var(--fw-mid);
+            }
+        }
+
+        &-error {
+            color: #ffc0cb;
+
+            font: {
+                size: 0.5rem;
+                family: var(--ff-clash);
+                weight: 100;
+            }
+        }
+    }
+
+    // Text Field Styles
+    &__text,
+    &__textarea {
+        &-wrapper {
+            @extend %badge-wrapper; // Reuse badge wrapper styles
+            @include flex($j: flex-start);
+            position: relative;
+            margin: 0.5rem 0 0.25rem 0; // Spacing for the wrapper
+        }
+
+        &-input {
+            @extend %badge-input; // Reuse badge input styles
+            font-size: .875rem;
+            transition: all ease-in-out 150ms;
+
+            &.input {
+                height: 2.25rem;
+                padding-inline: .75rem;
+            }
+
+            &.textarea {
+                height: 4.5rem;
+                padding: .25rem;
+            }
+        }
+
+        &-edit {
+            @extend %badge-edit; // Reuse badge edit styles
+            right: .75rem; // Position edit button to the right
+        }
+    }
+
+    // Select Field Styles
+    &__select {
+        &-wrapper {
+            @extend %badge-wrapper; // Reuse badge wrapper styles
+            margin: 0.5rem 0 0.25rem 0; // Spacing for the wrapper
+            width: 100%;
+            overflow: visible;
+        }
+    }
+
+    // Dropdown Styles
+    &__dropdown {
+        position: relative;
+        height: 2.25rem;
+
+        &-button {
+            @include flex;
+            gap: .3125rem;
+            height: 100%;
+            width: max-content;
+            padding-inline: .75rem;
+            background-color: transparent;
+            color: rgba($color: #fff, $alpha: .6);
+
+            font: {
+                family: var(--ff-clash);
+                size: .875rem;
+                weight: var(--fw-reg);
+            }
+        }
+
+        &-menu {
+            position: absolute;
+            right: 0;
+            top: .625rem;
+            z-index: 1;
+            padding: .5rem;
+            border-radius: .625rem;
+            background-color: rgba($color: #fff, $alpha: .9);
+
+            >*:not(:last-child) {
+                margin-bottom: .5rem;
+            }
+
+            &-item {
+                color: rgba($color: #000, $alpha: .7);
+
+                font: {
+                    family: var(--ff-clash);
+                    size: .75rem;
+                    weight: var(--fw-reg);
+                }
+            }
+
+            &.active {
+                animation-name: slide-top;
+                animation-duration: 200ms;
+                animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                animation-fill-mode: both;
+            }
+        }
+
+        // Dropdown animation
+        @keyframes slide-top {
+            0% {
+                transform: translateY(0)
+            }
+
+            100% {
+                transform: translateY(-10px)
+            }
+        }
+    }
+
+    &-submit {
+        @include flex;
+        margin-top: 3.5rem;
+
+        &__button {
+            height: 2.75rem;
+            font-size: .75rem;
+            @include flex;
+            border-radius: .3125rem;
+            background-color: var(--green-300);
+
+            span {
+                padding-inline: calc(3rem - .25rem);
+                margin-inline: .3125rem;
+                height: calc(100% - .5rem);
+                border: 1px solid lighten($color: #000, $amount: 30);
+                text-transform: capitalize;
+                @include flex;
+                font-family: var(--ff-clash);
+                font-weight: var(--fw-mid);
+                border-radius: inherit;
+            }
+        }
+    }
+}

@@ -23,9 +23,10 @@ input[type="text"],
 textarea {
     border: none;
     outline: none;
+    text-size-adjust: 100%;
 }
 
-textarea{
+textarea {
     resize: none;
 }
 

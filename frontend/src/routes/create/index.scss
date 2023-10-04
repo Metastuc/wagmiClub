@@ -8,27 +8,55 @@
         margin-inline: 1.25rem;
     }
 
-    .tab-switcher {
+    .tab-switch {
         @include flex($j:flex-end);
         width: 100%;
         padding-inline-end: 1rem;
 
-        >div {
+        &__wrapper {
+            @include flex;
+            border-radius: .3125rem;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--black-300);
+        }
+
+        &__button {
             @include flex;
             padding-block: .5rem;
             padding-inline: 1.5rem;
-            background-color: var(--black-300);
+            background-color: transparent;
 
             &.active {
                 border-radius: .3125rem;
-                background-color: var(--black-400);
+
+                span {
+                    color: var(--white);
+                }
             }
 
             span {
                 font-family: var(--ff-clash);
                 font-size: .625rem;
                 text-transform: capitalize;
-                font-weight: var(--fw-reg);
+                font-weight: var(--fw-mid);
+                color: rgba($color: #fff, $alpha: .6);
+                z-index: 1;
+            }
+        }
+
+        &__bg {
+            position: absolute;
+            background-color: var(--black-400);
+            top: 0;
+            left: 50%;
+            width: 50%;
+            height: 100%;
+            border-radius: inherit;
+            transition: all ease-in-out 200ms;
+
+            &.active {
+                left: 0%;
             }
         }
     }

@@ -5,6 +5,7 @@ html {
     body {
         background-color: var(--black);
         color: var(--white);
+        touch-action: manipulation;
 
         &::-webkit-scrollbar {
             display: none;
