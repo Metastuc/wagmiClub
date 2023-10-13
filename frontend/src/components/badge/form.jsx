@@ -39,9 +39,6 @@ const FormField = ({
 						onChange={handleFormChange}
 						onBlur={handleBlur}
 					/>
-					{/* {title == "" && (
-						<span className="badge-title__edit">edit</span>
-					)} */}
 				</div>
 
 				{errors.title && touched.title && (
@@ -65,9 +62,6 @@ const FormField = ({
 						onChange={handleFormChange}
 						onBlur={handleBlur}
 					></textarea>
-					{/* {description == "" && (
-						<span className="badge-title__edit">edit</span>
-					)} */}
 				</div>
 
 				{errors.description && touched.description && (
@@ -157,6 +151,22 @@ const FormField = ({
 								scrollableYearDropdown
 								dropdownMode="select"
 								onBlur={handleBlur}
+								readOnly={working}
+								value={
+									working
+										? "Still working"
+										: endDate
+										? endDate.toLocaleDateString(
+												undefined,
+												{
+													weekday: "long",
+													year: "numeric",
+													month: "long",
+													day: "numeric",
+												},
+										)
+										: ""
+								}
 							/>
 						</div>
 					</article>
@@ -237,9 +247,6 @@ const FormField = ({
 						onChange={handleFormChange}
 						onBlur={handleBlur}
 					></textarea>
-					{/* {additionalInfo == "" && (
-						<span className="badge-title__edit">edit</span>
-					)} */}
 				</div>
 			</div>
 		</>

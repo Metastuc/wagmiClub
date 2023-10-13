@@ -22,7 +22,6 @@ const SelectField = ({
 	touched,
 }) => {
 	const [selected, setSelected] = useState(""); // Local state to store selected option
-
 	// Event handler for dropdown option change
 	const handleDropdownChange = (selectedOption) => {
 		setSelected(selectedOption); // Update local state with selected option
@@ -31,7 +30,9 @@ const SelectField = ({
 	};
 
 	return (
-		<div className={`${group}__select-field`}>
+		<div
+			className={`${group}__select-field`}
+		>
 			{/* Label for the select field */}
 			<label
 				htmlFor={id}

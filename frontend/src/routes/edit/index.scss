@@ -1,0 +1,63 @@
+@use "../../styles"as *;
+
+
+.edit {
+    margin-block: 4.125rem;
+    padding-inline: 1.5rem;
+
+    &__title-bar {
+        @include flex($j:space-between);
+
+        >span {
+            text-transform: capitalize;
+
+            font: {
+                size: 1.25rem;
+                family: var(--ff-clash);
+                weight: var(--fw-mid);
+            }
+        }
+    }
+
+    .tab-switch {
+        border: 1px solid red;
+        margin-block: 2.25rem;
+
+        &__wrapper {
+            @include flex($j:flex-start);
+            gap: 1.5rem;
+        }
+
+        &__item {
+            border: 1px solid yellow;
+            @include flex;
+            gap: .5rem;
+
+            &.active>div>span {
+                background-color: black;
+            }
+        }
+
+        &__icon {
+            @include flex;
+            @include equal(.75rem);
+            background-color: rgba($color: #ece6e6, $alpha: .9);
+            border-radius: 50%;
+
+            span {
+                @include flex;
+                @include equal(.5rem);
+                border: 1px solid white;
+                border-radius: inherit;
+            }
+        }
+
+        &__title {
+            font: {
+                size: .5rem;
+                family: var(--ff-clash);
+                weight: var(--fw-mid);
+            }
+        }
+    }
+}

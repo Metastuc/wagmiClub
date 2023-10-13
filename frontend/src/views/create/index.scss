@@ -35,6 +35,17 @@
         &__label {
             margin: 1rem 0 0.25rem 0; // Spacing for the label
         }
+
+        // Error for the image section
+        &__error {
+            color: #ffc0cb;
+
+            font: {
+                size: 0.5rem;
+                family: var(--ff-clash);
+                weight: 100;
+            }
+        }
     }
 
     // Text and Select Field Styles

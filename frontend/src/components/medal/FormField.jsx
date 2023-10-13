@@ -12,9 +12,6 @@ const FormField = ({
 }) => {
 	const { title, address, validator, additionalInfo } = formData;
 
-	console.table(errors);
-	console.log(touched);
-
 	return (
 		<>
 			{/* Medal Title Field */}
@@ -23,7 +20,7 @@ const FormField = ({
 				group={group}
 				label="Medal Title"
 				value={title}
-				touched={touched}
+				touched={touched.title}
 				onBlur={handleBlur}
 				error={errors.title}
 				edit={false}
@@ -40,7 +37,7 @@ const FormField = ({
 				onChange={handleFormChange}
 				setFieldValue={setFieldValue}
 				error={errors.type}
-				touched={touched}
+				touched={touched.type}
 			/>
 
 			{/* Contract Address Field */}
@@ -49,7 +46,7 @@ const FormField = ({
 				group={group}
 				label="Contract Address"
 				value={address}
-				touched={touched}
+				touched={touched.address}
 				onBlur={handleBlur}
 				error={errors.address}
 				edit={true}
@@ -61,22 +58,22 @@ const FormField = ({
 			<SelectField
 				id="metrics"
 				group={group}
-				label="Winning Metrics"
+				label="Eligibility Metrics"
 				options={winningMetrics}
 				edit={false}
 				onChange={handleFormChange}
 				setFieldValue={setFieldValue}
 				error={errors.metrics}
-				touched={touched}
+				touched={touched.metrics}
 			/>
 
 			{/* Validator's Name & Position Field */}
 			<TextField
 				id="validator"
 				group={group}
-				label="Medal Validator's Name & Position"
+				label="Medal Validator's Name & Position in Organisation"
 				value={validator}
-				touched={touched}
+				touched={touched.validator}
 				onBlur={handleBlur}
 				error={errors.validator}
 				edit={false}
@@ -89,7 +86,7 @@ const FormField = ({
 				group={group}
 				label="Additional Information"
 				value={additionalInfo}
-				touched={touched}
+				touched={touched.additionalInfo}
 				onBlur={handleBlur}
 				errors={errors.additionalInfo}
 				onChange={handleFormChange}

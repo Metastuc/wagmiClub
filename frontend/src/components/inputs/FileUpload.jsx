@@ -48,7 +48,7 @@ const FileUpload = ({ group, errors, touched, handleBlur, onImageChange }) => {
 				accept="image/*"
 				id="upload"
 				onChange={handleImageChange} // Handle file selection
-				onBlur={handleBlur}
+				onBlur={() => handleBlur("image")}
 			/>
 			{/* Image preview or default upload icon */}
 			<span

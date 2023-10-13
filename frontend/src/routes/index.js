@@ -1,8 +1,6 @@
 import Landing from "./landing";
 import Create from "./create";
+import Edit from "./edit";
 
 
-export {
-    Landing,
-    Create,
-};
+export { Landing, Create, Edit };
