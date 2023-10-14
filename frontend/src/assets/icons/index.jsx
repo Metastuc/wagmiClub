@@ -384,10 +384,10 @@ export const Hamburger = function () {
 				xmlns="http://www.w3.org/2000/svg"
 				width={12}
 				height={7}
-				fill="none"
+				fill="currentColor"
 			>
 				<path
-					fill="#FFF7F7"
+					fill="currentColor"
 					fillOpacity={0.8}
 					d="M6.663 6.627a1 1 0 0 1-1.42-.017L.82 2.047C.2 1.409.66.34 1.55.351l8.956.108c.889.01 1.323 1.09.689 1.713L6.663 6.627Z"
 				/>

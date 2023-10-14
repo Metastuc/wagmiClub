@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { SelectField, TextField, TextareaField } from "../inputs";
 import { personal, organisation } from "../../assets/data";
-import "./index.scss"
+import "./index.scss";
 
+/**
+ * Details Component - A form component requesting user details.
+ * @param {Object} props - The properties passed to the component.
+ * @param {Object} props.errors - Object containing form validation errors.
+ * @param {Object} props.touched - Object indicating if form fields have been touched.
+ * @param {Object} props.formData - Object containing form field values.
+ * @param {string} props.activeTab - The active tab (personal or organisation).
+ * @param {Function} props.handleBlur - Event handler for onBlur event.
+ * @param {Function} props.setFieldValue - Function provided by Formik to set field value.
+ * @param {Function} props.handleFormChange - Event handler for form field changes.
+ */
 const Details = ({
 	errors,
 	touched,
@@ -13,17 +24,26 @@ const Details = ({
 	handleFormChange,
 }) => {
 	const group = "details";
-	const { name, username, bio, occupation } = formData;
-	console.log(activeTab);
-	const occupationOptions =
-		activeTab === "personal"
-			? personal
-			: activeTab === "organisation"
-			? organisation
-			: null;
+	const { name, username, bio } = formData;
+	const [options, setOptions] = useState(personal);
+	const occupationOptions = options;
+
+	/**
+	 * Update options based on the active tab (personal or organisation).
+	 */
+	useEffect(() => {
+		setOptions(
+			activeTab === "personal"
+				? personal
+				: activeTab === "organisation"
+				? organisation
+				: null,
+		);
+	}, [activeTab]);
 
 	return (
 		<>
+			{/* Name Text Field */}
 			<TextField
 				id="name"
 				group={group}
@@ -36,6 +56,7 @@ const Details = ({
 				onChange={handleFormChange}
 			/>
 
+			{/* Username Text Field */}
 			<TextField
 				id="username"
 				group={group}
@@ -48,6 +69,7 @@ const Details = ({
 				onChange={handleFormChange}
 			/>
 
+			{/* Bio Textarea Field */}
 			<TextareaField
 				id="bio"
 				group={group}
@@ -60,10 +82,11 @@ const Details = ({
 				onChange={handleFormChange}
 			/>
 
+			{/* Occupation Select Field */}
 			<SelectField
 				id="occupation"
 				group={group}
-				label="What Do You Do?"
+				label="What Describes You Best?"
 				options={occupationOptions}
 				edit={false}
 				onChange={handleFormChange}

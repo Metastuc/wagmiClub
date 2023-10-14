@@ -2,18 +2,20 @@ import React from "react";
 import { Details, Socials } from "../../components";
 import { useFormik } from "formik";
 import { useEffect } from "react";
+import { schema } from "../../components/edit/validateSchema";
+import "./index.scss";
 
 const FormField = ({ activeTab }) => {
 	const initialValues = {
-		"account": activeTab,
-		"bio": "",
-		"discord": "",
-		"name": "",
-		"occupation": "",
-		"telegram": "",
-		"username": "",
-		"x.com": "",
-		"youtube": "",
+		account: activeTab,
+		bio: "",
+		discord: "",
+		name: "",
+		occupation: "",
+		telegram: "",
+		username: "",
+		xDotCom: "",
+		youtube: "",
 	};
 
 	const {
@@ -25,7 +27,7 @@ const FormField = ({ activeTab }) => {
 		handleSubmit,
 		setFieldValue,
 	} = useFormik({
-		// validationSchema,
+		validationSchema: schema,
 		initialValues,
 		onSubmit: (values) => {
 			console.table("Formik data:", values);
@@ -41,6 +43,7 @@ const FormField = ({ activeTab }) => {
 		<form
 			autoComplete="off"
 			onSubmit={handleSubmit}
+			className="form"
 		>
 			{/* user details component */}
 			<Details
@@ -64,7 +67,12 @@ const FormField = ({ activeTab }) => {
 			/>
 
 			{/* submit form */}
-			<button>save</button>
+
+			<div className="form__button">
+				<button type="submit" className="form__button-wrapper">
+					<span className="form__button-label">Save</span>
+				</button>
+			</div>
 		</form>
 	);
 };

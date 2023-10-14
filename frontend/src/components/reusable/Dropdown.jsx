@@ -72,7 +72,7 @@ const Dropdown = ({ group, options, onChange, selectedValue }) => {
 				className={`${group}__dropdown-button`}
 			>
 				<span>{selectedValue ? selectedValue : "Choose One"}</span>
-				<span>
+				<span className={`${group}__dropdown-icon`}>
 					<ButtonIcon />
 				</span>
 			</button>

@@ -1,0 +1,356 @@
+diff --git a/frontend/src/assets/data/index.js b/frontend/src/assets/data/index.js
+index d538f76..c758c76 100644
+--- a/frontend/src/assets/data/index.js
++++ b/frontend/src/assets/data/index.js
+@@ -92,50 +92,50 @@ export const navLinks = [
+ 		{
+ 			id: 0,
+ 			value: {
+-				title: "Over 5ETH",
+-				utility: "Over 5ETH",
++				title: "Advisor",
++				utility: "Advisor",
+ 			},
+ 		},
+ 		{
+ 			id: 1,
+ 			value: {
+-				title: "Up to 20 swaps",
+-				utility: "Up to 20 swaps",
++				title: "Investor",
++				utility: "Investor",
+ 			},
+ 		},
+ 		{
+ 			id: 2,
+ 			value: {
+-				title: "Up to 5 weeks",
+-				utility: "Up to 5 weeks",
++				title: "Designer",
++				utility: "Designer",
+ 			},
+ 		},
+ 		{
+ 			id: 3,
+ 			value: {
+-				title: "Up to 5 weeks",
+-				utility: "Up to 5 weeks",
++				title: "Marketer",
++				utility: "Marketer",
+ 			},
+ 		},
+ 		{
+ 			id: 4,
+ 			value: {
+-				title: "Up to 5 weeks",
+-				utility: "Up to 5 weeks",
++				title: "Creator",
++				utility: "Creator",
+ 			},
+ 		},
+ 		{
+ 			id: 5,
+ 			value: {
+-				title: "Up to 5 weeks",
+-				utility: "Up to 5 weeks",
++				title: "Developer",
++				utility: "Developer",
+ 			},
+ 		},
+ 		{
+ 			id: 6,
+ 			value: {
+-				title: "Up to 5 weeks",
+-				utility: "Up to 5 weeks",
++				title: "Founder",
++				utility: "Founder",
+ 			},
+ 		},
+ 	],
+@@ -143,50 +143,50 @@ export const navLinks = [
+ 		{
+ 			id: 0,
+ 			value: {
+-				title: "Over 5ETH",
+-				utility: "Over 5ETH",
++				title: "Exchange",
++				utility: "Exchange",
+ 			},
+ 		},
+ 		{
+ 			id: 1,
+ 			value: {
+-				title: "Up to 20 swaps",
+-				utility: "Up to 20 swaps",
++				title: "Gaming",
++				utility: "Gaming",
+ 			},
+ 		},
+ 		{
+ 			id: 2,
+ 			value: {
+-				title: "Up to 5 weeks",
+-				utility: "Up to 5 weeks",
++				title: "Data & analytics",
++				utility: "Data & analytics",
+ 			},
+ 		},
+ 		{
+ 			id: 3,
+ 			value: {
+-				title: "Up to 5 weeks",
+-				utility: "Up to 5 weeks",
++				title: "Marketing",
++				utility: "Marketing",
+ 			},
+ 		},
+ 		{
+ 			id: 4,
+ 			value: {
+-				title: "Up to 5 weeks",
+-				utility: "Up to 5 weeks",
++				title: "Ecosystem",
++				utility: "Ecosystem",
+ 			},
+ 		},
+ 		{
+ 			id: 5,
+ 			value: {
+-				title: "Up to 5 weeks",
+-				utility: "Up to 5 weeks",
++				title: "Development",
++				utility: "Development",
+ 			},
+ 		},
+ 		{
+ 			id: 6,
+ 			value: {
+-				title: "Up to 5 weeks",
+-				utility: "Up to 5 weeks",
++				title: "DAO",
++				utility: "DAO",
+ 			},
+ 		},
+ 	];
+diff --git a/frontend/src/assets/icons/index.jsx b/frontend/src/assets/icons/index.jsx
+index 8402123..caf2a0e 100644
+--- a/frontend/src/assets/icons/index.jsx
++++ b/frontend/src/assets/icons/index.jsx
+@@ -384,10 +384,10 @@ export const Hamburger = function () {
+ 				xmlns="http://www.w3.org/2000/svg"
+ 				width={12}
+ 				height={7}
+-				fill="none"
++				fill="currentColor"
+ 			>
+ 				<path
+-					fill="#FFF7F7"
++					fill="currentColor"
+ 					fillOpacity={0.8}
+ 					d="M6.663 6.627a1 1 0 0 1-1.42-.017L.82 2.047C.2 1.409.66.34 1.55.351l8.956.108c.889.01 1.323 1.09.689 1.713L6.663 6.627Z"
+ 				/>
+diff --git a/frontend/src/components/edit/Details.jsx b/frontend/src/components/edit/Details.jsx
+index 6cad06a..fdcd6e9 100644
+--- a/frontend/src/components/edit/Details.jsx
++++ b/frontend/src/components/edit/Details.jsx
+@@ -1,8 +1,19 @@
+-import React from "react";
++import React, { useEffect, useState } from "react";
+ import { SelectField, TextField, TextareaField } from "../inputs";
+ import { personal, organisation } from "../../assets/data";
+-import "./index.scss"
++import "./index.scss";
+ 
++/**
++ * Details Component - A form component requesting user details.
++ * @param {Object} props - The properties passed to the component.
++ * @param {Object} props.errors - Object containing form validation errors.
++ * @param {Object} props.touched - Object indicating if form fields have been touched.
++ * @param {Object} props.formData - Object containing form field values.
++ * @param {string} props.activeTab - The active tab (personal or organisation).
++ * @param {Function} props.handleBlur - Event handler for onBlur event.
++ * @param {Function} props.setFieldValue - Function provided by Formik to set field value.
++ * @param {Function} props.handleFormChange - Event handler for form field changes.
++ */
+ const Details = ({
+ 	errors,
+ 	touched,
+@@ -13,17 +24,26 @@ const Details = ({
+ 	handleFormChange,
+ }) => {
+ 	const group = "details";
+-	const { name, username, bio, occupation } = formData;
+-	console.log(activeTab);
+-	const occupationOptions =
+-		activeTab === "personal"
+-			? personal
+-			: activeTab === "organisation"
+-			? organisation
+-			: null;
++	const { name, username, bio } = formData;
++	const [options, setOptions] = useState(personal);
++	const occupationOptions = options;
++
++	/**
++	 * Update options based on the active tab (personal or organisation).
++	 */
++	useEffect(() => {
++		setOptions(
++			activeTab === "personal"
++				? personal
++				: activeTab === "organisation"
++				? organisation
++				: null,
++		);
++	}, [activeTab]);
+ 
+ 	return (
+ 		<>
++			{/* Name Text Field */}
+ 			<TextField
+ 				id="name"
+ 				group={group}
+@@ -36,6 +56,7 @@ const Details = ({
+ 				onChange={handleFormChange}
+ 			/>
+ 
++			{/* Username Text Field */}
+ 			<TextField
+ 				id="username"
+ 				group={group}
+@@ -48,6 +69,7 @@ const Details = ({
+ 				onChange={handleFormChange}
+ 			/>
+ 
++			{/* Bio Textarea Field */}
+ 			<TextareaField
+ 				id="bio"
+ 				group={group}
+@@ -60,10 +82,11 @@ const Details = ({
+ 				onChange={handleFormChange}
+ 			/>
+ 
++			{/* Occupation Select Field */}
+ 			<SelectField
+ 				id="occupation"
+ 				group={group}
+-				label="What Do You Do?"
++				label="What Describes You Best?"
+ 				options={occupationOptions}
+ 				edit={false}
+ 				onChange={handleFormChange}
+diff --git a/frontend/src/components/inputs/SelectField.jsx b/frontend/src/components/inputs/SelectField.jsx
+index cc2196f..6af6bdd 100644
+--- a/frontend/src/components/inputs/SelectField.jsx
++++ b/frontend/src/components/inputs/SelectField.jsx
+@@ -1,16 +1,19 @@
+-import { useState } from "react";
++import React, { useEffect, useState } from "react";
++import PropTypes from "prop-types"; // Import PropTypes for prop type checking
+ import { Dropdown } from "../reusable";
+ 
+ /**
+- * SelectField Component
+- * @param {string} id - The unique ID for the select field.
+- * @param {string} label - The label text for the select field.
+- * @param {string} group - The CSS class or group identifier.
+- * @param {Array} options - The list of options for the select field.
+- * @param {Function} onChange - Event handler for onChange event.
+- * @param {Function} setFieldValue - Function provided by Formik to set field value.
++ * SelectField Component - A reusable dropdown select component.
++ * @param {Object} props - The properties passed to the component.
++ * @param {string} props.id - The unique ID for the select field.
++ * @param {string} props.label - The label text for the select field.
++ * @param {string} props.group - The CSS class or group identifier.
++ * @param {Array} props.options - The list of options for the select field.
++ * @param {Function} props.onChange - Event handler for onChange event.
++ * @param {Function} props.setFieldValue - Function provided by Formik to set field value.
++ * @param {string} props.error - The error message to display, if any.
++ * @param {boolean} props.touched - A flag indicating whether the field has been touched.
+  */
+-
+ const SelectField = ({
+ 	id,
+ 	label,
+@@ -22,17 +25,25 @@ const SelectField = ({
+ 	touched,
+ }) => {
+ 	const [selected, setSelected] = useState(""); // Local state to store selected option
+-	// Event handler for dropdown option change
++
++	/**
++	 * Event handler for dropdown option change.
++	 * @param {string} selectedOption - The selected option value.
++	 */
+ 	const handleDropdownChange = (selectedOption) => {
+ 		setSelected(selectedOption); // Update local state with selected option
+ 		setFieldValue(id, selectedOption); // Update Formik field value
+ 		onChange(selectedOption); // Call parent component's onChange handler if needed
+ 	};
+ 
++	// Reset the field value and selected state when options change
++	useEffect(() => {
++		setFieldValue(id, "");
++		setSelected("");
++	}, [options]);
++
+ 	return (
+-		<div
+-			className={`${group}__select-field`}
+-		>
++		<div className={`${group}__select-field`}>
+ 			{/* Label for the select field */}
+ 			<label
+ 				htmlFor={id}
+diff --git a/frontend/src/components/reusable/Dropdown.jsx b/frontend/src/components/reusable/Dropdown.jsx
+index 80270ae..3791dd6 100644
+--- a/frontend/src/components/reusable/Dropdown.jsx
++++ b/frontend/src/components/reusable/Dropdown.jsx
+@@ -72,7 +72,7 @@ const Dropdown = ({ group, options, onChange, selectedValue }) => {
+ 				className={`${group}__dropdown-button`}
+ 			>
+ 				<span>{selectedValue ? selectedValue : "Choose One"}</span>
+-				<span>
++				<span className={`${group}__dropdown-icon`}>
+ 					<ButtonIcon />
+ 				</span>
+ 			</button>
+diff --git a/frontend/src/styles/_variables.scss b/frontend/src/styles/_variables.scss
+index 5afc3fc..aaee99c 100644
+--- a/frontend/src/styles/_variables.scss
++++ b/frontend/src/styles/_variables.scss
+@@ -30,4 +30,11 @@ $ss-sm: 25em;
+     font-family: var(--ff-clash);
+     color: rgba($color: #cbcc95, $alpha: .52);
+     width: max-content;
++}
++
++// edit component shared styles
++%details-wrapper{
++    margin: .5rem 0 .25rem 0;
++    width: 100%;
++    border-radius: .625rem;
+ }
+\ No newline at end of file
+diff --git a/frontend/src/views/edit/FormField.jsx b/frontend/src/views/edit/FormField.jsx
+index e10eb24..e2a375b 100644
+--- a/frontend/src/views/edit/FormField.jsx
++++ b/frontend/src/views/edit/FormField.jsx
+@@ -2,6 +2,8 @@ import React from "react";
+ import { Details, Socials } from "../../components";
+ import { useFormik } from "formik";
+ import { useEffect } from "react";
++import { schema } from "../../components/edit/validateSchema";
++import "./index.scss";
+ 
+ const FormField = ({ activeTab }) => {
+ 	const initialValues = {
+@@ -25,7 +27,7 @@ const FormField = ({ activeTab }) => {
+ 		handleSubmit,
+ 		setFieldValue,
+ 	} = useFormik({
+-		// validationSchema,
++		validationSchema: schema,
+ 		initialValues,
+ 		onSubmit: (values) => {
+ 			console.table("Formik data:", values);

@@ -1,6 +1,33 @@
+/**
+ * Converts a hexadecimal color code to RGBA format.
+ * 
+ * @param {string} $hex - The hexadecimal color code.
+ * @param {number} $alpha - Optional alpha (opacity) value, defaults to 1.
+ * @return {string} - RGBA color code.
+ */
 @function hexToRgba($hex, $alpha: 1) {
     $red: red($hex);
+    /** Extracts the red component of the color. */
     $green: green($hex);
+    /** Extracts the green component of the color. */
     $blue: blue($hex);
+    /** Extracts the blue component of the color. */
     @return rgba($red, $green, $blue, $alpha);
+    /** Returns the RGBA color code. */
+}
+
+/**
+ * Calculates the padding required to center a child element within a parent element.
+ * 
+ * @param {number} $targetWidth - The desired total width of the parent element.
+ * @param {number} $childWidth - The width of the child element.
+ * @return {number} - The calculated padding value.
+ */
+@function calculateButtonPadding($targetWidth, $childWidth) {
+    $buttonWidth: $childWidth;
+    /** Set the desired button width in pixels. */
+    $padding: ($targetWidth / 2) - ($buttonWidth / 2);
+    /** Calculate the padding to center the button. */
+    @return #{$padding};
+    /** Return the calculated padding value. */
 }

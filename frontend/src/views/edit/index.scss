@@ -1,0 +1,376 @@
+@use "../../styles" as *;
+
+/**
+ * Styles for the .details component
+ */
+.details {
+
+    /** Styles for text, textarea, and select elements */
+    &__text,
+    &__textarea,
+    &__select {
+
+        /** Styles for text-field, textarea-field, and select-field */
+        &-field {
+            margin: 1rem 0;
+            /** Margin for text-field, textarea-field, and select-field */
+        }
+
+        /** Styles for text-label, textarea-label, and select-label */
+        &-label {
+            padding-left: .75rem;
+            /** Padding for text-label, textarea-label, and select-label */
+
+            font: {
+                size: .875rem;
+                /** Font size for text-label, textarea-label, and select-label */
+                family: var(--ff-clash);
+                /** Font family for text-label, textarea-label, and select-label */
+                weight: var(--fw-mid);
+                /** Font weight for text-label, textarea-label, and select-label */
+            }
+        }
+
+        /** Styles for text-wrapper, textarea-wrapper, and select-wrapper */
+        &-wrapper {
+            @extend %details-wrapper;
+            /** Extend styles from %details-wrapper */
+        }
+
+        /** Styles for text-error, textarea-error, and select-error */
+        &-error {
+            font: {
+                size: 0.5rem;
+                /** Font size for error messages */
+                family: var(--ff-clash);
+                /** Font family for error messages */
+                weight: 100;
+                /** Font weight for error messages */
+            }
+
+            color: #ffc0cb;
+            /** Color for error messages */
+        }
+    }
+
+    /** Styles for text and textarea elements */
+    &__text,
+    &__textarea {
+
+        /** Styles for text-wrapper and textarea-wrapper */
+        &-wrapper {
+            @include flex;
+            /** Include flexbox utility */
+        }
+
+        /** Styles for text-input and textarea-input */
+        &-input {
+            @include equal(100%);
+            /** Include utility for equal width */
+            border-radius: inherit;
+            /** Inherit border-radius from parent */
+
+            font: {
+                size: .875rem;
+                /** Font size for text-input and textarea-input */
+                family: var(--ff-clash);
+                /** Font family for text-input and textarea-input */
+                weight: var(--fw-reg);
+                /** Font weight for text-input and textarea-input */
+            }
+
+            /** Styles for input with @use "../../styles" as *;
+class .input */
+            &.input {
+                height: 1.75rem;
+                /** Height for input elements */
+                padding-inline: .75rem;
+                /** Padding for input elements */
+            }
+
+            /** Styles for input with class .textarea */
+            &.textarea {
+                height: 5rem;
+                /** Height for textarea elements */
+                padding: .5rem;
+                /** Padding for textarea elements */
+            }
+        }
+    }
+
+    /** Styles for select-wrapper */
+    &__select-wrapper {
+        background-color: #FFFDFD;
+        /** Background color for select-wrapper */
+    }
+
+    /** Styles for dropdown components */
+    &__dropdown {
+        position: relative;
+        /** Relative positioning for dropdown components */
+        height: 2.25rem;
+        /** Height for dropdown components */
+
+        /** Styles for dropdown-button */
+        &-button {
+            @include flex;
+            /** Include flexbox utility */
+            gap: .3125rem;
+            /** Gap between elements */
+            height: 100%;
+            /** Height for dropdown button */
+            width: max-content;
+            /** Set width to max content */
+            padding-inline: 1.5rem;
+            /** Padding for dropdown button */
+            background-color: transparent;
+            /** Transparent background */
+            color: rgba($color: #020101, $alpha: .75);
+            /** Text color for dropdown button */
+
+            font: {
+                family: var(--ff-clash);
+                /** Font family for dropdown button */
+                size: .875rem;
+                /** Font size for dropdown button */
+                weight: var(--fw-mid);
+                /** Font weight for dropdown button */
+            }
+        }
+
+        /** Styles for dropdown-icon */
+        &-icon {
+            color: inherit;
+            /** Inherit color from parent */
+            color: rgba($color: #020101, $alpha: .75);
+            /** Text color for dropdown icon */
+        }
+
+        /** Styles for dropdown-menu */
+        &-menu {
+            position: absolute;
+            /** Absolute positioning for dropdown menu */
+            right: 0;
+            /** Align to the right */
+            top: .625rem;
+            /** Top position for dropdown menu */
+            z-index: 1;
+            /** Z-index for dropdown menu */
+            padding: .5rem;
+            /** Padding for dropdown menu */
+            border-radius: .625rem;
+            /** Border radius for dropdown menu */
+            background-color: rgba($color: #fff, $alpha: .9);
+            /** Background color for dropdown menu */
+
+            >*:not(:last-child) {
+                margin-bottom: .5rem;
+                /** Bottom margin for menu items except the last one */
+            }
+
+            /** Styles for dropdown-menu-item */
+            &-item {
+                color: rgba($color: #000, $alpha: .7);
+                /** Text color for menu items */
+
+                font: {
+                    family: var(--ff-clash);
+                    /** Font family for menu items */
+                    size: .75rem;
+                    /** Font size for menu items */
+                    weight: var(--fw-reg);
+                    /** Font weight for menu items */
+                }
+            }
+
+            &.active {
+                animation-name: slide-top;
+                /** Animation for active dropdown menu */
+                animation-duration: 200ms;
+                /** Duration of the animation */
+                animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                /** Timing function for animation */
+                animation-fill-mode: both;
+                /** Fill mode for animation */
+            }
+        }
+
+        /** Dropdown animation */
+        @keyframes slide-top {
+            0% {
+                transform: translateY(0);
+                /** Initial position */
+            }
+
+            100% {
+                transform: translateY(-10px);
+                /** Final position */
+            }
+        }
+    }
+}
+
+/**
+ * Styles for the .form__divider component
+ */
+.form__divider {
+    margin: 5.75rem 0 1.75rem 0;
+    /** Margin for form divider */
+
+    font: {
+        size: 1rem;
+        /** Font size for form divider */
+        weight: var(--fw-mid);
+        /** Font weight for form divider */
+        family: var(--ff-clash);
+        /** Font family for form divider */
+    }
+}
+
+/**
+ * Styles for the .socials component
+ */
+.socials {
+
+    /** Styles for socials text elements */
+    &__text {
+
+        /** Styles for socials text-field */
+        &-field {
+            position: relative;
+            /** Relative positioning for text-field */
+
+            &:not(:last-child) {
+                margin-bottom: 2.25rem;
+                /** Margin for text-field except the last one */
+            }
+
+            @include flex();
+            /** Include flexbox utility */
+            background-color:#FFFDFD;
+            /** Background color for text-field */
+            border: 1px solid #8FD784;
+            /** Border for text-field */
+            border-radius: .625rem;
+            /** Border radius for text-field */
+            height: 1.75rem;
+            /** Height for text-field */
+        }
+
+        /** Styles for socials text-label */
+        &-label {
+            width: 60%;
+            /** Width for text-label */
+            height: 100%;
+            /** Height for text-label */
+            border-right: inherit;
+            /** Inherit border-right property */
+            padding-left: 2rem;
+            /** Padding for text-label */
+            @include flex($j:flex-start);
+            /** Include flexbox utility */
+            color: rgba($color: #090808, $alpha: .7);
+            /** Text color for text-label */
+
+            font: {
+                family: var(--ff-clash);
+                /** Font family for text-label */
+                weight: var(--fw-mid);
+                /** Font weight for text-label */
+                size: .75rem;
+                /** Font size for text-label */
+            }
+        }
+
+        /** Styles for socials text-wrapper */
+        &-wrapper {
+            width: 100%;
+            /** Width for text-wrapper */
+        }
+
+        /** Styles for socials text-input */
+        &-input {
+            @include equal(100%);
+            /** Include utility for equal width */
+            color: rgba($color: #090808, $alpha: .4);
+            /** Text color for text-input */
+            padding-inline: .25rem;
+            /** Padding for text-input */
+            @include flex;
+            /** Include flexbox utility */
+            flex: 1;
+            /** Flex property for text-input */
+            text-align: center;
+            /** Centered text alignment */
+
+            font: {
+                family: var(--ff-clash);
+                /** Font family for text-input */
+                weight: var(--fw-mid);
+                /** Font weight for text-input */
+                size: .75rem;
+                /** Font size for text-input */
+            }
+        }
+
+        /** Styles for socials text-error */
+        &-error {
+            position: absolute;
+            /** Absolute positioning for text-error */
+            bottom: -1rem;
+            /** Bottom position for text-error */
+            right: 1rem;
+            /** Right position for text-error */
+
+            font: {
+                size: 0.5rem;
+                /** Font size for error messages */
+                family: var(--ff-clash);
+                /** Font family for error messages */
+                weight: 100;
+                /** Font weight for error messages */
+            }
+
+            color: #ffc0cb;
+            /** Color for error messages */
+        }
+    }
+}
+
+/**
+ * Styles for the .form__button component
+ */
+.form__button {
+    @include flex;
+    /** Include flexbox utility */
+    margin: 4.375rem 0 8.75rem 0;
+    /** Margin for form button */
+
+    /** Styles for form button wrapper */
+    &-wrapper {
+        $targetWidth: 17rem;
+        /** Target width for button */
+        $childWidth: 3.125rem;
+        /** Width of child element */
+        height: 4.25rem;
+        /** Height of button */
+        padding-inline: calculateButtonPadding($targetWidth, $childWidth);
+        /** Inline padding for button */
+        border-radius: .625rem;
+        /** Border radius for button */
+        background: rgba(161, 242, 148, 0.89);
+        /** Background color for button */
+    }
+
+    /** Styles for button label */
+    &-label {
+        font: {
+            family: var(--ff-clash);
+            /** Font family for button label */
+            weight: var(--fw-mid);
+            /** Font weight for button label */
+            size: 1.25rem;
+            /** Font size for button label */
+        }
+    }
+}

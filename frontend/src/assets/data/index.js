@@ -92,50 +92,50 @@ export const navLinks = [
 		{
 			id: 0,
 			value: {
-				title: "Over 5ETH",
-				utility: "Over 5ETH",
+				title: "Advisor",
+				utility: "Advisor",
 			},
 		},
 		{
 			id: 1,
 			value: {
-				title: "Up to 20 swaps",
-				utility: "Up to 20 swaps",
+				title: "Investor",
+				utility: "Investor",
 			},
 		},
 		{
 			id: 2,
 			value: {
-				title: "Up to 5 weeks",
-				utility: "Up to 5 weeks",
+				title: "Designer",
+				utility: "Designer",
 			},
 		},
 		{
 			id: 3,
 			value: {
-				title: "Up to 5 weeks",
-				utility: "Up to 5 weeks",
+				title: "Marketer",
+				utility: "Marketer",
 			},
 		},
 		{
 			id: 4,
 			value: {
-				title: "Up to 5 weeks",
-				utility: "Up to 5 weeks",
+				title: "Creator",
+				utility: "Creator",
 			},
 		},
 		{
 			id: 5,
 			value: {
-				title: "Up to 5 weeks",
-				utility: "Up to 5 weeks",
+				title: "Developer",
+				utility: "Developer",
 			},
 		},
 		{
 			id: 6,
 			value: {
-				title: "Up to 5 weeks",
-				utility: "Up to 5 weeks",
+				title: "Founder",
+				utility: "Founder",
 			},
 		},
 	],
@@ -143,50 +143,50 @@ export const navLinks = [
 		{
 			id: 0,
 			value: {
-				title: "Over 5ETH",
-				utility: "Over 5ETH",
+				title: "Exchange",
+				utility: "Exchange",
 			},
 		},
 		{
 			id: 1,
 			value: {
-				title: "Up to 20 swaps",
-				utility: "Up to 20 swaps",
+				title: "Gaming",
+				utility: "Gaming",
 			},
 		},
 		{
 			id: 2,
 			value: {
-				title: "Up to 5 weeks",
-				utility: "Up to 5 weeks",
+				title: "Data & analytics",
+				utility: "Data & analytics",
 			},
 		},
 		{
 			id: 3,
 			value: {
-				title: "Up to 5 weeks",
-				utility: "Up to 5 weeks",
+				title: "Marketing",
+				utility: "Marketing",
 			},
 		},
 		{
 			id: 4,
 			value: {
-				title: "Up to 5 weeks",
-				utility: "Up to 5 weeks",
+				title: "Ecosystem",
+				utility: "Ecosystem",
 			},
 		},
 		{
 			id: 5,
 			value: {
-				title: "Up to 5 weeks",
-				utility: "Up to 5 weeks",
+				title: "Development",
+				utility: "Development",
 			},
 		},
 		{
 			id: 6,
 			value: {
-				title: "Up to 5 weeks",
-				utility: "Up to 5 weeks",
+				title: "DAO",
+				utility: "DAO",
 			},
 		},
 	];
