@@ -19,7 +19,7 @@ const Socials = ({
 	handleBlur,
 	handleFormChange,
 }) => {
-	const { discord, telegram, xDotCom, youtube } = formData;
+	const { discord, telegram, xDotCom, youtube, website } = formData;
 	const group = "socials";
 
 	return (
@@ -80,6 +80,18 @@ const Socials = ({
 				edit={false}
 				onChange={handleFormChange}
 				placeholder={"username"}
+			/>
+
+			<TextField
+				id="website"
+				group={group}
+				label="your-website.com/"
+				value={website}
+				touched={touched.website}
+				onBlur={handleBlur}
+				error={errors.website}
+				edit={false}
+				onChange={handleFormChange}
 			/>
 		</div>
 	);
