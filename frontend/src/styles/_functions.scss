@@ -26,7 +26,7 @@
 @function calculateButtonPadding($targetWidth, $childWidth) {
     $buttonWidth: $childWidth;
     /** Set the desired button width in pixels. */
-    $padding: ($targetWidth / 2) - ($buttonWidth / 2);
+    $padding: calc($targetWidth / 2) - calc($buttonWidth / 2);
     /** Calculate the padding to center the button. */
     @return #{$padding};
     /** Return the calculated padding value. */

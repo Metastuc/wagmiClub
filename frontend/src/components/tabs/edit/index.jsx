@@ -7,7 +7,7 @@ import "./index.scss";
  * @param {Function} props.onTabChange - Function to handle tab changes.
  * @param {Function} props.tabIsActive - Function to check if a tab is active.
  */
-export const EditSwitch = ({ onTabChange, tabIsActive }) => {
+const EditTabs = ({ onTabChange, tabIsActive }) => {
 	return (
 		<section className="tab-switch">
 			<div className="tab-switch__wrapper">
@@ -38,3 +38,5 @@ export const EditSwitch = ({ onTabChange, tabIsActive }) => {
 		</section>
 	);
 };
+
+export default EditTabs;

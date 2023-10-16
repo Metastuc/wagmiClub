@@ -1,6 +1,5 @@
-import CreateTabs from "./CreateTabs";
-// import EditTabs from "./EditTabs";
+import CreateTabs from "./create";
 
-import { EditSwitch as EditTabs } from "./edit";
+import EditTabs from "./edit";
 
 export { CreateTabs, EditTabs };
