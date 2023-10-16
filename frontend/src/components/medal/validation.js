@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const medalSchema = Yup.object().shape({
+export const schema = Yup.object().shape({
 	image: Yup.mixed().required("Image is required"),
 	title: Yup.string().required("Title is required"),
 	type: Yup.string().required("Type is required"),
@@ -11,5 +11,3 @@ const medalSchema = Yup.object().shape({
 	validator: Yup.string().required("Validator name is required"),
 	additionalInfo: Yup.string(),
 });
-
-export default medalSchema;

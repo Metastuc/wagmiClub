@@ -1,17 +1,37 @@
 @use "../../index.scss"as *;
 
-
+/**
+ * Styles for the logo component.
+ */
 .logo {
+
+    /**
+     * Styles for the logo wrapper element.
+     */
     &__wrapper {
+
+        /**
+         * Styles for the child span elements within the wrapper.
+         */
         span {
+
+            /**
+             * Font styles for the logo text.
+             */
             font-size: 1rem;
             font-family: var(--ff-clash);
             font-weight: var(--fw-mid);
 
+            /**
+             * Capitalize the first word in the logo text.
+             */
             &:first-of-type {
                 text-transform: capitalize;
             }
 
+            /**
+             * Apply green color to the last word in the logo text.
+             */
             &:last-of-type {
                 color: var(--green-100);
             }

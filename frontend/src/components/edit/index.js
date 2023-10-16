@@ -1,4 +1,5 @@
-import Details from "./Details";
-import Socials from "./Socials";
+import Details from "./details";
+import Socials from "./socials";
+import { schema } from "./validation";
 
-export { Details, Socials };
+export { Details, Socials, schema };

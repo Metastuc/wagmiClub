@@ -1,3 +1,4 @@
-import Medal from "./Medal";
+import Badge from "./badge";
+import Medal from "./medal";
 
-export { Medal };
+export { Badge, Medal };

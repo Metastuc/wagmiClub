@@ -1,23 +1,26 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CloseMenu, Hamburger, Search } from "../../assets/icons";
 import { navLinks } from "../../assets/data";
 import { useToggle } from "../../hooks";
 import "./index.scss";
 
+/**
+ * Menu component for the website navigation menu.
+ * @returns {JSX.Element} Menu component JSX.
+ */
 const Menu = () => {
 	const { status: menuActive, toggleStatus } = useToggle();
 
-	useEffect(
-		// toggle background vertical scroll when menu is active
-		() => {
-			const scroll = menuActive ? "hidden" : "visible";
-			document.body.style.overflowY = scroll;
-		},
+	useEffect(() => {
+		// Toggle background vertical scroll when menu is active
+		const scroll = menuActive ? "hidden" : "visible";
+		document.body.style.overflowY = scroll;
+	}, [menuActive]);
 
-		[menuActive]
-	);
-
+	/**
+	 * Handle menu item click event.
+	 */
 	function handleMenuItem() {
 		if (menuActive) {
 			toggleStatus();
@@ -27,28 +30,24 @@ const Menu = () => {
 	return (
 		<section className="menu">
 			<div className="menu-wrapper">
-				<button
-					onClick={() => {
-						toggleStatus();
-					}}
-				>
+				{/* Hamburger menu button */}
+				<button onClick={toggleStatus}>
 					<Hamburger />
 				</button>
 
+				{/* Active menu background */}
 				{menuActive && (
 					<section className="active-menu-background">
 						<div className="menu-content">
 							<div className="content-wrapper">
+								{/* Close menu button */}
 								<div className="close-menu">
-									<button
-										onClick={() => {
-											toggleStatus();
-										}}
-									>
+									<button onClick={toggleStatus}>
 										<CloseMenu />
 									</button>
 								</div>
 
+								{/* Navigation links */}
 								<ul className="navigation">
 									{navLinks.map((item) => {
 										const {
@@ -59,7 +58,7 @@ const Menu = () => {
 										return (
 											<li
 												key={id}
-												onClick={toggleStatus}
+												onClick={handleMenuItem}
 											>
 												<Link to={to}>{title}</Link>
 											</li>
@@ -67,12 +66,12 @@ const Menu = () => {
 									})}
 								</ul>
 
+								{/* Search input */}
 								<div className="search">
 									<input
 										type="text"
 										placeholder="search"
 									/>
-
 									<span>
 										<Search />
 									</span>

@@ -1,6 +1,4 @@
-import "./index.scss";
-
-import PrimaryNavbar from "./PrimaryNavbar";
-import SecondaryNavbar from "./SecondaryNavbar";
+import PrimaryNavbar from "./primary";
+import SecondaryNavbar from "./secondary";
 
 export { PrimaryNavbar, SecondaryNavbar };

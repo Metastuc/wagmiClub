@@ -1,3 +1,4 @@
-import FormField from "./FormField";
+import FormField from "./form";
+import { schema } from "./validation.js";
 
-export { FormField };
+export { FormField, schema };

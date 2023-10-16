@@ -1,8 +1,8 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { useBodyOverflow, useScrollReset, useTabSwitcher } from "../../hooks";
-import { SecondaryNavbar as Navbar, Medal } from "../../views";
-import { Badge, CreateTabs as Tab } from "../../components";
+import { SecondaryNavbar as Navbar, Medal, Badge } from "../../views";
+import { CreateTabs as Tab } from "../../components";
 import "./index.scss";
 
 /**
@@ -43,7 +43,7 @@ const Create = () => {
 			<Navbar />
 
 			{/* Wrapper for the Create section */}
-			<div className="create-wrapper">
+			<div className="create__wrapper">
 				{/* Tabs for switching between badge and medal creation */}
 				<Tab
 					initialTab={activeTab}
@@ -51,7 +51,9 @@ const Create = () => {
 					tabIsActive={tabIsActive}
 				/>
 				{/* Container for displaying the content of the active tab */}
-				<section className="tab-display">{renderTab()}</section>
+				<section className="create__tabs-display">
+					{renderTab()}
+				</section>
 			</div>
 		</section>
 	);
