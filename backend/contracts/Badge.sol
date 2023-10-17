@@ -9,9 +9,7 @@ contract Badge is ERC721 {
 
     mapping (uint => string) URI; // mapping to keep track of the Token URI
 
-    constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {
-        
-    }
+    constructor(string memory _name, string memory _symbol) ERC721(_name, _symbol) {}
 
     // mint
     function mint(address to, string memory uri) public {
