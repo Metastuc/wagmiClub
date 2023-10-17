@@ -1,0 +1,111 @@
+@use "../../../styles"as *;
+
+/**
+ * Styles for the .socials component
+ */
+.socials {
+
+    /** Styles for socials text elements */
+    &__text {
+
+        /** Styles for socials text-field */
+        &-field {
+            position: relative;
+            /** Relative positioning for text-field */
+
+            &:not(:last-child) {
+                margin-bottom: 2.25rem;
+                /** Margin for text-field except the last one */
+            }
+
+            @include flex();
+            /** Include flexbox utility */
+            background-color:#FFFDFD;
+            /** Background color for text-field */
+            border: 1px solid #8FD784;
+            /** Border for text-field */
+            border-radius: .625rem;
+            /** Border radius for text-field */
+            height: 1.75rem;
+            /** Height for text-field */
+        }
+
+        /** Styles for socials text-label */
+        &-label {
+            width: 60%;
+            /** Width for text-label */
+            height: 100%;
+            /** Height for text-label */
+            border-right: inherit;
+            /** Inherit border-right property */
+            padding-left: 2rem;
+            /** Padding for text-label */
+            @include flex($j:flex-start);
+            /** Include flexbox utility */
+            color: rgba($color: #090808, $alpha: .7);
+            /** Text color for text-label */
+
+            font: {
+                family: var(--ff-clash);
+                /** Font family for text-label */
+                weight: var(--fw-mid);
+                /** Font weight for text-label */
+                size: .75rem;
+                /** Font size for text-label */
+            }
+        }
+
+        /** Styles for socials text-wrapper */
+        &-wrapper {
+            width: 100%;
+            /** Width for text-wrapper */
+        }
+
+        /** Styles for socials text-input */
+        &-input {
+            @include equal(100%);
+            /** Include utility for equal width */
+            color: rgba($color: #090808, $alpha: .4);
+            /** Text color for text-input */
+            padding-inline: .25rem;
+            /** Padding for text-input */
+            @include flex;
+            /** Include flexbox utility */
+            flex: 1;
+            /** Flex property for text-input */
+            text-align: center;
+            /** Centered text alignment */
+
+            font: {
+                family: var(--ff-clash);
+                /** Font family for text-input */
+                weight: var(--fw-mid);
+                /** Font weight for text-input */
+                size: .75rem;
+                /** Font size for text-input */
+            }
+        }
+
+        /** Styles for socials text-error */
+        &-error {
+            position: absolute;
+            /** Absolute positioning for text-error */
+            bottom: -1rem;
+            /** Bottom position for text-error */
+            right: 1rem;
+            /** Right position for text-error */
+
+            font: {
+                size: 0.5rem;
+                /** Font size for error messages */
+                family: var(--ff-clash);
+                /** Font family for error messages */
+                weight: 100;
+                /** Font weight for error messages */
+            }
+
+            color: #ffc0cb;
+            /** Color for error messages */
+        }
+    }
+}

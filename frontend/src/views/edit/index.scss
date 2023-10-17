@@ -1,0 +1,59 @@
+@use "../../styles"as *;
+
+/**
+ * Styles for the .form__divider component
+ */
+.form {
+    &__divider {
+        margin: 5.75rem 0 1.75rem 0;
+        /** Margin for form divider */
+
+        font: {
+            size: 1rem;
+            /** Font size for form divider */
+            weight: var(--fw-mid);
+            /** Font weight for form divider */
+            family: var(--ff-clash);
+            /** Font family for form divider */
+        }
+    }
+    
+    /**
+     * Styles for the .form__button component
+     */
+    &__button {
+        @include flex;
+        /** Include flexbox utility */
+        margin: 4.375rem 0 8.75rem 0;
+        /** Margin for form button */
+    
+        /** Styles for form button wrapper */
+        &-wrapper {
+            $targetWidth: 17rem;
+            /** Target width for button */
+            $childWidth: 3.125rem;
+            /** Width of child element */
+            height: 4.25rem;
+            /** Height of button */
+            padding-inline: calculateButtonPadding($targetWidth, $childWidth);
+            /** Inline padding for button */
+            border-radius: .625rem;
+            /** Border radius for button */
+            background: rgba(161, 242, 148, 0.89);
+            /** Background color for button */
+        }
+    
+        /** Styles for button label */
+        &-label {
+            font: {
+                family: var(--ff-clash);
+                /** Font family for button label */
+                weight: var(--fw-mid);
+                /** Font weight for button label */
+                size: 1.25rem;
+                /** Font size for button label */
+            }
+        }
+    }
+}
+

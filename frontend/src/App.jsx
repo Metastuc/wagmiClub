@@ -1,61 +1,50 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Media from "react-media";
 
-import { Create, Landing } from "./routes";
+import { Create, Edit, Landing } from "./routes";
 import { useScrollReset } from "./hooks";
 
+const // UI_CreateNavigationBar = () => {
+	//     return (
+	//         <>
+	//             {/* <Scroll /> */}
+	//             <CreateNavUI />
+	//             <Outlet />
+	//         </>
+	//     );
+	// },
 
-const
-
-    // UI_CreateNavigationBar = () => {
-    //     return (
-    //         <>
-    //             {/* <Scroll /> */}
-    //             <CreateNavUI />
-    //             <Outlet />
-    //         </>
-    //     );
-    // },
-
-    router = createBrowserRouter([
-        {
-            path: "/",
-            element: <Landing />
-        },
-
-        // {
-        //     path: "/",
-        //     element: <UI_CreateNavigationBar />,
-        //     children: [
-        {
-            path: "create",
-            element: <Create />
-        }
-        //     ]
-        // }
-    ]);
-
-
+	router = createBrowserRouter([
+		{
+			path: "/",
+			element: <Landing />,
+		},
+		{
+			path: "create",
+			element: <Create />,
+		},
+		{
+			path: "edit",
+			element: <Edit />,
+		},
+	]);
 
 const App = () => {
-    return (
-        <>
-            <Media query={`(max-width:40em)`} >
-                {
-                    matches => {
-                        return matches ?
-                            <section className="container">
-                                <RouterProvider router={router} />
-                            </section>
-                            :
-                            <section className="query">
-                                display none
-                            </section>;
-                    }
-                }
-            </Media>
-        </>
-    );
+	return (
+		<>
+			<Media query={`(max-width:40em)`}>
+				{(matches) => {
+					return matches ? (
+						<section className="container">
+							<RouterProvider router={router} />
+						</section>
+					) : (
+						<section className="query">display none</section>
+					);
+				}}
+			</Media>
+		</>
+	);
 };
 
 export default App;

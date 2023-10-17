@@ -1,3 +1,5 @@
-import CreateTabs from "./CreateTabs";
+import CreateTabs from "./create";
 
-export { CreateTabs };
+import EditTabs from "./edit";
+
+export { CreateTabs, EditTabs };

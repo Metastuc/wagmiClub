@@ -1,0 +1,21 @@
+@use "../../../styles"as *;
+
+/**
+ * Styles for the primary navigation bar component.
+ */
+.primaryNav {
+    /**
+     * Extending styles from the shared navbar container.
+     */
+    @extend %navbar-container;
+
+    /**
+     * Styles for the wrapper inside the primary navigation bar.
+     */
+    &__wrapper {
+        /**
+         * Applying flexbox layout with space-between alignment.
+         */
+        @include flex($j: space-between);
+    }
+}

@@ -31,3 +31,10 @@ $ss-sm: 25em;
     color: rgba($color: #cbcc95, $alpha: .52);
     width: max-content;
 }
+
+// edit component shared styles
+%details-wrapper{
+    margin: .5rem 0 .25rem 0;
+    width: 100%;
+    border-radius: .625rem;
+}
