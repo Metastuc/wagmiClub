@@ -25,3 +25,4 @@ dist-ssr
 backend/scripts/deploy.js
 backend/test/Lock.js
 backend/contracts/Lock.sol
+backend/API/app.js

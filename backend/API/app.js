@@ -28,6 +28,7 @@ const getTransactions = async () => {
 const getCollectionAmount = async () => {
     const address = "0xd8da6bf26964af9d7eed9e03e53415d37aa96045";
     const chain = EvmChain.ETHEREUM;
+
     const name = 'AzuLadys';
 
     try {
@@ -59,10 +60,27 @@ function sumAmountByName(data, name) {
   return sum;
 }
 
-getCollectionAmount();
-
 function countGovernance(arrayOfObjects, targetAddress) {
     const filteredObjects = arrayOfObjects.filter(obj => obj.decoded_call !== null && obj.to_address === targetAddress);
     return filteredObjects.length;
 }
+
+async function getDonations() {
+    await Moralis.start({
+        apiKey: apiKey
+    });
+    
+    const address = "0xd8da6bf26964af9d7eed9e03e53415d37aa96045";
+    
+    const chain = EvmChain.ETHEREUM;
+    
+    const response = await Moralis.EvmApi.transaction.getWalletTransactions({
+    address,
+    chain,
+    });
+    
+    console.log(response.toJSON());
+}
+
+getDonations();
 
