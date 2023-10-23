@@ -1,6 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { useBodyOverflow, useScrollReset, useTabSwitcher } from "../../hooks";
+import {
+	useBodyOverflow,
+	useScrollReset,
+	useTabSwitcher,
+} from "../../hooks/index.js";
 import { SecondaryNavbar as Navbar, Medal, Badge } from "../../views";
 import { CreateTabs as Tab } from "../../components";
 import "./index.scss";

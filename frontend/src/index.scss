@@ -1,6 +1,11 @@
 @use "./styles/index"as *;
 
 html {
+    // font-size: calc(100vw / 1512 * 16);
+
+    @include bp-min($ss-mm) {
+        font-size: calc(100vw / 1512 * 16);
+    }
 
     body {
         background-color: var(--black);

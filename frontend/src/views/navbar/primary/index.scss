@@ -1,3 +1,4 @@
+// Import global styles and variables
 @use "../../../styles"as *;
 
 /**
@@ -6,16 +7,65 @@
 .primaryNav {
     /**
      * Extending styles from the shared navbar container.
+     * This allows reuse of common navbar styles.
      */
     @extend %navbar-container;
+
+    /**
+     * Styles specific to the primary navigation bar on larger screens.
+     */
+    @include bp-min($ss-mm) {
+        background-color: var(--white);
+        margin: 0;
+        padding: 0;
+        height: 7rem;
+        gap: 1rem;
+    }
 
     /**
      * Styles for the wrapper inside the primary navigation bar.
      */
     &__wrapper {
         /**
-         * Applying flexbox layout with space-between alignment.
+         * Applying flexbox layout with space-between alignment
+         * for items inside the navigation bar.
          */
         @include flex($j: space-between);
+        @include equal(100%);
+
+        /**
+         * Additional styles for larger screens.
+         */
+        @include bp-min($ss-mm) {
+            border-bottom-left-radius: 2rem;
+            border-bottom-right-radius: 2rem;
+            background-color: var(--black);
+            padding: 0 16.25rem 0 3rem; // Adjust padding as needed
+            border-bottom: 1px solid;
+        }
+    }
+
+    /**
+     * Styles specific to the desktop version of the primary navigation bar.
+     */
+    &__desktop {
+        @include flex;
+        gap: 3.25rem;
+
+        /**
+         * Font styles for desktop navigation items.
+         */
+        font: {
+            size: 1.25rem;
+            family: var(--ff-clash);
+            weight: var(--fw-reg);
+        }
+
+        /**
+         * Hide desktop navigation on smaller screens.
+         */
+        @include bp-max($ss-mm) {
+            display: none;
+        }
     }
 }

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CloseMenu, Hamburger, Search } from "../../assets/icons";
 import { navLinks } from "../../assets/data";
-import { useToggle } from "../../hooks";
+import { useToggle } from "../../hooks/index.js";
 import "./index.scss";
 
 /**

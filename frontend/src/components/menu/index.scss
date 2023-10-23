@@ -2,6 +2,10 @@
 
 
 .menu {
+    @include bp-min($ss-mm) {
+        display: none;
+    }
+
     @include flex;
 
     &-wrapper {

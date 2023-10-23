@@ -1,0 +1,21 @@
+@use "../../../styles"as *;
+@import '../../../styles/components/landing-club-items';
+
+.landing__club {
+    margin: 1.5rem 0 2rem 0;
+
+    @include bp-min($ss-mm) {
+        @include flex;
+    }
+
+    &-wrapper {
+        height: 9rem;
+        position: relative;
+
+        @include bp-min($ss-mm) {
+            height: 11.25rem;
+            width: 100%;
+            overflow: hidden;
+        }
+    }
+}

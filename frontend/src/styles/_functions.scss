@@ -3,17 +3,17 @@
  * 
  * @param {string} $hex - The hexadecimal color code.
  * @param {number} $alpha - Optional alpha (opacity) value, defaults to 1.
- * @return {string} - RGBA color code.
+ * @return {string} - The RGBA color code in the format "rgba(0, 0, 0, 1)".
  */
 @function hexToRgba($hex, $alpha: 1) {
     $red: red($hex);
-    /** Extracts the red component of the color. */
+    /* Extract the red component of the color. */
     $green: green($hex);
-    /** Extracts the green component of the color. */
+    /* Extract the green component of the color. */
     $blue: blue($hex);
-    /** Extracts the blue component of the color. */
+    /* Extract the blue component of the color. */
     @return rgba($red, $green, $blue, $alpha);
-    /** Returns the RGBA color code. */
+    /* Return the RGBA color code. */
 }
 
 /**
@@ -21,13 +21,26 @@
  * 
  * @param {number} $targetWidth - The desired total width of the parent element.
  * @param {number} $childWidth - The width of the child element.
- * @return {number} - The calculated padding value.
+ * @return {number} - The calculated padding value in pixels.
  */
 @function calculateButtonPadding($targetWidth, $childWidth) {
     $buttonWidth: $childWidth;
-    /** Set the desired button width in pixels. */
+    /* Set the desired button width in pixels. */
     $padding: calc($targetWidth / 2) - calc($buttonWidth / 2);
-    /** Calculate the padding to center the button. */
-    @return #{$padding};
-    /** Return the calculated padding value. */
+    /* Calculate the padding to center the button. */
+    @return #{$padding}px;
+    /* Return the calculated padding value with 'px' unit. */
+}
+
+/**
+ * Converts pixels to rem units.
+ * 
+ * @param {number} $px - The value in pixels to convert to rem.
+ * @return {string} - The value in rem units with the 'rem' suffix.
+ */
+@function pxToRem($px) {
+    $value: calc($px / 16);
+    /* Calculate the value in rem units. */
+    @return #{$value}rem;
+    /* Return the value with 'rem' unit. */
 }

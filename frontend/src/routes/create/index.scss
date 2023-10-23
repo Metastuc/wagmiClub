@@ -1,9 +1,19 @@
+/** 
+ * Import global styles and variables.
+ */
 @use"../../styles"as *;
 
 /**
  * Create component styles.
  */
 .create {
+
+    /**
+     * Hide the component on small screens.
+     */
+    @include bp-min($ss-mm) {
+        display: none;
+    }
 
     /**
      * Wrapper styles for the create component.

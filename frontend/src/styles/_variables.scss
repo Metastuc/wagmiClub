@@ -2,6 +2,7 @@
 @use "./mixins"as *;
 
 $ss-sm: 25em;
+$ss-mm: 40em;
 
 // navbar shared styles
 %navbar-container {
@@ -33,7 +34,7 @@ $ss-sm: 25em;
 }
 
 // edit component shared styles
-%details-wrapper{
+%details-wrapper {
     margin: .5rem 0 .25rem 0;
     width: 100%;
     border-radius: .625rem;

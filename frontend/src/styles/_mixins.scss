@@ -15,6 +15,14 @@
 
 ;
 
+@mixin bp-min($bp:0) {
+    @media (min-width: $bp) {
+        @content
+    }
+}
+
+;
+
 @mixin min-w($w:0, $p:100%) {
     width: min($w, $p);
 }
@@ -30,6 +38,13 @@
 @mixin equal($h-w:0) {
     height: $h-w;
     width: $h-w;
+}
+
+;
+
+@mixin reset {
+    padding: 0;
+    margin: 0;
 }
 
 ;

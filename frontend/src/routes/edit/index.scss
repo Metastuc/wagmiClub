@@ -4,6 +4,10 @@
  * Styles for the .edit component.
  */
 .edit {
+    @include bp-min($ss-mm) {
+        display: none;
+    }
+
     margin-block: 4.125rem;
     /** Vertical margin for the .edit component. */
     padding-inline: 1.5rem;

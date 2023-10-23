@@ -19,10 +19,10 @@ const Logo = () => {
 					className="logo__link"
 				>
 					{/* First part of the logo */}
-					<span className="logo__text logo__text--first">wagmi</span>
+					<span>wagmi</span>
 
 					{/* Second part of the logo */}
-					<span className="logo__text logo__text--second">club</span>
+					<span>club</span>
 				</Link>
 			</div>
 		</section>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { useScrollReset, useTabSwitcher } from "../../hooks";
+import { useScrollReset, useTabSwitcher } from "../../hooks/index.js";
 import { EditTabs as Tab } from "../../components";
 import { FormField } from "../../views";
 import "./index.scss";
