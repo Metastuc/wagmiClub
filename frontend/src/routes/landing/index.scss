@@ -3,26 +3,28 @@
 
 .landing {
 
-    .about {
+    &__about {
         padding-inline: 4.25rem;
 
-        @include bp-max($ss-sm) {
-            padding-inline: 3.5rem;
-        }
+        // @include bp-max($ss-sm) {
+        //     padding-inline: 3.5rem;
+        // }
 
         &-wrapper {
-            @include flex($d:column);
-            gap: 16px;
+            @include flex;
         }
 
         p {
             text-align: center;
-            font-family: var(--ff-clash);
-            font-weight: var(--fw-mid);
-            font-size: 1rem;
 
-            @include bp-max($ss-sm) {
-                font-size: .875rem;
+            font: {
+                family: var(--ff-clash);
+                size: 1rem;
+                weight: var(--fw-mid);
+            }
+
+            @include bp-min($ss-mm) {
+                font-size: 2.5rem;
             }
 
             span {

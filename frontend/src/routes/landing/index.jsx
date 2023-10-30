@@ -15,19 +15,19 @@ const Landing = () => {
 				{/* club component */}
 				<Club group="landing" />
 
-				<section className="about">
-					<div className="about-wrapper">
+				<section className="landing__about">
+					<div className="landing__about-wrapper">
 						<p>
 							build your social profile onchain <br />
 							earn trustscores, <span>badges</span> & airdrop
 						</p>
 
-						<button>
+						{/* <button>
 							<span>
 								<img src="/defi_pfp.jpg" />
 							</span>
 							<span>@defiprince_</span>
-						</button>
+						</button> */}
 					</div>
 				</section>
 

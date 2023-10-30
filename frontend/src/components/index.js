@@ -1,5 +1,4 @@
 import Menu from "./menu";
-import Club from "./club";
 import Profile from "./profile";
 import { BadgeForm } from "./badge";
 import Logo from "./logo";
@@ -16,7 +15,7 @@ import {
 import { FormField as MedalForm } from "./medal";
 import { Details, Socials } from "./edit";
 // <<--------------======================-------------->>
-export { Menu, Club, Profile, Logo, Stars };
+export { Menu, Profile, Logo, Stars };
 export { CreateTabs, EditTabs };
 export {
 	Dropdown,
