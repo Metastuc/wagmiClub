@@ -6,10 +6,6 @@
     &__about {
         padding-inline: 4.25rem;
 
-        // @include bp-max($ss-sm) {
-        //     padding-inline: 3.5rem;
-        // }
-
         &-wrapper {
             @include flex;
         }
@@ -29,41 +25,6 @@
 
             span {
                 color: var(--yellow-100);
-            }
-        }
-
-        button {
-            width: 90%;
-            border-radius: .5rem;
-            padding-block: .475rem;
-            background-color: var(--black-200);
-            @include flex;
-            gap: .25rem;
-
-            span {
-                &:first-of-type {
-                    @include equal(1.25rem);
-                    overflow: hidden;
-                    @include flex;
-                    border-radius: 50%;
-                    position: relative;
-
-                    &::before {
-                        content: "";
-                        position: absolute;
-                        inset: 0;
-                        border: 1px solid var(--white);
-                        border-radius: inherit;
-                        opacity: .5;
-                    }
-                }
-
-                &:last-of-type {
-                    color: var(--white);
-                    font-family: var(--ff-clash);
-                    font-weight: var(--fw-mid);
-                    font-size: .875rem;
-                }
             }
         }
     }

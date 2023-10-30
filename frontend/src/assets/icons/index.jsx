@@ -163,9 +163,10 @@ export const Hamburger = function () {
 		return (
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
-				width={11}
-				height={12}
+				width={16}
+				height={16}
 				fill="none"
+				viewBox="0 0 11 12"
 			>
 				<path
 					fill="#3F4449"
@@ -257,6 +258,198 @@ export const Hamburger = function () {
 							stopColor="#F1F5F5"
 						/>
 					</linearGradient>
+				</defs>
+			</svg>
+		);
+	},
+	Medal = function () {
+		return (
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width={16}
+				height={16}
+				fill="none"
+				viewBox="0 0 16 24"
+			>
+				<g
+					filter="url(#a)"
+					style={{
+						mixBlendMode: "luminosity",
+					}}
+				>
+					<path
+						fill="#FFEEB0"
+						d="M1.472 2.507C1.472 1.674 2.147 1 2.98 1h10.1a1.507 1.507 0 1 1 0 3.013h-.087V2.43H3.066v1.583h-.087a1.507 1.507 0 0 1-1.507-1.506Z"
+					/>
+					<path
+						fill="#C4C7CA"
+						d="M1.472 2.696c0-.832.675-1.506 1.507-1.506h10.1a1.507 1.507 0 1 1 0 3.013h-.087V2.619H3.066v1.584h-.087a1.507 1.507 0 0 1-1.507-1.507Z"
+					/>
+					<path
+						fill="#2874BA"
+						d="M3.067 2.602h9.924v6.076l-4.962 3.01-4.962-3.01V2.602Z"
+					/>
+					<mask
+						id="b"
+						width={11}
+						height={10}
+						x={3}
+						y={2}
+						maskUnits="userSpaceOnUse"
+						style={{
+							maskType: "alpha",
+						}}
+					>
+						<path
+							fill="#2874BA"
+							d="M3.088 2.601h9.92v6.077l-4.96 3.01-4.96-3.01V2.601Z"
+						/>
+					</mask>
+					<g mask="url(#b)">
+						<path
+							fill="#747676"
+							d="M6.149-1.005h3.799v12.692H6.149z"
+						/>
+					</g>
+					<rect
+						width={1.595}
+						height={2.349}
+						x={7.203}
+						y={10.095}
+						fill="#C09525"
+						rx={0.797}
+					/>
+					<ellipse
+						cx={8}
+						cy={17.948}
+						fill="url(#c)"
+						rx={7}
+						ry={6.052}
+					/>
+					<ellipse
+						cx={8.001}
+						cy={17.948}
+						fill="#705100"
+						rx={5.464}
+						ry={4.724}
+					/>
+					<mask
+						id="d"
+						width={12}
+						height={11}
+						x={2}
+						y={13}
+						maskUnits="userSpaceOnUse"
+						style={{
+							maskType: "alpha",
+						}}
+					>
+						<ellipse
+							cx={8.331}
+							cy={18.487}
+							fill="#C28B37"
+							rx={5.477}
+							ry={4.735}
+						/>
+					</mask>
+					<g mask="url(#d)">
+						<ellipse
+							cx={7.999}
+							cy={17.949}
+							fill="#E3A504"
+							rx={5.477}
+							ry={4.735}
+						/>
+					</g>
+					<ellipse
+						cx={8.073}
+						cy={17.982}
+						fill="#C18222"
+						rx={4.499}
+						ry={3.89}
+					/>
+					<path
+						fill="url(#e)"
+						stroke="#A9A6A6"
+						d="m8.507 14.604-.434-.764-.435.764-.935 1.644-1.868.205-1.046.116.75.738 1.27 1.248-.349 1.799-.182.937.874-.384 1.92-.845 1.921.845.872.383-.18-.935-.345-1.8 1.266-1.248.749-.739-1.045-.115-1.868-.205-.935-1.644Z"
+					/>
+					<path
+						fill="#fff"
+						d="M13.039 6.408H3.052V2.613h9.987v3.795Z"
+						opacity={0.5}
+					/>
+				</g>
+				<defs>
+					<linearGradient
+						id="c"
+						x1={8}
+						x2={8}
+						y1={11.896}
+						y2={24}
+						gradientUnits="userSpaceOnUse"
+					>
+						<stop stopColor="#FFE176" />
+						<stop
+							offset={1}
+							stopColor="#FFD12D"
+						/>
+					</linearGradient>
+					<linearGradient
+						id="e"
+						x1={8.073}
+						x2={8.073}
+						y1={14.851}
+						y2={20.449}
+						gradientUnits="userSpaceOnUse"
+					>
+						<stop stopColor="#fff" />
+						<stop
+							offset={0}
+							stopColor="#FFFFFD"
+						/>
+						<stop
+							offset={1}
+							stopColor="#FFE86D"
+						/>
+					</linearGradient>
+					<filter
+						id="a"
+						width={26.536}
+						height={35.536}
+						x={0.217}
+						y={0.217}
+						colorInterpolationFilters="sRGB"
+						filterUnits="userSpaceOnUse"
+					>
+						<feFlood
+							floodOpacity={0}
+							result="BackgroundImageFix"
+						/>
+						<feColorMatrix
+							in="SourceAlpha"
+							result="hardAlpha"
+							values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+						/>
+						<feOffset
+							dx={5.484}
+							dy={5.484}
+						/>
+						<feGaussianBlur stdDeviation={3.134} />
+						<feComposite
+							in2="hardAlpha"
+							operator="out"
+						/>
+						<feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0" />
+						<feBlend
+							in2="BackgroundImageFix"
+							result="effect1_dropShadow_613_1495"
+						/>
+						<feBlend
+							in="SourceGraphic"
+							in2="effect1_dropShadow_613_1495"
+							result="shape"
+						/>
+					</filter>
 				</defs>
 			</svg>
 		);

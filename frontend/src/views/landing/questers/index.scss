@@ -1,0 +1,209 @@
+@use "../../../styles"as *;
+
+
+.landing__questers {
+    border: 4px solid red;
+    margin: 3.75rem 0 0 0;
+
+    @include bp-min($ss-mm) {
+        margin: 4rem 0 0 0;
+    }
+
+    &-wrapper {
+        @include flex($d:column);
+        gap: 4.75rem;
+
+        @include bp-min($ss-mm) {
+            @include flex($d:row, $j:space-between)
+        }
+    }
+
+    &-left {
+        border: 4px solid yellow;
+        @include flex($d:column);
+        gap: 2.25rem;
+
+        @include bp-min($ss-mm) {
+            margin-left: 11.25rem;
+            gap: 3.5rem;
+        }
+
+        &_top {
+            @include flex($d:column);
+
+            h2 {
+                @include flex;
+                gap: .25rem;
+
+                font: {
+                    size: 1.125rem;
+                    family: var(--ff-clash);
+                    weight: var(--fw-mid);
+                }
+
+                @include bp-min($ss-mm) {
+                    font-size: 2rem;
+                }
+
+                span {
+                    &:first-of-type {
+                        color: var(--yellow-100);
+                    }
+
+                    &:last-of-type {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        @include equal(1.25rem);
+
+                        @include bp-min($ss-mm) {
+                            @include equal(1.875rem);
+
+                            svg {
+                                @include equal(inherit)
+                            }
+                        }
+                    }
+                }
+            }
+
+            >div {
+                margin: 1.5rem 0 1rem 0;
+            }
+
+            p {
+                width: 17.5rem;
+                text-align: center;
+
+                font: {
+                    size: .875rem;
+                    family: var(--ff-clash);
+                    weight: var(--fw-reg);
+                }
+
+                @include bp-min($ss-mm) {
+                    width: 38.25rem;
+                    text-align: left;
+                    font-size: 1.25rem;
+                }
+            }
+        }
+
+        &_center {
+            @include flex($d:column);
+            gap: 1.25rem;
+
+            h2 {
+                @include flex;
+                gap: .25rem;
+
+                @include bp-min($ss-mm) {
+                    font-size: 2rem;
+                }
+
+                font: {
+                    size: 1.125rem;
+                    family: var(--ff-clash);
+                    weight: var(--fw-mid);
+                }
+
+                span {
+                    &:first-of-type {
+                        color: var(--yellow-100);
+                    }
+
+                    &:last-of-type {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        @include equal(1.25rem);
+
+                        @include bp-min($ss-mm) {
+                            @include equal(1.875rem);
+
+                            svg {
+                                @include equal(inherit)
+                            }
+                        }
+                    }
+                }
+            }
+
+            p {
+                font: {
+                    size: .875rem;
+                    family: var(--ff-clash);
+                    weight: var(--fw-reg);
+                }
+
+                width: 17rem;
+                text-align: center;
+
+                @include bp-min($ss-mm) {
+                    width: 39.25rem;
+                    text-align: left;
+                    font-size: 1.25rem;
+                }
+            }
+        }
+
+        &_bottom {
+            height: 3rem;
+
+            @include bp-min($ss-mm) {
+                height: 5.25rem;
+                width: 100%;
+            }
+
+            form {
+                border: 1px solid var(--green-200);
+                height: inherit;
+                border-radius: 2.875rem;
+                @include flex;
+                overflow: hidden;
+
+                @include bp-min($ss-mm) {
+                    @include flex($j:space-between)
+                }
+
+                input {
+                    height: inherit;
+                    padding: .5rem;
+                    color: rgba(34, 33, 33, 0.63);
+                    background-color: #C4FF95;
+                    text-align: center;
+
+                    font: {
+                        size: .875rem;
+                        family: var(--ff-clash);
+                        weight: var(--fw-mid);
+                    }
+
+                    @include bp-min($ss-mm) {
+                        width: 60%;
+                        font-size: 1.375rem;
+                    }
+                }
+
+                button {
+                    background-color: transparent;
+                    color: var(--white);
+                    padding-inline: .75rem;
+                    height: 100%;
+
+                    font: {
+                        size: .75rem;
+                        family: var(--ff-clash);
+                        weight: var(--fw-mid);
+                    }
+
+                    @include bp-min($ss-mm) {
+                        @include flex;
+                        width: 40%;
+                        font-size: 1.375rem;
+                    }
+                }
+            }
+        }
+    }
+}
