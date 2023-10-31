@@ -10,6 +10,58 @@ $ss-mm: 40em;
     padding-inline: 1.75rem;
 }
 
+// landing page shared styles
+%quest-header {
+    @include flex;
+    gap: .25rem;
+
+    font: {
+        size: 1.125rem;
+        family: var(--ff-clash);
+        weight: var(--fw-mid);
+    }
+
+    @include bp-min($ss-mm) {
+        font-size: 2rem;
+    }
+
+    span {
+        &:first-of-type {
+            color: var(--yellow-100);
+        }
+
+        &:last-of-type {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            @include equal(1.25rem);
+
+            @include bp-min($ss-mm) {
+                @include equal(1.875rem);
+
+                svg {
+                    @include equal(inherit)
+                }
+            }
+        }
+    }
+}
+
+%quest-text {
+    text-align: center;
+
+    font: {
+        size: .875rem;
+        family: var(--ff-clash);
+        weight: var(--fw-reg);
+    }
+
+    @include bp-min($ss-mm) {
+        text-align: left;
+        font-size: 1.25rem;
+    }
+}
+
 // badge component shared styles
 %badge-wrapper {
     background-color: hexToRgba(#313131, 0.55);

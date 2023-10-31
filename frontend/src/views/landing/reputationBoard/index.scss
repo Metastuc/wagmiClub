@@ -1,0 +1,108 @@
+@use "../../../styles"as *;
+@import "../../../styles/components/landing-dropdown";
+
+
+.landing__reputationBoard {
+    display: none;
+
+    @include bp-min($ss-mm) {
+        display: block;
+        margin: 1px 0 0 0;
+        background-color: var(--white);
+    }
+
+    &-wrapper {
+        background-color: var(--black-300);
+        padding: 3rem 6.5rem 3rem 6.5rem;
+        @include flex($d:column);
+    }
+
+    &-header {
+        width: 100%;
+
+        h2 {
+            font: {
+                size: 2.5rem;
+                family: var(--ff-clash);
+                weight: var(--fw-reg);
+            }
+        }
+    }
+
+    &-text {
+        @include flex;
+        margin: 4.5rem 0 10.75rem 0;
+
+        p {
+            width: 58.25rem;
+            text-align: center;
+
+            font: {
+                size: 1.5rem;
+                family: var(--ff-clash);
+                weight: var(--fw-reg);
+            }
+        }
+    }
+
+    &-board {
+        @include flex($d:column);
+        width: max-content;
+
+        &_top {
+            @include flex($j:space-between);
+            width: 56.25rem;
+            height: 3.5rem;
+            border-top-right-radius: .625rem;
+            border-top-left-radius: .625rem;
+            padding-inline: 2.5rem;
+            background-color: #9BF593;
+        }
+
+        &_bottom {
+            border: 3px solid #9BF593;
+            border-radius: 1.25rem;
+        }
+    }
+
+    &-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 2.75rem 2.5rem;
+        padding: 2.25rem;
+
+        >div {
+            border: 1px solid green;
+            width: 11rem;
+            height: 13rem;
+        }
+    }
+
+    &-action {
+        margin: 6rem 2.5rem 2rem 0;
+        @include flex($j:flex-end);
+
+        button {
+            padding: .25rem;
+            background-color: #9BF593F5;
+            width: 12rem;
+            height: 3.75rem;
+            border-radius: .75rem;
+
+            span {
+                color: var(--black);
+                border: 1px solid var(--black);
+                @include equal(100%);
+                @include flex;
+                border-radius: inherit;
+
+                font: {
+                    size: 1.5rem;
+                    family: var(--ff-clash);
+                    weight: var(--fw-reg);
+                }
+            }
+        }
+    }
+}

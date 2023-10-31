@@ -2,11 +2,12 @@
 
 
 .landing__questers {
-    border: 4px solid red;
     margin: 3.75rem 0 0 0;
 
     @include bp-min($ss-mm) {
-        margin: 4rem 0 0 0;
+        margin: 0 0 0 0;
+        padding: 0 0 .0625rem 0;
+        background-color: var(--white);
     }
 
     &-wrapper {
@@ -14,12 +15,13 @@
         gap: 4.75rem;
 
         @include bp-min($ss-mm) {
-            @include flex($d:row, $j:space-between)
+            padding: 4rem 0 0 0;
+            @include flex($d:row, $j:space-between);
+            background-color: var(--black-300);
         }
     }
 
     &-left {
-        border: 4px solid yellow;
         @include flex($d:column);
         gap: 2.25rem;
 
@@ -32,39 +34,7 @@
             @include flex($d:column);
 
             h2 {
-                @include flex;
-                gap: .25rem;
-
-                font: {
-                    size: 1.125rem;
-                    family: var(--ff-clash);
-                    weight: var(--fw-mid);
-                }
-
-                @include bp-min($ss-mm) {
-                    font-size: 2rem;
-                }
-
-                span {
-                    &:first-of-type {
-                        color: var(--yellow-100);
-                    }
-
-                    &:last-of-type {
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        @include equal(1.25rem);
-
-                        @include bp-min($ss-mm) {
-                            @include equal(1.875rem);
-
-                            svg {
-                                @include equal(inherit)
-                            }
-                        }
-                    }
-                }
+                @extend %quest-header;
             }
 
             >div {
@@ -72,14 +42,8 @@
             }
 
             p {
+                @extend %quest-text;
                 width: 17.5rem;
-                text-align: center;
-
-                font: {
-                    size: .875rem;
-                    family: var(--ff-clash);
-                    weight: var(--fw-reg);
-                }
 
                 @include bp-min($ss-mm) {
                     width: 38.25rem;
@@ -94,55 +58,15 @@
             gap: 1.25rem;
 
             h2 {
-                @include flex;
-                gap: .25rem;
-
-                @include bp-min($ss-mm) {
-                    font-size: 2rem;
-                }
-
-                font: {
-                    size: 1.125rem;
-                    family: var(--ff-clash);
-                    weight: var(--fw-mid);
-                }
-
-                span {
-                    &:first-of-type {
-                        color: var(--yellow-100);
-                    }
-
-                    &:last-of-type {
-                        display: inline-flex;
-                        align-items: center;
-                        justify-content: center;
-                        @include equal(1.25rem);
-
-                        @include bp-min($ss-mm) {
-                            @include equal(1.875rem);
-
-                            svg {
-                                @include equal(inherit)
-                            }
-                        }
-                    }
-                }
+                @extend %quest-header;
             }
 
             p {
-                font: {
-                    size: .875rem;
-                    family: var(--ff-clash);
-                    weight: var(--fw-reg);
-                }
-
+                @extend %quest-text;
                 width: 17rem;
-                text-align: center;
 
                 @include bp-min($ss-mm) {
                     width: 39.25rem;
-                    text-align: left;
-                    font-size: 1.25rem;
                 }
             }
         }
@@ -186,7 +110,7 @@
                 }
 
                 button {
-                    background-color: transparent;
+                    background-color: var(--black);
                     color: var(--white);
                     padding-inline: .75rem;
                     height: 100%;

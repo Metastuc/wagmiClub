@@ -2,4 +2,6 @@ import CreateTabs from "./create";
 
 import EditTabs from "./edit";
 
-export { CreateTabs, EditTabs };
+import ReputationTabs from "./landing";
+
+export { CreateTabs, EditTabs, ReputationTabs };

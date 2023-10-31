@@ -1,11 +1,10 @@
-import { Badge } from "../../assets/icons";
-import { Profile } from "../../components";
 import {
 	PrimaryNavbar as Navbar,
 	Hero,
 	Club,
 	PoweredBy,
 	Questers,
+	ReputationBoard,
 } from "../../views";
 import "./index.scss";
 
@@ -34,6 +33,8 @@ const Landing = () => {
 				<PoweredBy group={"landing"} />
 
 				<Questers group={"landing"} />
+
+				<ReputationBoard group={"landing"} />
 			</div>
 		</section>
 	);

@@ -32,7 +32,6 @@ const Edit = () => {
 
 			{/* Tab switcher component for switching between personal, details, and socials tabs */}
 			<Tab
-				initialTab={activeTab}
 				onTabChange={handleTabClick}
 				tabIsActive={tabIsActive}
 			/>

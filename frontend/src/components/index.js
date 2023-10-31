@@ -3,7 +3,7 @@ import Profile from "./profile";
 import { BadgeForm } from "./badge";
 import Logo from "./logo";
 import Stars from "./stars";
-import { CreateTabs, EditTabs } from "./tabs";
+import { CreateTabs, EditTabs, ReputationTabs } from "./tabs";
 import {
 	Dropdown,
 	FileUpload,
@@ -16,7 +16,7 @@ import { FormField as MedalForm } from "./medal";
 import { Details, Socials } from "./edit";
 // <<--------------======================-------------->>
 export { Menu, Profile, Logo, Stars };
-export { CreateTabs, EditTabs };
+export { CreateTabs, EditTabs, ReputationTabs };
 export {
 	Dropdown,
 	FileUpload,

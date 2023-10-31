@@ -1,7 +1,7 @@
 import "./index.scss";
 
 /**
- * EditSwitch component provides a tab switcher for personal and organization tabs.
+ * EditTabs component provides a tab switcher for personal and organization tabs.
  * @component
  * @param {Object} props - The properties of the EditTabs component.
  * @param {Function} props.onTabChange - Function to handle tab changes.
