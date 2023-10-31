@@ -14,6 +14,7 @@ import {
 } from "./reusable";
 import { FormField as MedalForm } from "./medal";
 import { Details, Socials } from "./edit";
+import { ReputationMedal } from "./landing";
 // <<--------------======================-------------->>
 export { Menu, Profile, Logo, Stars };
 export { CreateTabs, EditTabs, ReputationTabs };
@@ -27,3 +28,4 @@ export {
 };
 export { MedalForm, BadgeForm };
 export { Details, Socials };
+export { ReputationMedal };

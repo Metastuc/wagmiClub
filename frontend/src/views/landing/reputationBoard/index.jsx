@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { ReputationTabs as Tabs, Dropdown } from "../../../components";
+import {
+	ReputationTabs as Tabs,
+	Dropdown,
+	ReputationMedal,
+} from "../../../components";
 import { useTabSwitcher } from "../../../hooks";
-import { personal } from "../../../assets/data";
+import { personal, reputation } from "../../../assets/data";
 import "./index.scss";
 
 const ReputationBoard = ({ group }) => {
@@ -46,8 +50,15 @@ const ReputationBoard = ({ group }) => {
 					</div>
 					<div className={`${group}__reputationBoard-board_bottom`}>
 						<div className={`${group}__reputationBoard-grid`}>
-							{[...Array(18)].map((_, index) => {
-								return <div key={index}>hello world</div>;
+							{reputation.map((item, index) => {
+								return (
+									<div
+										className="reputation-medal"
+										key={index}
+									>
+										<ReputationMedal {...item} />
+									</div>
+								);
 							})}
 						</div>
 						<div className={`${group}__reputationBoard-action`}>
