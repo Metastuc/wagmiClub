@@ -5,6 +5,7 @@ import {
 	PoweredBy,
 	Questers,
 	ReputationBoard,
+	Footer,
 } from "../../views";
 import "./index.scss";
 
@@ -35,6 +36,12 @@ const Landing = () => {
 				<Questers group={"landing"} />
 
 				<ReputationBoard group={"landing"} />
+
+				<section>sum stuff</section>
+
+				<footer className="landing__footer">
+					<Footer group={"landing"} />
+				</footer>
 			</div>
 		</section>
 	);

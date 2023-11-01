@@ -40,8 +40,6 @@
      * Styles for tab icon.
      */
     &-icon {
-        @include flex;
-        /* Apply flexbox styles */
         @include equal(1.125rem);
         /* Set equal width and height for icon */
         border-radius: 50%;
@@ -56,8 +54,16 @@
             /* Apply flexbox styles */
             border-radius: inherit;
             /* Inherit border radius from parent */
-            border: 1px dashed var(--black);
+            border: 1px solid var(--black);
             /* Add border for inner span */
+            margin: 0 auto;
+            /* Horizontal centering */
+            position: relative;
+            /* Set position to relative */
+            top: 50%;
+            /* Move the element down by 50% of its own height */
+            transform: translateY(-50%);
+            /* Move the element back up by 50% of its own height */
         }
     }
 

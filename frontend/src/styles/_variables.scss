@@ -13,7 +13,7 @@ $ss-mm: 40em;
 // landing page shared styles
 %quest-header {
     @include flex;
-    gap: .25rem;
+    gap: .25em;
 
     font: {
         size: 1.125rem;

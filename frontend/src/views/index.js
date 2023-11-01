@@ -1,7 +1,14 @@
 import { PrimaryNavbar, SecondaryNavbar } from "./navbar";
 import { Medal, Badge } from "./create";
 import { FormField } from "./edit";
-import { Hero, Club, PoweredBy, Questers, ReputationBoard } from "./landing";
+import {
+	Hero,
+	Club,
+	PoweredBy,
+	Questers,
+	ReputationBoard,
+	Footer,
+} from "./landing";
 
 export { PrimaryNavbar, SecondaryNavbar };
 
@@ -9,4 +16,4 @@ export { FormField };
 
 export { Medal, Badge };
 
-export { Hero, Club, PoweredBy, Questers, ReputationBoard };
+export { Hero, Club, PoweredBy, Questers, ReputationBoard, Footer };

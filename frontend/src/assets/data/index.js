@@ -33,7 +33,7 @@ export const navLinks = [
 		{
 			id: 0,
 			value: {
-				title: "Features",
+				title: "Explore",
 				to: "",
 			},
 		},
@@ -48,6 +48,13 @@ export const navLinks = [
 			id: 2,
 			value: {
 				title: "Login",
+				to: "",
+			},
+		},
+		{
+			id: 3,
+			value: {
+				title: "Create",
 				to: "",
 			},
 		},
