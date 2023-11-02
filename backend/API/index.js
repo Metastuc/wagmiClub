@@ -4,8 +4,19 @@ const Moralis = require("moralis").default;
 // Import the EvmChain dataType
 const { EvmChain } = require("@moralisweb3/common-evm-utils");
 // Import dotenv to use environment variables
-
 require('dotenv').config();
+
+// initializing firebase
+const admin = require('firebase-admin');
+
+const serviceAccount = require("C:\Users\ADMIN\Documents\wagmi-club\backend\API\wagmi-club-firebase-adminsdk-cde6r-4f3cc52568.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+const db = admin.firestore();
+
 
 const app = express();
 const port = 3000;
