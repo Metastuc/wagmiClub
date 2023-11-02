@@ -1,0 +1,206 @@
+@use "../../../styles"as *;
+
+/**
+ * Styles for the questers section in the landing page.
+ */
+.landing__questers {
+    margin: 3.75rem 0 0 0;
+    /* Top margin of 3.75rem */
+
+    @include bp-min($ss-mm) {
+        margin: 0;
+        /* Reset margin for larger screens */
+        padding: 0 0 .0625rem 0;
+        /* Add padding for larger screens */
+        background-color: var(--white);
+        /* Set background color for larger screens */
+    }
+
+    /**
+     * Styles for the wrapper containing quester content.
+     */
+    &-wrapper {
+        @include flex($d: column);
+        /* Apply flexbox layout with column direction */
+        gap: 4.75rem;
+        /* Gap between child elements */
+
+        @include bp-min($ss-mm) {
+            padding: 4rem 0 0 0;
+            /* Padding for larger screens */
+            @include flex($d: row, $j: space-between);
+            /* Apply flexbox layout with row direction and space-between justify */
+            background-color: var(--black-300);
+            /* Background color for larger screens */
+        }
+    }
+
+    /**
+     * Styles for the left section of the questers.
+     */
+    &-left {
+        @include flex($d: column);
+        /* Apply flexbox layout with column direction */
+        gap: 2.25rem;
+        /* Gap between child elements */
+
+        @include bp-min($ss-mm) {
+            margin-left: 11.25rem;
+            /* Left margin for larger screens */
+            gap: 3.5rem;
+            /* Increased gap for larger screens */
+        }
+
+        /**
+         * Styles for the top part of the left section.
+         */
+        &_top {
+            @include flex($d: column);
+            /* Apply flexbox layout with column direction */
+
+            h2 {
+                @extend %quest-header;
+                /* Extend the quest-header style */
+            }
+
+            >div {
+                margin: 1.5rem 0 1rem 0;
+                /* Margin for child elements */
+            }
+
+            p {
+                @extend %quest-text;
+                /* Extend the quest-text style */
+                width: 17.5rem;
+                /* Width of the paragraph */
+
+                @include bp-min($ss-mm) {
+                    width: 38.25rem;
+                    /* Increased width for larger screens */
+                    text-align: left;
+                    /* Left-aligned text */
+                    font-size: 1.25rem;
+                    /* Increased font size for larger screens */
+                }
+            }
+        }
+
+        /**
+         * Styles for the center part of the left section.
+         */
+        &_center {
+            @include flex($d: column);
+            /* Apply flexbox layout with column direction */
+            gap: 1.25rem;
+            /* Gap between child elements */
+
+            h2 {
+                @extend %quest-header;
+                /* Extend the quest-header style */
+            }
+
+            p {
+                @extend %quest-text;
+                /* Extend the quest-text style */
+                width: 17rem;
+                /* Width of the paragraph */
+
+                @include bp-min($ss-mm) {
+                    width: 39.25rem;
+                    /* Increased width for larger screens */
+                }
+            }
+        }
+
+        /**
+         * Styles for the bottom part of the left section.
+         */
+        &_bottom {
+            height: 3rem;
+            /* Height of the section */
+
+            @include bp-min($ss-mm) {
+                height: 5.25rem;
+                /* Increased height for larger screens */
+                width: 100%;
+                /* Full width for larger screens */
+            }
+
+            form {
+                border: 1px solid var(--green-200);
+                /* Border color for the form */
+                height: inherit;
+                /* Inherit height from the parent */
+                border-radius: 2.875rem;
+                /* Border radius for rounded corners */
+                @include flex;
+                /* Apply flexbox layout */
+                overflow: hidden;
+                /* Hide overflowing content */
+
+                @include bp-min($ss-mm) {
+                    @include flex($j: space-between);
+                    /* Apply flexbox layout with space-between justify */
+                }
+
+                input {
+                    height: inherit;
+                    /* Inherit height from the parent */
+                    padding: .5rem;
+                    /* Padding for the input */
+                    color: rgba(34, 33, 33, 0.63);
+                    /* Text color for the input */
+                    background-color: #C4FF95;
+                    /* Background color for the input */
+                    text-align: center;
+                    /* Center-aligned text */
+
+                    font: {
+                        size: .875rem;
+                        /* Font size for the input */
+                        family: var(--ff-clash);
+                        /* Font family for the input */
+                        weight: var(--fw-mid);
+                        /* Font weight for the input */
+                    }
+
+                    @include bp-min($ss-mm) {
+                        width: 60%;
+                        /* Width of the input for larger screens */
+                        font-size: 1.375rem;
+                        /* Increased font size for larger screens */
+                    }
+                }
+
+                button {
+                    background-color: var(--black);
+                    /* Background color for the button */
+                    color: var(--white);
+                    /* Text color for the button */
+                    padding-inline: .75rem;
+                    /* Horizontal padding for the button */
+                    height: 100%;
+                    /* Full height for the button */
+
+                    font: {
+                        size: .75rem;
+                        /* Font size for the button */
+                        family: var(--ff-clash);
+                        /* Font family for the button */
+                        weight: var(--fw-mid);
+                        /* Font weight for the button */
+                    }
+
+                    @include bp-min($ss-mm) {
+                        @include flex;
+                        /* Apply flexbox layout */
+                        width: 40%;
+                        /* Width of the button for larger screens */
+                        font-size: 1.375rem;
+                        /* Increased font size for larger screens */
+                    }
+                }
+            }
+        }
+    }
+}

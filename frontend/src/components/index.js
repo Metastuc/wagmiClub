@@ -1,10 +1,9 @@
 import Menu from "./menu";
-import Club from "./club";
 import Profile from "./profile";
 import { BadgeForm } from "./badge";
 import Logo from "./logo";
 import Stars from "./stars";
-import { CreateTabs, EditTabs } from "./tabs";
+import { CreateTabs, EditTabs, ReputationTabs } from "./tabs";
 import {
 	Dropdown,
 	FileUpload,
@@ -15,9 +14,10 @@ import {
 } from "./reusable";
 import { FormField as MedalForm } from "./medal";
 import { Details, Socials } from "./edit";
+import { ReputationMedal } from "./landing";
 // <<--------------======================-------------->>
-export { Menu, Club, Profile, Logo, Stars };
-export { CreateTabs, EditTabs };
+export { Menu, Profile, Logo, Stars };
+export { CreateTabs, EditTabs, ReputationTabs };
 export {
 	Dropdown,
 	FileUpload,
@@ -28,3 +28,4 @@ export {
 };
 export { MedalForm, BadgeForm };
 export { Details, Socials };
+export { ReputationMedal };

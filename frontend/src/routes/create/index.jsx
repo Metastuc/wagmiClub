@@ -50,7 +50,6 @@ const Create = () => {
 			<div className="create__wrapper">
 				{/* Tabs for switching between badge and medal creation */}
 				<Tab
-					initialTab={activeTab}
 					onTabChange={handleTabClick}
 					tabIsActive={tabIsActive}
 				/>
