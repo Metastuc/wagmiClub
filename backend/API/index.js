@@ -4,8 +4,20 @@ const Moralis = require("moralis").default;
 // Import the EvmChain dataType
 const { EvmChain } = require("@moralisweb3/common-evm-utils");
 // Import dotenv to use environment variables
-
 require('dotenv').config();
+
+// initializing firebase
+const admin = require('firebase-admin');
+const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
+
+const serviceAccount = require("./wagmi-club-firebase-adminsdk-cde6r-4f3cc52568.json");
+
+initializeApp({
+  credential: cert(serviceAccount)
+});
+
+const db = getFirestore();
 
 const app = express();
 const port = 3000;
@@ -112,6 +124,39 @@ app.get("/getDonationAmount", async (req, res) => {
       res.json({ error: error.message });
     }
 });
+
+app.get("/addBadge", async (req, res) => {
+  try {
+    const address = req.query.userAddress;
+    const users = db.collection('users');
+    const userSnapshot = await users.where('address', '==', address).get();
+    if (userSnapshot.empty) {
+      const jsonResponse = { response: "user does not exist" }
+      res.status(200);
+      res.json(jsonResponse);
+    }
+    else {
+      let newBadgeCount;
+      let docId;
+
+      userSnapshot.forEach(doc => {
+        console.log(doc.id, doc.data().badges);
+        newBadgeCount = doc.data().badges + 1;
+        docId = doc.id;
+      })
+      await db.collection('users').doc(docId).update({badges: newBadgeCount});
+      console.log(docId, newBadgeCount);
+      const jsonResponse = { status: "successful" };
+      res.json(jsonResponse);
+      res.status(200);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500);
+    res.json({ error: error.message });
+  }
+
+})
 
 const getDonationAmount = async (address, _chain, doneeAddress) => {
   // const address = "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
