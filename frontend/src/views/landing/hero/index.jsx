@@ -21,6 +21,10 @@ const Hero = ({ group }) => {
 					wagmi<span>club</span> is the update for professional
 					networking using onchain reputation
 				</p>
+
+				<figure>
+					<img src="/desktopBG.png" alt="" />
+				</figure>
 			</div>
 		</section>
 	);

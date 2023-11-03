@@ -12,6 +12,7 @@ import {
 	TextField,
 	Club,
 	Medal,
+	Badge,
 } from "./reusable";
 import { FormField as MedalForm } from "./medal";
 import { Details, Socials } from "./edit";
@@ -26,6 +27,7 @@ export {
 	TextField,
 	Club,
 	Medal,
+	Badge,
 };
 export { MedalForm, BadgeForm };
 export { Details, Socials };

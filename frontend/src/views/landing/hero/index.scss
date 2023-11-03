@@ -20,6 +20,8 @@
         @include reset;
         /** Background color for larger screens. */
         background-color: var(--white);
+
+        position: relative;
     }
 
     /**
@@ -46,6 +48,25 @@
             gap: 0.75rem;
             /** Background color for the hero content wrapper. */
             background-color: var(--black);
+        }
+
+        figure {
+            position: absolute;
+            top: 0;
+            @include flex;
+            @include equal(inherit);
+            height: pxToRem(750);
+            overflow: hidden;
+            pointer-events: none;
+
+            img {
+                @include equal(100%);
+                scale: 1.45;
+            }
+
+            @include bp-max($ss-mm) {
+                display: none;
+            }
         }
     }
 
