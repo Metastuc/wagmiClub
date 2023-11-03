@@ -11,11 +11,11 @@
     // background-attachment: scroll;
     // }
 
-    @include bp-min($ss-mm) {
-        background-image: url("/desktopBG.png");
-        background-position: center center;
-        background-size: cover;
-    }
+    // @include bp-min($ss-mm) {
+    //     background-image: url("/desktopBG.png");
+    //     background-position: center center;
+    //     background-size: cover;
+    // }
 
     &__about {
         padding-inline: 4.25rem;
