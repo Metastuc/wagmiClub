@@ -44,6 +44,8 @@
             border-top: 1px solid;
             /** Increased spacing between child elements for larger screens. */
             gap: 0.75rem;
+            /** Background color for the hero content wrapper. */
+            background-color: var(--black);
         }
     }
 

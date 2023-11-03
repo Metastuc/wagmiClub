@@ -21,7 +21,7 @@ html {
         @include bp-max($ss-mm) {
             background-image: url("./mobileBG.png");
             background-position: 45% -.5rem;
-
+            border: 4px solid purple;
         }
     }
 

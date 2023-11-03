@@ -27,7 +27,7 @@ const Landing = () => {
 					<div className="landing__about-wrapper">
 						<p>
 							build your social profile onchain <br />
-							earn trustscores, <span>badges</span> & airdrop
+							earn trustscores, <span>badges</span> & medals
 						</p>
 					</div>
 				</section>
