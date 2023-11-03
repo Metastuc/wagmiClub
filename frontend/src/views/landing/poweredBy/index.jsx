@@ -8,7 +8,7 @@ const PoweredBy = ({ group }) => {
 			<div className={`${group}__powered-buttons`}>
 				<button>
 					<span>
-						<img src="/defi_pfp.jpg" />
+						<img src="/Frencansto.jpg" />
 					</span>
 					<span>@elonmusk</span>
 					<span>

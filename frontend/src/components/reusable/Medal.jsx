@@ -1,14 +1,13 @@
 import React from "react";
-import { ReputationMedal as Icon, ReputationView } from "../../../assets/icons";
-import "./index.scss";
+import { ReputationMedal, ReputationView as ButtonIcon } from "../../assets/icons";
 
 /**
- * ReputationMedal component displays a user's reputation medal information.
+ * Medal component displays a user's medal information.
  *
  * @component
  * @example
  * // Usage in a parent component
- * <ReputationMedal
+ * <Medal
  *    name="John Doe"
  *    title="Top Contributor"
  *    image="/path/to/medal-image.jpg"
@@ -22,10 +21,10 @@ import "./index.scss";
  * @param {number} props.medals - The number of medals the user has earned.
  * @returns {JSX.Element} - React component representing a reputation medal.
  */
-const ReputationMedal = ({ name, title, image, medals }) => {
+const Medal = ({ name, title, image, medals, group }) => {
 	return (
-		<section className="reputation-medal__wrapper">
-			<div className="reputation-medal__image">
+		<section className={`${group}__wrapper`}>
+			<div className={`${group}__image`}>
 				<span>
 					<img
 						src={image}
@@ -34,26 +33,26 @@ const ReputationMedal = ({ name, title, image, medals }) => {
 				</span>
 			</div>
 
-			<div className="reputation-medal__title">
+			<div className={`${group}__title`}>
 				<span>{name}</span>
 				<span>{title}</span>
 			</div>
 
-			<div className="reputation-medal__footer">
-				<div className="reputation-medal__medal">
+			<div className={`${group}__footer`}>
+				<div className={`${group}__medal`}>
 					<span>
 						{medals +
 							Math.floor(Math.random() * (50 - 20 + 1)) +
 							20}
 					</span>
 					<span>
-						<Icon />
+						<ReputationMedal />
 					</span>
 				</div>
 
-				<button className="reputation-medal__button">
+				<button className={`${group}__button`}>
 					<span>
-						<ReputationView />
+						<ButtonIcon />
 					</span>
 				</button>
 			</div>
@@ -61,4 +60,4 @@ const ReputationMedal = ({ name, title, image, medals }) => {
 	);
 };
 
-export default ReputationMedal;
+export default Medal;

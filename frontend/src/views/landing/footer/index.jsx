@@ -61,26 +61,32 @@ const Footer = ({ group }) => {
 			{
 				icon: <X />,
 				to: "",
+				title: "X",
 			},
 			{
 				icon: <TikTok />,
 				to: "",
+				title: "TikTok",
 			},
 			{
 				icon: <Instagram />,
 				to: "",
+				title: "Instagram",
 			},
 			{
 				icon: <Discord />,
 				to: "",
+				title: "Discord",
 			},
 			{
 				icon: <Telegram />,
 				to: "",
+				title: "Telegram",
 			},
 			{
 				icon: <Youtube />,
 				to: "",
+				title: "Youtube",
 			},
 		],
 	};
@@ -137,12 +143,13 @@ const Footer = ({ group }) => {
 		return (
 			<>
 				{links.socialLinks.map((item, index) => {
-					const { icon, to } = item;
+					const { icon, to, title } = item;
 
 					return (
 						<Link
-							key={index}
 							to={to}
+							key={index}
+							title={title}
 						>
 							<span>{icon}</span>
 						</Link>

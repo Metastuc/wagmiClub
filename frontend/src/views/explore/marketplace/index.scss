@@ -1,0 +1,203 @@
+@use "../../../styles"as *;
+@import "../../../styles/components/explore-dropdown";
+
+/** Styles for the marketplace component */
+.marketplace {
+    /** Set border radius */
+    border-radius: 1.5rem;
+    /** Set padding */
+    padding: .3125rem .375rem;
+    /** Set background color */
+    background-color: var(--black-300);
+
+    /** Styles for the wrapper inside the marketplace component */
+    &__wrapper {
+        /** Apply flexbox layout with column direction */
+        @include flex($d: column);
+        /** Set gap between child elements */
+        gap: 1.25rem;
+        /** Set padding */
+        padding: 1rem 1.5rem;
+        /** Set border styling */
+        border: 1px solid darken($color: #ffffff, $amount: 85);
+        /** Inherit border radius from parent */
+        border-radius: inherit;
+
+        >div {
+            /** Set width to 100% */
+            width: 100%;
+        }
+    }
+
+    /** Styles for the header section inside the marketplace component */
+    &__header {
+        /** Apply flexbox layout with space-between alignment */
+        @include flex($j: space-between);
+    }
+
+    /** Styles for the title section inside the marketplace component */
+    &__title {
+        /** Apply flexbox layout */
+        @include flex;
+        /** Set gap between child elements */
+        gap: .25em;
+
+        span {
+            font: {
+                /** Set font size */
+                size: .875rem;
+                /** Set font family */
+                family: var(--ff-clash);
+                /** Set font weight */
+                weight: var(--fw-mid);
+            }
+        }
+    }
+
+    /** Styles for the badges section inside the marketplace component */
+    &__badges {
+        /** Apply flexbox layout with column direction */
+        @include flex($d: column);
+        /** Set gap between child elements */
+        gap: 1rem;
+    }
+
+    /** Styles for each badge item inside the marketplace component */
+    &__badge {
+        /** Set width to 100% */
+        width: 100%;
+        /** Set height */
+        height: 3rem;
+        /** Hide overflow content */
+        overflow: hidden;
+        /** Apply flexbox layout */
+        @include flex;
+
+        /** Styles for the wrapper inside each badge item */
+        &__wrapper {
+            /** Set width to 100% */
+            width: 100%;
+            /** Use grid layout */
+            display: grid;
+            /** Set grid columns */
+            grid-template-columns: 1fr 4fr 1fr;
+            /** Center grid items */
+            place-items: center;
+        }
+
+        /** Styles for the image section inside each badge item */
+        &__image {
+            /** Set equal width and height */
+            @include equal(2rem);
+            /** Hide overflow content */
+            overflow: hidden;
+            /** Set border radius */
+            border-radius: 50%;
+
+            span {
+                /** Set relative positioning */
+                position: relative;
+                /** Apply flexbox layout to the content within the image element. */
+                @include flex;
+                /** Inherit border radius for the content within the image element. */
+                border-radius: inherit;
+                /** Make width and height equal for the content within the image element. */
+                @include equal(inherit);
+
+                &::after {
+                    /** Empty content for pseudo-element */
+                    content: "";
+                    /** Set absolute positioning */
+                    position: absolute;
+                    /** Cover the entire element */
+                    inset: 0;
+                    /** Set border styling */
+                    border: 1px solid var(--yellow-100);
+                    /** Inherit border radius */
+                    border-radius: inherit;
+                }
+            }
+        }
+
+        /** Styles for the title section inside each badge item */
+        &__title {
+            /** Apply flexbox layout with column direction and flex-start alignment */
+            @include flex($d: column, $a: flex-start);
+            /** Set width to 100% */
+            width: 100%;
+
+            span {
+                &:first-of-type {
+                    font: {
+                        /** Set font size */
+                        size: .75rem;
+                        /** Set font family */
+                        family: var(--ff-clash);
+                        /** Set font weight */
+                        weight: var(--fw-reg);
+                    }
+                }
+
+                &:last-of-type {
+                    /** Set text color with opacity */
+                    color: #FFFFFF99;
+                    /** Transform text to capitalize */
+                    text-transform: capitalize;
+
+                    font: {
+                        /** Set font size */
+                        size: .5rem;
+                        /** Set font family */
+                        family: var(--ff-clash);
+                        /** Set font weight */
+                        weight: var(--fw-reg);
+                    }
+                }
+            }
+        }
+
+        /** Styles for the footer section inside each badge item */
+        &__footer {
+            /** Apply flexbox layout */
+            @include flex;
+        }
+
+        /** Styles for the medal section inside each badge item */
+        &__medal {
+            /** Apply flexbox layout */
+            @include flex;
+            /** Set gap between child elements */
+            gap: .25em;
+
+            span {
+                &:first-of-type {
+                    font: {
+                        /** Set font size */
+                        size: .875rem;
+                        /** Set font family */
+                        family: var(--ff-clash);
+                        /** Set font weight */
+                        weight: var(--fw-mid);
+                    }
+                }
+
+                &:last-of-type {
+                    /** Set equal width and height */
+                    @include equal(1.25rem);
+                    /** Apply flexbox layout */
+                    @include flex;
+
+                    svg {
+                        /** Set equal width and height */
+                        @include equal(inherit);
+                    }
+                }
+            }
+        }
+
+        &__button {
+            display: none;
+            /** Hide the button */
+        }
+    }
+}

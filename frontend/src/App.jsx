@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Create, Edit, Landing } from "./routes";
+import { Create, Edit, Landing, Explore } from "./routes";
 
 const router = createBrowserRouter([
 	{
@@ -14,6 +14,10 @@ const router = createBrowserRouter([
 	{
 		path: "edit",
 		element: <Edit />,
+	},
+	{
+		path: "explore",
+		element: <Explore />,
 	},
 ]);
 

@@ -6,6 +6,8 @@ import {
 	Questers,
 	ReputationBoard,
 	Footer,
+	Vera,
+	LeaderBoard,
 } from "../../views";
 import "./index.scss";
 
@@ -37,7 +39,9 @@ const Landing = () => {
 
 				<ReputationBoard group={"landing"} />
 
-				<section>sum stuff</section>
+				<LeaderBoard group={"landing"} />
+
+				<Vera group={"landing"} />
 
 				<footer className="landing__footer">
 					<Footer group={"landing"} />

@@ -107,9 +107,23 @@
 
         button {
             margin-right: 3rem;
+            border-radius: 45rem;
+            height: 2.5rem;
+            width: 9rem;
+            background-color: var(--green-400);
+
+            font: {
+                size: .875rem;
+                family: var(--ff-clash);
+                weight: var(--fw-mid);
+            }
+
 
             @include bp-min($ss-mm) {
+                height: 3.5rem;
+                width: 16.5rem;
                 margin-right: 8.75rem;
+                font-size: 1.125rem;
             }
         }
     }
@@ -134,6 +148,8 @@
             }
 
             a {
+                text-align: center;
+
                 font: {
                     size: .75rem;
                     family: var(--ff-clash);
@@ -141,7 +157,7 @@
                 }
 
                 @include bp-min($ss-mm) {
-                    font-size: 1.25rem;
+                    font-size: 1.125rem;
                 }
             }
         }

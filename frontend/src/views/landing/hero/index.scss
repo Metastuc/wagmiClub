@@ -30,8 +30,6 @@
         @include flex($d: column);
         /** Spacing between child elements inside the wrapper. */
         gap: 0.5rem;
-        /** Background color for the hero content wrapper. */
-        background-color: var(--black);
         /** Ensure the wrapper takes 100% width. */
         @include equal(100%);
 

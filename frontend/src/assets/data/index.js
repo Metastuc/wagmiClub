@@ -17,7 +17,7 @@ export const navLinks = [
 			id: 2,
 			value: {
 				title: "Explore",
-				to: "",
+				to: "/explore",
 			},
 		},
 		{
@@ -34,7 +34,7 @@ export const navLinks = [
 			id: 0,
 			value: {
 				title: "Explore",
-				to: "",
+				to: "/explore",
 			},
 		},
 		{
@@ -55,7 +55,7 @@ export const navLinks = [
 			id: 3,
 			value: {
 				title: "Create",
-				to: "",
+				to: "/create",
 			},
 		},
 	],

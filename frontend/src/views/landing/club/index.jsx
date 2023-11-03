@@ -1,6 +1,6 @@
 import React from "react";
 import { clubTitles } from "../../../assets/data";
-import { Reputation } from "../../../components";
+import { Club as Reputation } from "../../../components";
 import "./index.scss";
 
 /**
