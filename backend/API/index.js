@@ -136,16 +136,12 @@ app.get("/addBadge", async (req, res) => {
       res.json(jsonResponse);
     }
     else {
-      let newBadgeCount;
-      let docId;
+      const userDoc = userSnapshot.docs[0];
+      const currentBadgeCount = userDoc.data().badges;
+      const newBadgeCount = currentBadgeCount + 1;
 
-      userSnapshot.forEach(doc => {
-        console.log(doc.id, doc.data().badges);
-        newBadgeCount = doc.data().badges + 1;
-        docId = doc.id;
-      })
-      await db.collection('users').doc(docId).update({badges: newBadgeCount});
-      console.log(docId, newBadgeCount);
+      await db.collection('users').doc(userDoc.id).update({badges: newBadgeCount});
+      console.log(userDoc.id, newBadgeCount);
       const jsonResponse = { status: "successful" };
       res.json(jsonResponse);
       res.status(200);
@@ -156,6 +152,83 @@ app.get("/addBadge", async (req, res) => {
     res.json({ error: error.message });
   }
 
+})
+
+app.get("/addMedal", async (req, res) => {
+  try {
+    const address = req.query.userAddress;
+    const users = db.collection('users');
+    const userSnapshot = await users.where('address', '==', address).get();
+    if (userSnapshot.empty) {
+      const jsonResponse = { response: "user does not exist" }
+      res.status(200);
+      res.json(jsonResponse);
+    }
+    else {
+      const userDoc = userSnapshot.docs[0];
+      const currentMedalCount = userDoc.data().medals;
+      const newMedalCount = currentMedalCount + 1;
+
+      await db.collection('users').doc(userDoc.id).update({medals: newMedalCount});
+      console.log(userDoc.id, newMedalCount);
+      const jsonResponse = { status: "successful" };
+      res.json(jsonResponse);
+      res.status(200);
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500);
+    res.json({ error: error.message });
+  }
+
+})
+
+app.get("/getBoard", async (req, res) => {
+  try {
+    const profession = req.query.profession;
+    const type = req.query.type;
+
+    const leaderBoardRef = db.collection('users');
+    // filter the users by the type and profession
+    const leaderBoardSnapshot = await leaderBoardRef.where('profession', '==', profession).orderBy('medals', 'desc').get();
+    if (leaderBoardSnapshot.empty) {
+      const jsonResponse = { response: "No users available" }
+      res.status(200);
+      res.json(jsonResponse);
+    } else if(type == 'medals') {
+      const _leaderBoard = leaderBoardSnapshot.docs;
+      console.log(_leaderBoard);
+      const leaderBoard_ = _leaderBoard.map(item => ({
+        username: item.data().username,
+        imageURL: item.data().imageURL,
+        score: item.data().medals
+      }));
+
+      const leaderBoard = JSON.stringify(leaderBoard_);
+      res.status(200);
+      res.json(leaderBoard);
+      console.log(leaderBoard);
+    }
+    else {
+      const _leaderBoard = leaderBoardSnapshot.docs;
+      console.log(_leaderBoard);
+      const leaderBoard_ = _leaderBoard.map(item => ({
+        username: item.data().username,
+        imageURL: item.data().imageURL,
+        score: item.data().badges
+      }));
+
+      const leaderBoard = JSON.stringify(leaderBoard_);
+      res.status(200);
+      res.json(leaderBoard);
+      console.log(leaderBoard);
+    }
+
+  } catch (error) {
+    console.error(error);
+    res.status(500);
+    res.json({ error: error.message });
+  }
 })
 
 const getDonationAmount = async (address, _chain, doneeAddress) => {
