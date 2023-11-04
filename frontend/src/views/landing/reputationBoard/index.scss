@@ -1,5 +1,6 @@
 @use "../../../styles"as *;
 @import "../../../styles/components/landing-dropdown";
+@import "../../../styles/components/landing-reputation-badge";
 
 /**
  * Styles for the main reputation board section.
@@ -23,7 +24,7 @@
     &-wrapper {
         background-color: var(--black-300);
         /* Background color for the wrapper */
-        padding: 3rem 6.5rem 3rem 6.5rem;
+        padding: 3rem 6.5rem;
         /* Padding for the wrapper */
         @include flex($d:column);
         /* Apply flexbox layout with column direction */

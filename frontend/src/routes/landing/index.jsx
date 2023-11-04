@@ -6,6 +6,8 @@ import {
 	Questers,
 	ReputationBoard,
 	Footer,
+	Vera,
+	LeaderBoard,
 } from "../../views";
 import "./index.scss";
 
@@ -25,7 +27,7 @@ const Landing = () => {
 					<div className="landing__about-wrapper">
 						<p>
 							build your social profile onchain <br />
-							earn trustscores, <span>badges</span> & airdrop
+							earn trustscores, <span>badges</span> & medals
 						</p>
 					</div>
 				</section>
@@ -37,7 +39,9 @@ const Landing = () => {
 
 				<ReputationBoard group={"landing"} />
 
-				<section>sum stuff</section>
+				<LeaderBoard group={"landing"} />
+
+				<Vera group={"landing"} />
 
 				<footer className="landing__footer">
 					<Footer group={"landing"} />

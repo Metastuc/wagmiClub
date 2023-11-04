@@ -20,6 +20,8 @@
         @include reset;
         /** Background color for larger screens. */
         background-color: var(--white);
+
+        position: relative;
     }
 
     /**
@@ -30,8 +32,6 @@
         @include flex($d: column);
         /** Spacing between child elements inside the wrapper. */
         gap: 0.5rem;
-        /** Background color for the hero content wrapper. */
-        background-color: var(--black);
         /** Ensure the wrapper takes 100% width. */
         @include equal(100%);
 
@@ -46,6 +46,27 @@
             border-top: 1px solid;
             /** Increased spacing between child elements for larger screens. */
             gap: 0.75rem;
+            /** Background color for the hero content wrapper. */
+            background-color: var(--black);
+        }
+
+        figure {
+            position: absolute;
+            top: 0;
+            @include flex;
+            @include equal(inherit);
+            height: pxToRem(750);
+            overflow: hidden;
+            pointer-events: none;
+
+            img {
+                @include equal(100%);
+                scale: 1.45;
+            }
+
+            @include bp-max($ss-mm) {
+                display: none;
+            }
         }
     }
 

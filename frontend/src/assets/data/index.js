@@ -17,7 +17,7 @@ export const navLinks = [
 			id: 2,
 			value: {
 				title: "Explore",
-				to: "",
+				to: "/explore",
 			},
 		},
 		{
@@ -34,7 +34,7 @@ export const navLinks = [
 			id: 0,
 			value: {
 				title: "Explore",
-				to: "",
+				to: "/explore",
 			},
 		},
 		{
@@ -55,7 +55,7 @@ export const navLinks = [
 			id: 3,
 			value: {
 				title: "Create",
-				to: "",
+				to: "/create",
 			},
 		},
 	],
@@ -418,5 +418,43 @@ export const navLinks = [
 			name: "Halabebos",
 			title: "advisor",
 			medals: 0,
+		},
+	],
+	medals = [
+		{
+			id: "0",
+			value: {
+				title: "Onchain summer 2023",
+				host: "BuildOnBase",
+				type: "Top NFT Collector",
+				image: "",
+			},
+		},
+		{
+			id: "1",
+			value: {
+				title: "Opensea DAO",
+				host: "OpenSea",
+				type: "Governance",
+				image: "",
+			},
+		},
+		{
+			id: "2",
+			value: {
+				title: "",
+				host: "Crypto.com",
+				type: "Trading Expert",
+				image: "",
+			},
+		},
+		{
+			id: "3",
+			value: {
+				title: "",
+				host: "Looksrare",
+				type: "Bug Hunter",
+				image: "",
+			},
 		},
 	];

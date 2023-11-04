@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
 	ReputationTabs as Tabs,
 	Dropdown,
-	ReputationMedal,
+	Medal as ReputationMedal,
 } from "../../../components";
 import { personal, reputation } from "../../../assets/data";
 import { useTabSwitcher } from "../../../hooks";
@@ -65,7 +65,10 @@ const ReputationBoard = ({ group }) => {
 										className="reputation-medal"
 										key={index}
 									>
-										<ReputationMedal {...item} />
+										<ReputationMedal
+											{...item}
+											group={"reputation-medal"}
+										/>
 									</div>
 								);
 							})}

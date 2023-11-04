@@ -3,7 +3,9 @@ import FileUpload from "./FileUpload";
 import TextField from "./TextField";
 import SelectField from "./SelectField";
 import TextareaField from "./TextareaField";
-import Reputation from "./Reputation";
+import Club from "./Club";
+import Medal from "./Medal";
+import Badge from "./Badge";
 
 export { FileUpload, TextField, SelectField, TextareaField };
-export { Dropdown, Reputation };
+export { Dropdown, Club, Medal, Badge };

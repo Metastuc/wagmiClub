@@ -8,7 +8,10 @@ import {
 	Questers,
 	ReputationBoard,
 	Footer,
+	Vera,
+	LeaderBoard,
 } from "./landing";
+import { MarketPlace, OnChain } from "./explore";
 
 export { PrimaryNavbar, SecondaryNavbar };
 
@@ -16,4 +19,15 @@ export { FormField };
 
 export { Medal, Badge };
 
-export { Hero, Club, PoweredBy, Questers, ReputationBoard, Footer };
+export {
+	Hero,
+	Club,
+	PoweredBy,
+	Questers,
+	ReputationBoard,
+	Footer,
+	Vera,
+	LeaderBoard,
+};
+
+export { MarketPlace, OnChain };

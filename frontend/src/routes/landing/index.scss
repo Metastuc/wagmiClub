@@ -3,6 +3,20 @@
 
 .landing {
 
+    // @include bp-max($ss-mm) {
+    // background-image: url("/mobileBG.png");
+    // background-position: -16.5rem 2rem;
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // background-attachment: scroll;
+    // }
+
+    // @include bp-min($ss-mm) {
+    //     background-image: url("/desktopBG.png");
+    //     background-position: center center;
+    //     background-size: cover;
+    // }
+
     &__about {
         padding-inline: 4.25rem;
 
