@@ -22,6 +22,8 @@ const db = getFirestore();
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 const apiKey = process.env.MORALIS_API;
 
 // Add this a startServer function that initialises Moralis
@@ -230,6 +232,33 @@ app.get("/getBoard", async (req, res) => {
     res.json({ error: error.message });
   }
 })
+
+app.post("/createUserProfile", async (req, res) => {
+  const profileData = { 
+    displayname: req.body.name,
+    username: req.body.usernane,
+    bio: req.body.bio,
+    profession: req.body.profession,
+    X : req.body.xname,
+    discord: req.body.discordname,
+    telegram: req.body.telegramname,
+    youtube: req.body.youtubename,
+    imageURL: req.body.imageURL
+  }
+
+  try {
+    const users = db.collection('users');
+    const docId = req.body.name;
+    await users.doc(docId).set(profileData);
+    console.log('success');
+    const jsonResponse = { status: "successful" };
+    res.status(200).json(jsonResponse);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 const getDonationAmount = async (address, _chain, doneeAddress) => {
   // const address = "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
