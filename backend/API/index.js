@@ -299,6 +299,48 @@ app.get("/getUserProfile/:username", async (req, res) => {
 
 })
 
+app.put("/edit-profile/:username", async (req, res) => {
+  const username = req.params.username;
+  const { section, value } = req.body;
+
+  const userRef = db.collection('users').doc(username);
+  const userSnapshot = await userRef.get();
+
+  try {
+    if (!userSnapshot.exists) {
+      const Response = { response: "user does not exist" }
+      res.status(404);
+      res.json(Response);
+    } else {
+      if (section == "displayname") {
+        await userRef.update({ displayname: value });
+      } else if(section == "bio") {
+        await userRef.update({ displayname: value });
+      }
+      else if(section == "X") {
+        await userRef.update({ X: value });
+      }
+      else if(section == "discord") {
+        await userRef.update({ discord: value });
+      }
+      else if(section == "telegram") {
+        await userRef.update({ telegram: value });
+      }
+      else if(section == "youtube") {
+        await userRef.update({ youtube: value });
+      }
+      else {
+        const Response = { response: "invalid profile field" }
+        res.status(400);
+        res.json(Response);
+      }
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500);
+    res.json({ error: error.message });
+  }
+})
 
 const getDonationAmount = async (address, _chain, doneeAddress) => {
   // const address = "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
