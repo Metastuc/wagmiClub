@@ -1,7 +1,29 @@
 import React from "react";
-import "./index.scss";
-import { medals } from "../../../assets/data";
+import { orgMedals } from "../../../assets/data";
 import { Badge } from "../../../components";
+import "./index.scss";
+
+export const RenderOrgMedals = function ({ group }) {
+	return (
+		<div className={`${group}__medals`}>
+			{orgMedals.map((item, index) => {
+				const { id, value } = item;
+
+				return (
+					<div
+						key={index | id}
+						className={`${group}__medal`}
+					>
+						<Badge
+							{...value}
+							group={`${group}__medal`}
+						/>
+					</div>
+				);
+			})}
+		</div>
+	);
+};
 
 const OnChain = ({ group }) => {
 	return (
@@ -9,18 +31,7 @@ const OnChain = ({ group }) => {
 			<div className={`${group}__wrapper`}>
 				<>tabs</>
 
-				<div className={`${group}__medals`}>
-					{medals.map((item, index) => {
-						return (
-							<div key={index}>
-								<Badge
-									{...item}
-									group={""}
-								/>
-							</div>
-						);
-					})}
-				</div>
+				<RenderOrgMedals group={group} />
 			</div>
 		</section>
 	);

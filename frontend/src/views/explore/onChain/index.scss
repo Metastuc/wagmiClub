@@ -1,3 +1,11 @@
 @use"../../../styles"as *;
+@import "../../../styles/components/organization_badge";
 
-.onchain {}
+.onchain {
+    border: 1px solid yellow;
+
+    &__medals {
+        @include flex($d:column);
+        gap: 3rem;
+    }
+}

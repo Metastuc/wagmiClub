@@ -28,7 +28,7 @@ export const navLinks = [
 			},
 		},
 	],
-	// <------------> \\
+	// <<========================================>> \\
 	desktopNavLinks = [
 		{
 			id: 0,
@@ -47,19 +47,19 @@ export const navLinks = [
 		{
 			id: 2,
 			value: {
-				title: "Login",
-				to: "",
+				title: "Create",
+				to: "/create",
 			},
 		},
 		{
 			id: 3,
 			value: {
-				title: "Create",
-				to: "/create",
+				title: "Login",
+				to: "",
 			},
 		},
 	],
-	// <------------> \\
+	// <<========================================>> \\
 	clubTitles = [
 		{
 			id: 0,
@@ -420,14 +420,15 @@ export const navLinks = [
 			medals: 0,
 		},
 	],
-	medals = [
+	// <<========================================>> \\
+	orgMedals = [
 		{
 			id: "0",
 			value: {
 				title: "Onchain summer 2023",
 				host: "BuildOnBase",
 				type: "Top NFT Collector",
-				image: "",
+				image: "base.gif",
 			},
 		},
 		{
@@ -436,7 +437,7 @@ export const navLinks = [
 				title: "Opensea DAO",
 				host: "OpenSea",
 				type: "Governance",
-				image: "",
+				image: "opensea.jpg",
 			},
 		},
 		{
@@ -445,7 +446,7 @@ export const navLinks = [
 				title: "",
 				host: "Crypto.com",
 				type: "Trading Expert",
-				image: "",
+				image: "crypto.jpg",
 			},
 		},
 		{
@@ -454,7 +455,123 @@ export const navLinks = [
 				title: "",
 				host: "Looksrare",
 				type: "Bug Hunter",
-				image: "",
+				image: "looksrare.jpg",
+			},
+		},
+	],
+	// <<========================================>> \\
+	indMedals = [
+		{
+			id: "0",
+			value: {
+				name: "boarbeast",
+				honours: `Contest winner`,
+				image: "boarbeast.jpg",
+				host: "base.gif",
+			},
+		},
+		{
+			id: "1",
+			value: {
+				name: "trinity.eth",
+				honours: `Uncommon minter`,
+				image: "Eostoman.jpg",
+				host: "base.gif",
+			},
+		},
+		{
+			id: "2",
+			value: {
+				name: "godhand",
+				honours: `Active swapper`,
+				image: "godhand.jpg",
+				host: "base.gif",
+			},
+		},
+	],
+	questers = [
+		{
+			id: 0,
+			value: {
+				image: "Yashmatic.jpg",
+				winner: false,
+			},
+		},
+		{
+			id: 1,
+			value: {
+				image: "Frencansto.jpg",
+				winner: false,
+			},
+		},
+		{
+			id: 2,
+			value: {
+				image: "boarbeast.jpg",
+				winner: true,
+			},
+		},
+		{
+			id: 3,
+			value: {
+				image: "starfish.jpg",
+				winner: false,
+			},
+		},
+		{
+			id: 4,
+			value: {
+				image: "Goosymana.jpg",
+				winner: false,
+			},
+		},
+		{
+			id: 5,
+			value: {
+				image: "ice-cream.jpg",
+				winner: false,
+			},
+		},
+		{
+			id: 6,
+			value: {
+				image: "Eostoman.jpg",
+				winner: true,
+			},
+		},
+		{
+			id: 7,
+			value: {
+				image: "Benelywett.jpg",
+				winner: false,
+			},
+		},
+		{
+			id: 8,
+			value: {
+				image: "Philippe.eth.jpg",
+				winner: false,
+			},
+		},
+		{
+			id: 9,
+			value: {
+				image: "Berggwane.jpg",
+				winner: false,
+			},
+		},
+		{
+			id: 10,
+			value: {
+				image: "Tariuswanami.jpg",
+				winner: false,
+			},
+		},
+		{
+			id: 11,
+			value: {
+				image: "godhand.jpg",
+				winner: true,
 			},
 		},
 	];
