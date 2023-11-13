@@ -20,11 +20,11 @@ html {
     .container {
         @include bp-max($ss-mm) {
             background-image: url("/mobileBG.png");
-            background-position: 45% -.5rem;
+            background-position: 40% -.5rem;
         }
     }
 
     * {
-        // background: rgba(150, 100, 220, 0.1) !important;
+        // background: rgba(75, 0, 130, 0.1) !important;
     }
 }

@@ -1,4 +1,5 @@
 @use "../../../styles"as *;
+@import "../../../styles/components/questers_badge";
 
 /**
  * Styles for the questers section in the landing page.
@@ -6,6 +7,7 @@
 .landing__questers {
     margin: 3.75rem 0 0 0;
     /* Top margin of 3.75rem */
+    position: relative;
 
     @include bp-min($ss-mm) {
         margin: 0;
@@ -199,6 +201,316 @@
                         font-size: 1.375rem;
                         /* Increased font size for larger screens */
                     }
+                }
+            }
+        }
+    }
+
+    /**
+    * Styles for the right section of the questers 
+    */
+    &-right {
+        @include flex($d:column, $a:flex-end);
+
+        @include bp-max($ss-mm) {
+            width: 100%;
+        }
+
+        /**
+        * Styles for the top part of the right section 
+        */
+        &_top {
+            @include bp-max($ss-mm) {
+                display: none;
+                /* Hide the right section on smaller screens */
+            }
+
+            border: 1px solid var(--white);
+            /* Set border color */
+            width: 20.5rem;
+            /* Set width */
+            margin-right: 3rem;
+            /* Set right margin */
+            border-radius: 1.5rem;
+            /* Set border radius */
+            padding: 1rem 1.5rem 2.5rem 1.5rem;
+            /* Set padding */
+
+            >span {
+                margin-bottom: .5rem;
+                /* Set bottom margin */
+                display: inline-block;
+                /* Display as inline-block */
+
+                font: {
+                    size: .75rem;
+                    /* Set font size */
+                    family: var(--ff-clash);
+                    /* Set font family */
+                    weight: var(--fw-mid);
+                    /* Set font weight */
+                }
+            }
+        }
+
+        &_center {
+            @include bp-min($ss-mm) {
+                display: none;
+            }
+
+            margin-bottom: 2.875rem;
+            width: 100%;
+            padding-inline: 2rem;
+
+            h3 {
+                margin-bottom: 2rem;
+                @include flex($j:flex-start);
+                gap: .5rem;
+
+                font: {
+                    size: 1.125rem;
+                    /* Set font size */
+                    family: var(--ff-clash);
+                    /* Set font family */
+                    weight: var(--fw-mid);
+                    /* Set font weight */
+                }
+
+                span {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 3rem;
+                    border-radius: 24px;
+                    border: 1px solid #A1F294;
+                    background-color: #151515;
+
+                    font: {
+                        size: .5rem;
+                        /* Set font size */
+                        family: var(--ff-clash);
+                        /* Set font family */
+                        weight: var(--fw-mid);
+                        /* Set font weight */
+                    }
+                }
+            }
+
+            &-container {
+                display: grid;
+                grid-template-rows: repeat(2, 1fr);
+                grid-template-columns: repeat(6, 1fr);
+                place-items: center;
+                gap: 1.75rem .75rem;
+            }
+
+            &-wrapper {
+                @include equal(2.75rem);
+                position: relative;
+                @include flex;
+
+                >span {
+                    &#icon {
+                        @include equal(1.5rem);
+                        position: absolute;
+                        top: -.75rem;
+                        right: -.25rem;
+                        z-index: 1;
+
+                        svg {
+                            @include equal(100%);
+                        }
+                    }
+
+                    &#image {
+                        overflow: hidden;
+                        @include equal(100%);
+                        border-radius: 50%;
+                        @include flex;
+
+                        img {
+                            scale: 1.1;
+                        }
+                    }
+                }
+            }
+        }
+
+        /**
+        * Styles for the bottom part of the right section 
+        */
+        &_bottom {
+            @include flex($d:column);
+            gap: 3rem;
+            position: relative;
+            bottom: -4rem;
+            height: 29rem;
+            width: 35.75rem;
+            top: 0;
+            overflow: hidden;
+
+            @include bp-max($ss-mm) {
+                @include min-w(26.25rem);
+                height: 26rem;
+            }
+
+            >div {
+                height: max-content;
+                @include flex($d:column);
+                gap: 3rem;
+                position: absolute;
+                top: 4rem;
+
+                @include bp-max($ss-mm) {
+                    top: 0;
+                }
+            }
+
+            &-container {
+                position: relative;
+                width: 35.75rem;
+                height: 7.5rem;
+
+                @include bp-max($ss-mm) {
+                    width: 26.25rem;
+                    height: 6.5rem;
+                }
+
+                &:nth-of-type(1) {
+                    >div {
+                        left: 10rem;
+
+                        @include bp-max($ss-mm) {
+                            left: 6rem;
+                        }
+                    }
+                }
+
+                &:nth-of-type(2) {
+                    >div {
+                        left: 6rem;
+
+                        @include bp-max($ss-mm) {
+                            left: 3rem;
+                        }
+                    }
+                }
+
+                &:nth-of-type(3) {
+                    >div {
+                        left: 15rem;
+
+                        @include bp-max($ss-mm) {
+                            left: 10rem;
+                        }
+                    }
+                }
+            }
+
+            &-wrapper {
+                position: absolute;
+                @include equal(100%);
+                border: 1px solid lighten($color: #000000, $amount: 20);
+                @include flex($j:space-between);
+                padding: .75rem 1.5rem;
+                border-radius: 1.5rem;
+
+                @include bp-max($ss-mm) {
+                    background-color: var(--black-300);
+
+                    &::after {
+                        content: "";
+                        height: calc(100% + .5rem);
+                        width: calc(100% + .625rem);
+                        background-color: inherit;
+                        z-index: -1;
+                        position: absolute;
+                        border-radius: 1.5rem;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+                }
+            }
+
+            &-left {
+                @include equal(3.75rem);
+                @include flex;
+
+                span {
+                    position: relative;
+                    /** Relative positioning for the content within the image element. */
+                    @include flex;
+                    /** Apply flexbox layout to the content within the image element. */
+                    border-radius: 50%;
+                    /** Inherit border radius for the content within the image element. */
+                    @include equal(inherit);
+                    /** Make width and height equal for the content within the image element. */
+                    overflow: hidden;
+
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        inset: 0;
+                        /** Position the pseudo-element to cover the entire image element. */
+                        border: 3px solid var(--yellow-100);
+                        /** Border styling for the pseudo-element. */
+                        border-radius: inherit;
+                        /** Inherit border radius for the pseudo-element. */
+                    }
+                }
+            }
+
+            &-center {
+                margin: 0 auto 0 1rem;
+                @include flex($a:flex-end);
+                gap: 5rem;
+
+                @include bp-max($ss-mm) {
+                    gap: .5rem;
+                }
+
+                >div {
+                    @include flex($d:column, $a:flex-start);
+                    gap: .5rem;
+
+                    span {
+                        font: {
+                            size: .875rem;
+                            /* Set font size */
+                            family: var(--ff-clash);
+                            /* Set font family */
+                            weight: var(--fw-mid);
+                            /* Set font weight */
+                        }
+                    }
+                }
+
+                >span {
+                    @include equal(1.875rem);
+
+                    @include bp-max($ss-mm) {
+                        @include equal(1.375rem);
+                    }
+
+                    svg {
+                        @include equal(100%);
+                    }
+                }
+            }
+
+            &-right {
+                @include equal(5.75rem);
+
+                @include bp-max($ss-mm) {
+                    @include equal(4.5rem);
+                }
+
+                span {
+                    border-radius: 1.5rem;
+                    @include equal(100%);
+                    @include flex;
+                    overflow: hidden;
                 }
             }
         }

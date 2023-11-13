@@ -1,6 +1,8 @@
 import React from "react";
-import "./index.scss";
 import { Badge as BadgeIcon, Medal as MedalIcon } from "../../../assets/icons";
+import { RenderOrgMedals } from "../../explore/onChain";
+import { indMedals, questers } from "../../../assets/data";
+import "./index.scss";
 
 const Questers = ({ group }) => {
 	return (
@@ -63,15 +65,109 @@ const Questers = ({ group }) => {
 
 				<div className={`${group}__questers-right`}>
 					<div className={`${group}__questers-right_top`}>
-						lots of components
+						<span>Medals</span>
+						<RenderOrgMedals group={"questers"} />
 					</div>
 
 					<div className={`${group}__questers-right_center`}>
-						lots of components
+						<div>
+							<h3>
+								Questers <span>3217</span>
+							</h3>
+							<div
+								className={`${group}__questers-right_center-container`}
+							>
+								{questers.map((item, index) => {
+									const {
+										id,
+										value: { image, winner },
+									} = item;
+
+									return (
+										<div
+											key={index || id}
+											className={`${group}__questers-right_center-wrapper`}
+										>
+											{winner && (
+												<span id="icon">
+													<MedalIcon />
+												</span>
+											)}
+											<span
+												id="image"
+												style={{
+													borderWidth: winner
+														? "3px"
+														: "1px",
+													borderColor: winner
+														? "#E5F77A"
+														: "#FFFFFF",
+													borderStyle: "solid",
+												}}
+											>
+												<img
+													src={image}
+													alt=""
+												/>
+											</span>
+										</div>
+									);
+								})}
+							</div>
+						</div>
 					</div>
 
 					<div className={`${group}__questers-right_bottom`}>
-						lots of components
+						<div>
+							{indMedals.map((item, index) => {
+								const {
+									id,
+									value: { honours, name, host, image },
+								} = item;
+								return (
+									<div
+										key={index || id}
+										className={`${group}__questers-right_bottom-container`}
+									>
+										<div
+											className={`${group}__questers-right_bottom-wrapper`}
+										>
+											<div
+												className={`${group}__questers-right_bottom-left`}
+											>
+												<span>
+													<img
+														src={image}
+														alt=""
+													/>
+												</span>
+											</div>
+											<div
+												className={`${group}__questers-right_bottom-center`}
+											>
+												<div>
+													<span>{name}</span>
+													<span>{honours}</span>
+												</div>
+												<span>
+													<MedalIcon />
+												</span>
+											</div>
+											<div
+												className={`${group}__questers-right_bottom-right`}
+											>
+												<span>
+													<img
+														src={host}
+														alt=""
+													/>
+												</span>
+											</div>
+										</div>
+									</div>
+								);
+							})}
+						</div>
 					</div>
 				</div>
 			</div>

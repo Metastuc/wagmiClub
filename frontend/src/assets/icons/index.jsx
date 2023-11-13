@@ -772,4 +772,33 @@ export const Hamburger = function () {
 				</defs>
 			</svg>
 		);
+	},
+	FancyArrowDown = function () {
+		return (
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width={40}
+				height={38}
+				fill="none"
+			>
+				<path
+					stroke="#fff"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					strokeWidth={1.5}
+					d="M24.167 17.417 20 21.375l-4.167-3.958"
+				/>
+				<path
+					stroke="#fff"
+					strokeWidth={1.5}
+					d="M5.588 14.171c1.086-4.397 4.7-7.83 9.33-8.862a23.397 23.397 0 0 1 10.165 0c4.629 1.031 8.243 4.465 9.329 8.863a20.114 20.114 0 0 1 0 9.656c-1.086 4.398-4.7 7.832-9.33 8.863a23.4 23.4 0 0 1-10.165 0c-4.629-1.031-8.243-4.465-9.329-8.863a20.115 20.115 0 0 1 0-9.656Z"
+				/>
+				<path
+					stroke="#A1F294"
+					strokeLinecap="round"
+					strokeWidth={2}
+					d="M5.588 14.171a20.115 20.115 0 0 0 0 9.657c1.086 4.398 4.7 7.832 9.33 8.863a23.4 23.4 0 0 0 10.165 0c4.629-1.031 8.243-4.465 9.329-8.863a20.114 20.114 0 0 0 0-9.656c-1.086-4.398-4.7-7.832-9.33-8.863"
+				/>
+			</svg>
+		);
 	};
