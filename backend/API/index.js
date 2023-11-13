@@ -243,13 +243,23 @@ app.post("/createUserProfile", async (req, res) => {
     discord: req.body.discordname,
     telegram: req.body.telegramname,
     youtube: req.body.youtubename,
-    imageURL: req.body.imageURL
+    imageURL: req.body.imageURL,
+    badgeCount: 0,
+    badges: [],
+    medalCount: 0,
+    medals: [],
+    add: ''
+  }
+
+  const wagmiFollow = {
+    username: 'WagmiClub'
   }
 
   try {
     const users = db.collection('users');
     const docId = req.body.name;
     await users.doc(docId).set(profileData);
+    await users.doc(docId).collection("followers").add(wagmiFollow);
     console.log('success');
     const jsonResponse = { status: "successful" };
     res.status(200).json(jsonResponse);
@@ -258,6 +268,36 @@ app.post("/createUserProfile", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+app.get("/getUserProfile/:username", async (req, res) => {
+  const username = req.params.username;
+
+  const userSnapshot = await db.collection('users').doc(username).get();
+
+  try {
+    if (!userSnapshot.exists) {
+      const Response = { response: "User does not exist" }
+      res.status(200);
+      res.json(Response);
+    } else {
+      const userDoc = userSnapshot.data();
+      const userResponse = {
+        name: userDoc.displayname,
+        username: userDoc.username,
+        bio: userDoc.bio,
+        profession: userDoc.profession,
+        imageURL: userDoc.imageURL
+      }
+      
+      res.status(200);
+      res.json(userResponse);
+    }
+  } catch (error) {
+    res.status(500);
+    res.json({ error: error.message });
+  }
+
+})
 
 
 const getDonationAmount = async (address, _chain, doneeAddress) => {
