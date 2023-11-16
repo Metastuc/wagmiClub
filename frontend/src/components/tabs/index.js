@@ -6,4 +6,6 @@ import ReputationTabs from "./landing";
 
 import ExploreTabs from "./explore";
 
-export { CreateTabs, EditTabs, ReputationTabs, ExploreTabs };
+import MarketPlaceTabs from "./marketplace";
+
+export { CreateTabs, EditTabs, ReputationTabs, ExploreTabs, MarketPlaceTabs };

@@ -51,6 +51,10 @@
                 /** Set font weight */
                 weight: var(--fw-mid);
             }
+
+            &:last-of-type {
+                @include flex;
+            }
         }
     }
 
