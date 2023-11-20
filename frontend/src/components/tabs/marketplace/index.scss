@@ -1,0 +1,48 @@
+@use "../../../styles"as *;
+
+.marketplace__tabs {
+    &-wrapper {
+        background-color: var(--black-400);
+        @include flex($j:space-between);
+        position: relative;
+        padding: .5rem 1.5rem;
+        border-radius: .5rem;
+    }
+
+    &-bg {
+        position: absolute;
+        height: 50%;
+        transition: all ease-in-out 200ms;
+        background-color: #FFFFFFE5;
+        border-radius: .5rem;
+    }
+
+    &-button {
+        @include flex;
+        background-color: transparent;
+        border-radius: .5rem;
+        overflow: hidden;
+        height: 1rem;
+        padding-inline: 1rem;
+
+        span {
+            @include flex;
+            color: #FFFFFFB0;
+            transition: all ease-in-out 200ms;
+            pointer-events: none;
+
+            font: {
+                size: .75rem;
+                family: var(--ff-clash);
+                weight: var(--fw-reg);
+            }
+        }
+
+        &.active {
+            span {
+                color: black;
+                z-index: 5;
+            }
+        }
+    }
+}

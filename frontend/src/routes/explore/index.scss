@@ -3,7 +3,7 @@
 
 .explore {
     @include bp-min($ss-mm) {
-        // display: none;
+        display: none;
     }
 
     &__wrapper {

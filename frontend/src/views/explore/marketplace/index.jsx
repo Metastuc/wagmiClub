@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { reputation, personal } from "../../../assets/data";
 import { ReputationMedal } from "../../../assets/icons";
-import { Medal, Dropdown } from "../../../components";
+import { Medal, Dropdown, MarketPlaceTabs as Tab } from "../../../components";
 import "./index.scss";
+import { useTabSwitcher } from "../../../hooks";
 
 /**
  * Functional component representing the Marketplace section.
@@ -15,7 +16,7 @@ import "./index.scss";
  */
 const MarketPlace = ({ group, items }) => {
 	const [selected, setSelected] = useState("Advisor");
-
+	const { activeTab, handleTabClick, tabIsActive } = useTabSwitcher("badges");
 	/**
 	 * Function to shuffle and limit the number of users to display.
 	 *
@@ -58,7 +59,13 @@ const MarketPlace = ({ group, items }) => {
 					</>
 				</div>
 
-				<div className={`${group}__tabs`}>tabs</div>
+				<div className={`${group}__tabs`}>
+					<Tab
+						group={group}
+						onTabChange={handleTabClick}
+						tabIsActive={tabIsActive}
+					/>
+				</div>
 
 				<div className={`${group}__badges`}>
 					{displayUsers(reputation, items).map((item, index) => {
