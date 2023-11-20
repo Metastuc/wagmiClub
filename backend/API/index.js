@@ -1,8 +1,13 @@
 const express = require("express");
+const multer = require('multer');
+const path = require('path');
+
 // Import Moralis
 const Moralis = require("moralis").default;
+
 // Import the EvmChain dataType
 const { EvmChain } = require("@moralisweb3/common-evm-utils");
+
 // Import dotenv to use environment variables
 require('dotenv').config();
 
@@ -10,12 +15,17 @@ require('dotenv').config();
 const admin = require('firebase-admin');
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
+const { getStorage } = require('firebase-admin/storage');
 
 const serviceAccount = require("./wagmi-club-firebase-adminsdk-cde6r-4f3cc52568.json");
 
 initializeApp({
-  credential: cert(serviceAccount)
+  credential: cert(serviceAccount),
+  storageBucket: 'wagmi-club.appspot.com'
 });
+
+const bucket = getStorage().bucket();
+const storage = multer.memoryStorage(); 
 
 const db = getFirestore();
 
@@ -39,6 +49,56 @@ const startServer = async () => {
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
+});
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 },
+}).single('file');
+
+app.post("/uploadMedalCSV", async (req, res) => {
+  let fileURL;
+  upload(req, res, async (err) => {
+    if (err) {
+      console.error('error uploading file:', err);
+      res.status(500).json({ error: err.message });
+    } else {
+      if (!req.file) {
+        res.status(400).json({ error: 'No file uploaded' });
+      } else {
+        try {
+          const file = req.file;
+          const fileName = file.originalname;
+
+          const fileUpload = bucket.file(fileName);
+
+          const fileStream = fileUpload.createWriteStream({
+            metadata: {
+              contentType: file.mimetype
+            }
+          });
+
+          fileStream.on('error', (error) => {
+            console.error('Error uploading to Firebase:', error);
+            res.status(500).json({ error: 'Error uploading to Firebase' });
+          });
+
+          fileStream.on('finish', () => {
+            fileURL = `https://storage.googleapis.com/${bucket.name}/${fileName}`;
+            console.log('File uploaded to Firebase. Download URL:', fileURL);
+            res.status(200).json({ response: 'File uploaded successfully', downloadUrl: fileURL });
+          });
+
+          fileStream.end(file.buffer);
+
+          // push fileURL to firestore
+        } catch (error) {
+          console.error('Error uploading file:', error);
+          res.status(500).json({ error: 'Error uploading file' });
+        }
+      }
+    }
+  });
 });
 
 app.get("/getNFTAmount", async (req, res) => {
@@ -233,8 +293,8 @@ app.get("/getBoard", async (req, res) => {
   }
 })
 
-app.post("/createUserProfile", async (req, res) => {
-  const profileData = { 
+app.post("/createProfile", async (req, res) => {
+  const profileData = {
     displayname: req.body.name,
     username: req.body.usernane,
     bio: req.body.bio,
@@ -248,7 +308,8 @@ app.post("/createUserProfile", async (req, res) => {
     badges: [],
     medalCount: 0,
     medals: [],
-    add: ''
+    add: req.body.address,
+    accountType: req.body.accountType
   }
 
   const wagmiFollow = {
@@ -342,6 +403,58 @@ app.put("/edit-profile/:username", async (req, res) => {
   }
 })
 
+app.put("/followUser/:username", async (req, res) => {
+  const username = req.params.username;
+  const follower = req.body.username;
+
+  try {
+    const follwerDoc = {
+      username: follower
+    }
+
+    const userRef = db.collection('users').doc(username);
+    const userSnapshot = await userRef.get();
+
+    if (!userSnapshot.exists) {
+      const Response = { response: "user does not exist" }
+      res.status(404);
+      res.json(Response);
+    } else {
+      await userRef.collection('followers').add(follwerDoc);
+      res.status(200).json({ response: 'followed successfuly' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500);
+    res.json({ error: error.message });
+  }
+})
+
+app.put("/unFollowUser/:username", async (req, res) => {
+  const username = req.params.username;
+  const follower = req.body.username;
+
+  try {
+
+    const collRef = db.collection('users').doc(username).collection('followers');
+    const userSnapshot = await collRef.where('username', '==', follower).get();
+
+    if (!userSnapshot.exists) {
+      const Response = { response: "user does not exist" }
+      res.status(404);
+      res.json(Response);
+    } else {
+      const id = userSnapshot.docs[0].id;
+      await userRef.collection('followers').doc(id).delete();
+      res.status(200).json({ response: 'unfollowed successfuly' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500);
+    res.json({ error: error.message });
+  }
+})
+
 const getDonationAmount = async (address, _chain, doneeAddress) => {
   // const address = "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
   var chain;
@@ -391,3 +504,16 @@ const sumDonationAmount = (data, doneeAddress) => {
 
 // Call startServer()
 startServer();
+
+// TODO
+// 1. include user type(organization) ✅
+// 2. create followers subcollection when creating user ✅
+// 3. create follow and unfollow function ✅
+// 4. return No. of followers in returned user object
+// 5. work on uploading file to cloudstorage ⌛
+// 6. checking if address or email is in list
+// 7. reading more about LSPs contract
+// 8. start rewriting contract with LUKSO standard(LSPs)
+// 9. create badge function
+// 10. org name -- doc ref
+// 11. sub-docs -- tokenIds

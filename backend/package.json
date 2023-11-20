@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@chainlink/contracts": "^0.8.0",
+    "@lukso/lsp-smart-contracts": "^0.12.1",
     "@openzeppelin/contracts": "^4.9.3"
   }
 }
