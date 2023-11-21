@@ -43,10 +43,5 @@ contract Badge is LSP8IdentifiableDigitalAsset {
     function transferBatch(address[] memory from, address[] memory to, bytes32[] memory tokenId, bool[] memory force, bytes[] memory data) public virtual override {
         revert("Soulbound token cannot be transfered to another address");
     }
-
-    modifier onlyOrganization {
-        require(isOrganization[msg.sender] == true, "You are not authorized to call this function");
-        _;
-    }
     
 }

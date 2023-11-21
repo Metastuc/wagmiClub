@@ -1,0 +1,17 @@
+{
+  "name": "frontendlogic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "universalProfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@erc725/erc725.js": "^0.21.2",
+    "@lukso/lsp-factory.js": "^3.2.1",
+    "isomorphic-fetch": "^3.0.0"
+  }
+}
