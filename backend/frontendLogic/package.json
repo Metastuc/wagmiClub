@@ -12,6 +12,8 @@
   "dependencies": {
     "@erc725/erc725.js": "^0.21.2",
     "@lukso/lsp-factory.js": "^3.2.1",
+    "dotenv": "^14.0.0",
+    "ethers": "^6.8.1",
     "isomorphic-fetch": "^3.0.0"
   }
 }
