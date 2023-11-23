@@ -32,7 +32,7 @@ export const fetchProfileData = async () => {
     try {
         const owner = await erc725.getOwner();
         const profile = await erc725.fetchData('LSP3Profile');
-        console.log(owner, profile);
+        console.log(owner, profile.value.LSP3Profile.tags);
     } catch (error) {
         console.log(error);
     }
@@ -107,8 +107,8 @@ async function createUniversalProfile() {
     }
 
 }
-createUniversalProfile();
-// fetchProfileData();
+// createUniversalProfile();
+fetchProfileData();
 
 // 2. if user has a profile read the details
 // 3. if it doesn't create the universal profile

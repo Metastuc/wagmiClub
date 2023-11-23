@@ -330,7 +330,7 @@ app.post("/createProfile", async (req, res) => {
   }
 });
 
-app.get("/getUserProfile/:username", async (req, res) => {
+app.get("/getUserProfile/:username", async (req, res) => { // change to add
   const username = req.params.username;
 
   const userSnapshot = await db.collection('users').doc(username).get();
@@ -349,7 +349,40 @@ app.get("/getUserProfile/:username", async (req, res) => {
         profession: userDoc.profession,
         imageURL: userDoc.imageURL
       }
+      // add number of following and followers
       
+      res.status(200);
+      res.json(userResponse);
+    }
+  } catch (error) {
+    res.status(500);
+    res.json({ error: error.message });
+  }
+
+  // add extended params to returned value
+
+})
+
+app.get("/getUPProfile/:username", async (req, res) => {
+  const username = req.params.username;
+
+  const userSnapshot = await db.collection('users').doc(username).get();
+
+  try {
+    if (!userSnapshot.exists) {
+      const Response = { response: "User does not exist" }
+      res.status(200);
+      res.json(Response);
+    } else {
+      const userDoc = userSnapshot.data();
+      const userResponse = {
+        name: userDoc.displayname,
+        username: userDoc.username,
+        bio: userDoc.bio,
+        profession: userDoc.profession,
+        imageURL: userDoc.imageURL
+      }
+      // recontrsuct in up profile format
       res.status(200);
       res.json(userResponse);
     }
@@ -517,3 +550,7 @@ startServer();
 // 9. create badge function
 // 10. org name -- doc ref
 // 11. sub-docs -- tokenIds
+
+// new TODO
+// 1. create post endpoint to return UP profile endpoint
+// 2. create response.json with {link: up profile endpoint} for create profile endpoint
