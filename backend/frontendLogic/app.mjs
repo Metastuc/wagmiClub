@@ -159,15 +159,14 @@ export const signUp = async(profileBody, image) => {
             },
             body: createData,
         });
-        // return API endpoint with userName
-        // pass it into the universal profile deploy and deploy UP
+
         if (!response.ok) {
             throw new Error('Network error')
         }
         
         const profileEndpoint = '/getUPProfile/';
         const profileLink = baseAPIURL + profileEndpoint + profileBody.username;
-        
+
         await ethereum.request({ method: 'eth_requestAccounts', params: [] });
 
         const userAddress = await getUserAddress();
@@ -181,7 +180,7 @@ export const signUp = async(profileBody, image) => {
                     controllerAddresses: [ userAddress ], // root address (address attached to profile)
                     lsp3Profile: profileLink // provision of link to universal profile (provision get endpoint?)
                 });
-                console.log(deployedContracts.LSP0ERC725Account.receipt);
+                console.log(deployedContracts.LSP0ERC725Account.receipt); // add this user profile
         } catch (error) {
             console.log(error);
         }
