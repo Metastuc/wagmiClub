@@ -1,6 +1,7 @@
-// import { ethers } from 'ethers';
-import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.min.js";
+import { ethers } from 'ethers';
+// import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.min.js";
 import { ERC725 } from "@erc725/erc725.js";
+import { FormData } from 'form-data';
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
 import { LSPFactory } from '@lukso/lsp-factory.js';
 import fetch from 'node-fetch';
@@ -113,32 +114,64 @@ export const logIn = async() => {
 
 }
 
+// function to process file
+const processImg = async(image) => {
+    // reduce to 200 x 200
+    // or 50 x 50
+    // border radius 50
+}
+
 // sign up
-export const signUp = async(profileRequestBody) => {
-    
+export const signUp = async(profileBody, image) => {
     try {
         await connectWallet();
         // call create function to API with details
-        const endPoint = '/ccreateProfile'
-        const createProfileEndpoint = baseAPIURL + endPoint;
+        const createEndPoint = '/ccreateProfile';
+        const uploadEndpoint = '/uploadImage';
+        const createProfileEndpoint = baseAPIURL + createEndPoint;
+        const uploadFileEndpoint = baseAPIURL + uploadEndpoint;
+
+        const formData = new FormData();
+        formData.append('image', image); // process image first
+
+
+        const uploadResponse = await fetch(`${uploadFileEndpoint}`, {
+            method: 'POST',
+            body: formData,
+        });
+
+        const _imageURL = uploadResponse.json();
+        const imageURL = _imageURL.url;
+
+        const createData = new FormData();
+        createData.append(imageURL, imageURL);
+
+        for (const key in profileBody) {
+            if (profileBody.hasOwnProperty(key)) {
+              createData.append(key, profileBody[key]);
+            }
+        }
 
         const response = await fetch(createProfileEndpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(profileRequestBody),
+            body: createData,
         });
         // return API endpoint with userName
         // pass it into the universal profile deploy and deploy UP
         if (!response.ok) {
             throw new Error('Network error')
         }
-        const userProfile = await response.json();
-        const profileLink = baseAPIURL + '/' + userProfile.link;
+        
+        const profileEndpoint = '/getUPProfile/';
+        const profileLink = baseAPIURL + profileEndpoint + profileBody.username;
+        
         await ethereum.request({ method: 'eth_requestAccounts', params: [] });
 
         const userAddress = await getUserAddress();
+
         try {
             const lspFactory = new LSPFactory(ethereum, {
                 chainId: 4201,
@@ -160,7 +193,7 @@ export const signUp = async(profileRequestBody) => {
 
 // function to sign up
 export const signIn = async() => {
-    //
+    // 
     await connectWallet();
     const userAddress = await getUserAddress();
 
@@ -168,15 +201,35 @@ export const signIn = async() => {
 }
 
 // mint badge
-export const mintBadge = async(badgeInfo, userAddress) => {
+export const mintBadge = async(badgeInfo, userAddress, inage) => {
     await connectWallet();
-    const userAddress = await getUserAddress();
+    const orgAddress = await getUserAddress();
     // check if orgs badge doc exists if not deploy contract
-    // mint the LSP8 contract
-    // create endpoint to add metadata
-    // return endpoint url pointing the badges metadata
-    // add the endpointurl as LSP4 metadata for the contract
-    // then mint to user
+    // call baseAPIURL + /getBadgeAddress/ + orgAddress
+    const response = await fetch(`${baseAPIURL}/getBadgeAddress/${orgAddress}`);
+    const exists = response.exists;
+    if (exists == false) {
+        
+        // declare the endpoint url for fetching badge data
+        const lspFactory = new LSPFactory(ethereum, {
+            chainId: 4201,
+        });
+        const metadataEndpointURL = "https://api.universalprofile.cloud/ipfs/QmQ7Wq4y2gWiuzB4a4Wd6UiidKNpzCJRpgzFqQwzyq6SsV"; // to be updated
+        const deployedContracts = await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
+          name: "WAGMI BADGE",
+          symbol: "WBG",
+          controllerAddress: userAddress,
+          tokenIdType: 0,
+          digitalAssetMetadata: metadataEndpointURL
+        });
+        // badge contract address to db
+        // construct contract instance
+        // call mint function
+    } else {
+        const contractAddress = response.address;
+        // construct contract instance
+        // call mint function
+    }
 }
 
 // create medal onchain

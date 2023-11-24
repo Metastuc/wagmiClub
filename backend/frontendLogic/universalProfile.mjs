@@ -3,7 +3,10 @@
 import { ERC725 } from "@erc725/erc725.js";
 import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
 import { LSPFactory } from '@lukso/lsp-factory.js';
+import fetch from 'node-fetch';
+
 const provider = 'https://rpc.testnet.lukso.network';
+const BASE_URL = 'http://localhost:3000';
 
 const SAMPLE_PROFILE_ADDRESS = "0xB031363560403179Aac100d51864e27fFF4D7807"; // static address
 const SAMPLE_PROFILE_ADDRESS_1 = '0x47D43af4aa7640005D2Bd81917e6E9fE084E8428';
@@ -108,7 +111,45 @@ async function createUniversalProfile() {
 
 }
 // createUniversalProfile();
-fetchProfileData();
+// fetchProfileData();
 
 // 2. if user has a profile read the details
 // 3. if it doesn't create the universal profile
+
+const deployLSP8Contract = async() => {
+  const metadataEndpointURL = "https://api.universalprofile.cloud/ipfs/QmQ7Wq4y2gWiuzB4a4Wd6UiidKNpzCJRpgzFqQwzyq6SsV";
+  const deployedContracts = await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
+    name: "My token",
+    symbol: "TKN",
+    controllerAddress: "0xdeDf26b9280620eaa52e0811bF7991a1B6aB077E",
+    tokenIdType: 0,
+    // digitalAssetMetadata: metadataEndpointURL
+  });
+
+  // lspFactory.LSP7DigitalAsset.deploy({
+    
+  // });
+  // await lspFactory.LSP4DigitalAssetMetadata.uploadMetadata()
+
+  console.log(deployedContracts.LSP8IdentifiableDigitalAsset.address);
+}
+
+// deployLSP8Contract();
+
+const getAdd = async() => {
+  const orgAddress = '0x';
+  try {
+    const response = await fetch(`${BASE_URL}/getBadgeAddress/${orgAddress}`);
+    if (!response.ok) {
+      console.log("error");
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const responseData = await response.json();
+    console.log('Response:', responseData);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+
+}
+
+getAdd();

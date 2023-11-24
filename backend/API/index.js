@@ -56,7 +56,7 @@ const upload = multer({
   limits: { fileSize: 1000000 },
 }).single('file');
 
-app.post("/uploadMedalCSV", async (req, res) => {
+app.post("/uploadImage", async (req, res) => {
   let fileURL;
   upload(req, res, async (err) => {
     if (err) {
@@ -92,6 +92,7 @@ app.post("/uploadMedalCSV", async (req, res) => {
           fileStream.end(file.buffer);
 
           // push fileURL to firestore
+          res.status(200).json({ url: fileURL });
         } catch (error) {
           console.error('Error uploading file:', error);
           res.status(500).json({ error: 'Error uploading file' });
@@ -103,9 +104,9 @@ app.post("/uploadMedalCSV", async (req, res) => {
 
 app.get("/getNFTAmount", async (req, res) => {
     // get the userAddress, chain and contractAddress from the requset/query
-    const userAddress = req.query.userAddress;
-    const nftName = req.query.nftName;
-    const chain = req.query.chain;
+    const userAddress = req.query.userAddress; // user address
+    const nftName = req.query.nftName; // nft name
+    const chain = req.query.chain; // chain to check on
 
     try {
       // Get and return the crypto data
@@ -197,6 +198,7 @@ app.get("/addBadge", async (req, res) => {
       res.status(200);
       res.json(jsonResponse);
     }
+
     else {
       const userDoc = userSnapshot.docs[0];
       const currentBadgeCount = userDoc.data().badges;
@@ -294,6 +296,8 @@ app.get("/getBoard", async (req, res) => {
 })
 
 app.post("/createProfile", async (req, res) => {
+  // try to get image url here
+
   const profileData = {
     displayname: req.body.name,
     username: req.body.usernane,
@@ -318,7 +322,7 @@ app.post("/createProfile", async (req, res) => {
 
   try {
     const users = db.collection('users');
-    const docId = req.body.name;
+    const docId = req.body.username;
     await users.doc(docId).set(profileData);
     await users.doc(docId).collection("followers").add(wagmiFollow);
     console.log('success');
@@ -487,6 +491,34 @@ app.put("/unFollowUser/:username", async (req, res) => {
     res.json({ error: error.message });
   }
 })
+
+app.get("/getBadgeAddress/:address", async(req, res) => {
+  const orgAddress = req.params.address;
+
+  try {
+    const docRef = db.collection('Badges').doc(orgAddress);
+    const doc = await docRef.get();
+    if (!doc.exists) {
+      const Response = { exists: false, address: null }
+      res.status(200);
+      res.json(Response);
+    } else {
+      const data = doc.data();
+      const badgeAddress = data.contractAddress;
+      const Response = { exists: true, address: badgeAddress }
+      res.status(200);
+      res.json(Response);
+    }
+  } catch (error) {
+    console.log(error);
+    const Response = { error: error }
+    res.status(500);
+    res.json(Response);
+  }
+});
+
+// endpoint to store the address
+// endpoint to get badge details
 
 const getDonationAmount = async (address, _chain, doneeAddress) => {
   // const address = "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
