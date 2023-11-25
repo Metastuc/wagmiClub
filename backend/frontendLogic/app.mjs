@@ -17,6 +17,37 @@ const baseAPIURL = 'APIURL'; // to be updated once deployed
 var provider;
 var signer;
 
+const ABI = [
+    {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          },
+          {
+            "internalType": "bytes32",
+            "name": "tokenId",
+            "type": "bytes32"
+          },
+          {
+            "internalType": "bool",
+            "name": "force",
+            "type": "bool"
+          },
+          {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+          }
+        ],
+        "name": "mint",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+      }
+]
+
 export const connectWallet = async() => {
     // provider = new ethers.BrowserProvider(window.ethereum);
     try {
@@ -96,6 +127,7 @@ export const logIn = async() => {
         // get the user Address
         const address = await getUserAddress();
         // check if the wagmi tag is in tags array
+        // check if user exists
         const erc725 = new ERC725(lsp3ProfileSchema, address, providerURL, config);
         const profile = await erc725.fetchData('LSP3Profile');
         const tags = profile.value.LSP3Profile.tags;
@@ -133,7 +165,6 @@ export const signUp = async(profileBody, image) => {
 
         const formData = new FormData();
         formData.append('image', image); // process image first
-
 
         const uploadResponse = await fetch(`${uploadFileEndpoint}`, {
             method: 'POST',
@@ -200,34 +231,99 @@ export const signIn = async() => {
 }
 
 // mint badge
-export const mintBadge = async(badgeInfo, userAddress, inage) => {
+export const mintBadge = async(badgeInfo, userAddress, image) => {
     await connectWallet();
     const orgAddress = await getUserAddress();
+
+    // upload image
+    const uploadEndpoint = '/uploadImage';
+    const uploadFileEndpoint = baseAPIURL + uploadEndpoint;
+    const createEndpoint = '/createBadge/' + orgAddress;
+    const createBadgeEndpoint = baseAPIURL + createEndpoint;
+
+    const formData = new FormData();
+    formData.append('image', image); // process image first
+
+    const uploadResponse = await fetch(uploadFileEndpoint, {
+        method: 'POST',
+        body: formData,
+    });
+
+    const _imageURL = uploadResponse.json();
+    const imageURL = _imageURL.url;
+
+    const createData = new FormData();
+    createData.append(imageURL, imageURL);
+
+    for (const key in badgeInfo) {
+        if (badgeInfo.hasOwnProperty(key)) {
+          createData.append(key, badgeInfo[key]);
+        }
+    }
+
+    // add badge info to db badges and user badges
+    const createResponse = await fetch(createBadgeEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: createData,
+    });
+
+    if (!createResponse.ok) {
+        throw new Error('Network error')
+    }
+
     // check if orgs badge doc exists if not deploy contract
-    // call baseAPIURL + /getBadgeAddress/ + orgAddress
-    const response = await fetch(`${baseAPIURL}/getBadgeAddress/${orgAddress}`);
-    const exists = response.exists;
+    const exists = createResponse.exists;
+    const contractAddress = createResponse.contractAddress;
+    const id = createResponse.id;
+
     if (exists == false) {
-        
         // declare the endpoint url for fetching badge data
         const lspFactory = new LSPFactory(ethereum, {
             chainId: 4201,
         });
-        const metadataEndpointURL = "https://api.universalprofile.cloud/ipfs/QmQ7Wq4y2gWiuzB4a4Wd6UiidKNpzCJRpgzFqQwzyq6SsV"; // to be updated
+        // const metadataEndpointURL = "https://api.universalprofile.cloud/ipfs/QmQ7Wq4y2gWiuzB4a4Wd6UiidKNpzCJRpgzFqQwzyq6SsV"; // to be updated endpoint
         const deployedContracts = await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
           name: "WAGMI BADGE",
           symbol: "WBG",
           controllerAddress: userAddress,
           tokenIdType: 0,
-          digitalAssetMetadata: metadataEndpointURL
+        //   digitalAssetMetadata: metadataEndpointURL
         });
-        // badge contract address to db
+        const _contractAddress = deployedContracts.LSP8IdentifiableDigitalAsset.address;
+        const updateData = { contractAddress: _contractAddress }
+        // update contract address
+        const response = await fetch(`${baseAPIURL}/updateBadgeAddress/${orgAddress}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: updateData
+        });
+        if (!response.ok) {
+            console.log('an error occured');
+        }
         // construct contract instance
+        const tokenIdString = id.toString();
+        const tokenId32 = ethers.encodeBytes32String(tokenIdString);
+        const contract = new ethers.Contract(_contractAddress, ABI, signer);
+        const data = ethers.hexlify('0x');
         // call mint function
+        const tx = await contract.mint(userAddress, tokenId32, true, data);
+        const receipt = await tx.wait();
+        console.log(receipt);
     } else {
-        const contractAddress = response.address;
         // construct contract instance
         // call mint function
+        const tokenIdString = id.toString();
+        const tokenId32 = ethers.encodeBytes32String(tokenIdString);
+        const contract = new ethers.Contract(contractAddress, ABI, signer);
+        const data = ethers.hexlify('0x');
+        const tx = await contract.mint(userAddress, tokenId32, true, data);
+        const receipt = await tx.wait();
+        console.log(receipt);
     }
 }
 

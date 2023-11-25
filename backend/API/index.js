@@ -308,10 +308,6 @@ app.post("/createProfile", async (req, res) => {
     telegram: req.body.telegramname,
     youtube: req.body.youtubename,
     imageURL: req.body.imageURL,
-    badgeCount: 0,
-    badges: [],
-    medalCount: 0,
-    medals: [],
     add: req.body.address,
     accountType: req.body.accountType
   }
@@ -333,6 +329,39 @@ app.post("/createProfile", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+app.post("/createBadge/:orgAddress", async (req, res) => {
+  // get address
+  const orgAddress = req.params.orgAddress;
+
+  try {
+    // increment the counter
+    const orgBadgeRef = db.collection('Badges').doc(orgAddress);
+    const orgBadgeDoc = await orgBadgeRef.get();
+    if (!orgBadgeDoc.exists) {
+      const contractAddress = '0x';
+      const idCount = 0;
+      const data = { contractAddress: contractAddress, idCount: idCount }
+      await orgBadgeRef.set(data);
+      const tokenRef = orgBadgeRef.collection('tokenIds').doc(idCount);
+      await tokenRef.set(req.body);
+      res.status(200).json({ exists: false, contractAddress: contractAddress, id: idCount })
+      await orgBadgeRef.update({ idCount: 1 })
+    } else {
+      const orgBadgeData = orgBadgeDoc.data();
+      const contractAddress = orgBadgeData.contractAddress;
+      const id = orgBadgeData.idCount;
+      const newId = id + 1;
+      const tokenRef = orgBadgeRef.collection('tokenIds').doc(idCount);
+      await tokenRef.set(req.body);
+      await orgBadgeRef.update({ idCount: newId })
+      res.status(200).json({ exists: true, contractAddress: contractAddress, id: id })
+  }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: error })
+  }
+})
 
 app.get("/getUserProfile/:username", async (req, res) => { // change to add
   const username = req.params.username;
@@ -492,20 +521,21 @@ app.put("/unFollowUser/:username", async (req, res) => {
   }
 })
 
-app.get("/getBadgeAddress/:address", async(req, res) => {
-  const orgAddress = req.params.address;
+app.put("/updateBadgeAddress/:orgAddress", async(req, res) => {
+  const orgAddress = req.params.orgAddress;
+  const contractAddress = req.body.contractAddress;
 
   try {
     const docRef = db.collection('Badges').doc(orgAddress);
     const doc = await docRef.get();
     if (!doc.exists) {
-      const Response = { exists: false, address: null }
+      const Response = { message: 'this resource does not exist' }
       res.status(200);
       res.json(Response);
     } else {
       const data = doc.data();
-      const badgeAddress = data.contractAddress;
-      const Response = { exists: true, address: badgeAddress }
+      await docRef.update({ contractAddress: contractAddress })
+      const Response = { message: 'successful' }
       res.status(200);
       res.json(Response);
     }
