@@ -8,4 +8,13 @@ import ExploreTabs from "./explore";
 
 import MarketPlaceTabs from "./marketplace";
 
-export { CreateTabs, EditTabs, ReputationTabs, ExploreTabs, MarketPlaceTabs };
+import OnchainTabs from "./onchain";
+
+export {
+	CreateTabs,
+	EditTabs,
+	ReputationTabs,
+	ExploreTabs,
+	MarketPlaceTabs,
+	OnchainTabs,
+};

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { Medal, Dropdown, MarketPlaceTabs as Tab } from "../../../components";
 import { reputation, personal } from "../../../assets/data";
 import { ReputationMedal } from "../../../assets/icons";
-import { Medal, Dropdown, MarketPlaceTabs as Tab } from "../../../components";
-import "./index.scss";
 import { useTabSwitcher } from "../../../hooks";
+import "./index.scss";
 
 /**
  * Functional component representing the Marketplace section.
@@ -59,13 +59,13 @@ const MarketPlace = ({ group, items }) => {
 					</>
 				</div>
 
-				<div className={`${group}__tabs`}>
+				<>
 					<Tab
 						group={group}
 						onTabChange={handleTabClick}
 						tabIsActive={tabIsActive}
 					/>
-				</div>
+				</>
 
 				<div className={`${group}__badges`}>
 					{displayUsers(reputation, items).map((item, index) => {

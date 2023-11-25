@@ -9,6 +9,7 @@ import {
 	ReputationTabs,
 	ExploreTabs,
 	MarketPlaceTabs,
+	OnchainTabs,
 } from "./tabs";
 import {
 	Dropdown,
@@ -24,7 +25,14 @@ import { FormField as MedalForm } from "./medal";
 import { Details, Socials } from "./edit";
 // <<--------------======================-------------->>
 export { Menu, Profile, Logo, Stars };
-export { CreateTabs, EditTabs, ReputationTabs, ExploreTabs, MarketPlaceTabs };
+export {
+	CreateTabs,
+	EditTabs,
+	ReputationTabs,
+	ExploreTabs,
+	MarketPlaceTabs,
+	OnchainTabs,
+};
 export {
 	Dropdown,
 	FileUpload,

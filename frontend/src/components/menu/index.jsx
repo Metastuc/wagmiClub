@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { CloseMenu, Hamburger, Search } from "../../assets/icons";
 import { navLinks } from "../../assets/data";
 import { useToggle } from "../../hooks/index.js";
+import { login } from "../../utils/login.js";
+// import { connectWallet as login } from "../../utils/app.mjs";
+// import { connectWallet as login } from "../../../../backend/frontendLogic/app.mjs";
 import "./index.scss";
 
 /**
@@ -24,6 +27,7 @@ const Menu = () => {
 	function handleMenuItem() {
 		if (menuActive) {
 			toggleStatus();
+			login();
 		}
 	}
 
