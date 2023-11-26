@@ -1,10 +1,10 @@
 import { ethers } from 'ethers';
 // import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.min.js";
-import { ERC725 } from "@erc725/erc725.js";
+// import { ERC725 } from "@erc725/erc725.js";
 import { FormData } from 'form-data';
-import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
-import { LSPFactory } from '@lukso/lsp-factory.js';
-import fetch from 'node-fetch';
+// import lsp3ProfileSchema from '@erc725/erc725.js/schemas/LSP3ProfileMetadata.json' assert { type: 'json' };
+// import { LSPFactory } from '@lukso/lsp-factory.js';
+// import fetch from 'node-fetch';
 
 const providerURL = 'https://rpc.testnet.lukso.network';
 const config = {
@@ -115,7 +115,7 @@ export const connectWallet = async() => {
 }
 
 export const getUserAddress = async () => {
-    const address = await signer.address;
+    const address = await signer.getAddress();
     console.log(address);
     return address;
 }
@@ -123,17 +123,19 @@ export const getUserAddress = async () => {
 export const logIn = async() => {
     try {
         // connect wallet
-        await connectWallet();
-        // get the user Address
-        const address = await getUserAddress();
-        // check if the wagmi tag is in tags array
-        // check if user exists
-        const erc725 = new ERC725(lsp3ProfileSchema, address, providerURL, config);
-        const profile = await erc725.fetchData('LSP3Profile');
-        const tags = profile.value.LSP3Profile.tags;
-        const wagmiTag = 'Wagmi Profile'
+        // await connectWallet();
+        // // get the user Address
+        // const address = await getUserAddress();
+        // // check if the wagmi tag is in tags array
+        // // check if user exists
+        // const erc725 = new ERC725(lsp3ProfileSchema, address, providerURL, config);
+        // const profile = await erc725.fetchData('LSP3Profile');
+        // const tags = profile.value.LSP3Profile.tags;
+        // const wagmiTag = 'Wagmi Profile'
 
-        const isContained = tags.some(item => item === wagmiTag);
+        // const isContained = tags.some(item => item === wagmiTag);
+
+        // call API to get iscontained
 
         if (isContained == true) {
             // redirect user to edit profile page
@@ -194,27 +196,8 @@ export const signUp = async(profileBody, image) => {
         if (!response.ok) {
             throw new Error('Network error')
         }
-        
-        const profileEndpoint = '/getUPProfile/';
-        const profileLink = baseAPIURL + profileEndpoint + profileBody.username;
 
-        await ethereum.request({ method: 'eth_requestAccounts', params: [] });
-
-        const userAddress = await getUserAddress();
-
-        try {
-            const lspFactory = new LSPFactory(ethereum, {
-                chainId: 4201,
-                });
-        
-                const deployedContracts = await lspFactory.UniversalProfile.deploy({
-                    controllerAddresses: [ userAddress ], // root address (address attached to profile)
-                    lsp3Profile: profileLink // provision of link to universal profile (provision get endpoint?)
-                });
-                console.log(deployedContracts.LSP0ERC725Account.receipt); // add this user profile
-        } catch (error) {
-            console.log(error);
-        }
+        // handle success message after calling the function
 
     } catch (error) {
         console.log(error);
@@ -222,6 +205,7 @@ export const signUp = async(profileBody, image) => {
 }
 
 // function to sign up
+// to be called immediately the profile page loads
 export const signIn = async() => {
     // 
     await connectWallet();

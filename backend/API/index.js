@@ -309,7 +309,8 @@ app.post("/createProfile", async (req, res) => {
     youtube: req.body.youtubename,
     imageURL: req.body.imageURL,
     add: req.body.address,
-    accountType: req.body.accountType
+    accountType: req.body.accountType,
+    UPAddress: '0x'
   }
 
   const wagmiFollow = {
@@ -321,6 +322,23 @@ app.post("/createProfile", async (req, res) => {
     const docId = req.body.username;
     await users.doc(docId).set(profileData);
     await users.doc(docId).collection("followers").add(wagmiFollow);
+    await users.doc(docId).collection("following").add(wagmiFollow);
+    const lspFactory = new LSPFactory(ethereum, {
+      chainId: 4201,
+    });
+
+    const baseAPIURL = 'jdjd'; // initialize this later
+    const profileEndpoint = '/getUPProfile/';
+    const profileLink = baseAPIURL + profileEndpoint + req.body.usernane;
+
+    const deployedContracts = await lspFactory.UniversalProfile.deploy({
+      controllerAddresses: [ req.body.address ], // root address (address attached to profile)
+      lsp3Profile: profileLink // provision of link to universal profile (provision get endpoint?)
+    });
+
+    const UPAddress = deployedContracts.LSP0ERC725Account.address;
+    await users.doc(docId).update({ UPAddress: UPAddress })
+
     console.log('success');
     const jsonResponse = { status: "successful" };
     res.status(200).json(jsonResponse);
@@ -339,7 +357,6 @@ app.post("/createBadge/:orgAddress", async (req, res) => {
     const orgBadgeRef = db.collection('Badges').doc(orgAddress);
     const orgBadgeDoc = await orgBadgeRef.get();
     if (!orgBadgeDoc.exists) {
-      const contractAddress = '0x';
       const idCount = 0;
       const data = { contractAddress: contractAddress, idCount: idCount }
       await orgBadgeRef.set(data);
@@ -363,7 +380,7 @@ app.post("/createBadge/:orgAddress", async (req, res) => {
   }
 })
 
-app.get("/getUserProfile/:username", async (req, res) => { // change to add
+app.get("/getUserProfileUsername/:username", async (req, res) => { // change to add
   const username = req.params.username;
 
   const userSnapshot = await db.collection('users').doc(username).get();
@@ -383,6 +400,72 @@ app.get("/getUserProfile/:username", async (req, res) => { // change to add
         imageURL: userDoc.imageURL
       }
       // add number of following and followers
+      
+      res.status(200);
+      res.json(userResponse);
+    }
+  } catch (error) {
+    res.status(500);
+    res.json({ error: error.message });
+  }
+
+  // add extended params to returned value
+
+})
+
+app.get("/getUserProfileAddress/:address", async (req, res) => { // change to add
+  const address = req.params.address;  
+
+  try {
+    const users = db.collection('users');
+    const userSnapshot = await users.where('address', '==', address).get();
+    const userId = userSnapshot.docs[0].id;
+
+    if (userSnapshot.empty) {
+      const Response = { message: "User does not exist" }
+      res.status(404);
+      res.json(Response);
+    } else {
+      const userDoc = userSnapshot.data();
+      // get followers
+      const followerCount = await db.collection('users').doc(userId).collection('followers').count.get();
+      // get following
+      const followingCount = await db.collection('users').doc(userId).collection('following').count.get();
+      // get 5 badges
+      const badgeList = await db.collection('users').doc(userId).collection('badges').orderBy('Title').limit(5).get();
+      if (badgeList.empty) {
+        const userResponse = {
+          name: userDoc.displayname,
+          username: userDoc.username,
+          bio: userDoc.bio,
+          profession: userDoc.profession,
+          imageURL: userDoc.imageURL,
+          followers: followerCount,
+          following: followingCount
+        }
+        
+        res.status(200);
+        res.json(userResponse);
+      }
+      const _badgeList = [];
+
+      for (let i = 0; i < 5; i++) {
+        const title = badgeList.docs[0].data().Title;
+        const imageURL = badgeList.docs[0].data().imageURL;
+        const badgeObj = {title: title, imageURL: imageURL};
+        _badgeList.push(badgeObj)
+      }
+
+      const userResponse = {
+        name: userDoc.displayname,
+        username: userDoc.username,
+        bio: userDoc.bio,
+        profession: userDoc.profession,
+        imageURL: userDoc.imageURL,
+        followers: followerCount,
+        following: followingCount,
+        badges: _badgeList
+      }
       
       res.status(200);
       res.json(userResponse);
