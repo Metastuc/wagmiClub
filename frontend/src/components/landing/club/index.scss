@@ -1,0 +1,36 @@
+@use "@/styles"as *;
+@import '@/styles/component/landing-club-items';
+
+/**
+ * Styles for the landing club section.
+ */
+.landing__club {
+    margin: 1.5rem 0 0 0;
+    /* Top margin of 1.5rem */
+
+    @include bp-min($ss-mm) {
+        @include flex;
+        /* Apply flexbox styles */
+        margin-bottom: 2rem;
+        /* Bottom margin of 2rem for larger screens */
+    }
+
+    /**
+     * Styles for the landing club wrapper.
+     */
+    &-wrapper {
+        height: 9rem;
+        /* Set initial height to 9rem */
+        position: relative;
+        /* Position relative for child positioning */
+        overflow: hidden;
+        /* Hide overflowing content */
+
+        @include bp-min($ss-mm) {
+            height: 11.25rem;
+            /* Set height to 11.25rem for larger screens */
+            width: 100%;
+            /* Set width to 100% for larger screens */
+        }
+    }
+}

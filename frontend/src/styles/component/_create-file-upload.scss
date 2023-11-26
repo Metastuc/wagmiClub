@@ -1,0 +1,80 @@
+/**
+ * Medal and badge component styles.
+ */
+.medal,
+.badge {
+
+    /**
+     * Styles for the medal/badge image section.
+     */
+    &__image {
+        /**
+         * Apply flexbox layout with column direction.
+         */
+        @include flex($d: column);
+        margin: 2rem 0 2.875rem 0;
+        /** Margin for the medal/badge image section. */
+
+        /**
+         * Label for the image upload section.
+         */
+        &-label {
+            margin: 1rem 0 0.25rem 0;
+            /** Spacing for the label. */
+
+            font: {
+                family: map-get($map: $ff, $key: clash);
+                /** Font family for label. */
+                size: 0.8125rem;
+                /** Font size for label. */
+                weight: map-get($map: $fw, $key: mid);
+                /** Font weight for label. */
+            }
+        }
+
+        /**
+         * Hidden input for image upload.
+         */
+        &-input {
+            display: none;
+            /** Hide the input element. */
+        }
+
+        /**
+         * Preview of the uploaded image.
+         */
+        &-preview {
+            /**
+             * Apply flexbox layout.
+             * Set equal width and height for the preview.
+             */
+            @include flex;
+            @include equal(5.5rem);
+            border-radius: 1.5rem;
+            overflow: hidden;
+            /** Hide overflowing content. */
+
+            img {
+                @include equal(100%);
+                /** Set image width and height to 100%. */
+            }
+        }
+
+        /**
+         * Error message for the image section.
+         */
+        &-error {
+            color: #ffc0cb;
+            /** Text color for error messages. */
+
+            font: {
+                size: 0.5rem;
+                /** Font size for error messages. */
+                family: map-get($map: $ff, $key: clash);
+                /** Font family for error messages. */
+                weight: 100;
+                /** Font weight for error messages. */
+            }
+        }
+    }
+}

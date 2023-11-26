@@ -1,12 +1,9 @@
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-button {
-    border: none;
-    outline: none;
 }
 
 ul {
@@ -34,4 +31,9 @@ textarea {
 img {
     max-width: 100%;
     object-fit: cover;
+}
+
+button {
+    border: none;
+    outline: none;
 }

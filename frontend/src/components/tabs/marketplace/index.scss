@@ -1,4 +1,4 @@
-@use "../../../styles"as *;
+@use "@/styles"as *;
 
 .marketplace__tabs {
     &-wrapper {
@@ -33,8 +33,8 @@
 
             font: {
                 size: .75rem;
-                family: var(--ff-clash);
-                weight: var(--fw-reg);
+                family: map-get($map: $ff, $key: clash);
+                weight: map-get($map: $fw, $key: reg);
             }
         }
 

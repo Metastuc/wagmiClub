@@ -1,0 +1,26 @@
+@use "index"as *;
+
+html {
+    font-size: calc(100vw / 414 * 16);
+
+    @include bp-min($ss-mm) {
+        font-size: calc(100vw / 1512 * 16);
+    }
+
+    body {
+        background-color: var(--black);
+        color: var(--white);
+        touch-action: manipulation;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .container {
+        @include bp-max($ss-mm) {
+            background-image: url("/mobileBG.png");
+            background-position: 40% -.5rem;
+        }
+    }
+}

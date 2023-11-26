@@ -1,5 +1,4 @@
-@use "../../styles"as *;
-
+@use "../../styles/"as *;
 
 .menu {
     @include bp-min($ss-mm) {
@@ -46,8 +45,8 @@
                 gap: .875rem;
 
                 li {
-                    font-family: var(--ff-clash);
-                    font-weight: var(--fw-mid);
+                    font-family: map-get($map: $ff, $key: clash);
+                    font-weight: map-get($map: $fw, $key: mid);
                     font-size: .875rem;
 
                     a {
@@ -68,10 +67,10 @@
                 overflow: hidden;
 
                 input {
-                    font-family: var(--ff-clash);
+                    font-family: map-get($map: $ff, $key: clash);
                     font-size: 1rem;
                     padding-inline: .5rem;
-                    font-weight: var(--fw-mid);
+                    font-weight: map-get($map: $fw, $key: mid);
                 }
 
                 span {

@@ -1,0 +1,30 @@
+@use "@/styles"as *;
+
+.landing {
+
+    &__about {
+        padding-inline: 4.25rem;
+
+        &-wrapper {
+            @include flex;
+        }
+
+        p {
+            text-align: center;
+
+            font: {
+                family: map-get($map: $ff, $key: clash);
+                size: 1rem;
+                weight: map-get($map: $fw, $key: mid);
+            }
+
+            @include bp-min($ss-mm) {
+                font-size: 2.5rem;
+            }
+
+            span {
+                color: var(--yellow-100);
+            }
+        }
+    }
+}

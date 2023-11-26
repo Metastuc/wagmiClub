@@ -1,0 +1,164 @@
+/**
+ * Define a list of club items with their properties:
+ * Format: (top, left, rotate, mobile-top, mobile-left)
+ * Units: top and left in rem, rotate in deg
+ **/
+$club-items: ((3rem, -10rem, 5deg, 0rem, 0rem),
+    /* Club item 1 properties */
+    (1.75rem, 8.25rem, -10deg, 1rem, -2rem),
+    /* Club item 2 properties */
+    (7.5rem, 5.5rem, 0deg, 4rem, -2.5rem),
+    /* Club item 3 properties */
+    (5rem, 23rem, 5deg, 2.5rem, 5rem),
+    /* Club item 4 properties */
+    (1.75rem, 41rem, -10deg, 2rem, 13.5rem),
+    /* Club item 5 properties */
+    (7.25rem, 41.5rem, 2deg, 4.75rem, 12.5rem),
+    /* Club item 6 properties */
+    (2.25rem, 59.5rem, 10deg, 4rem, 20rem),
+    /* Club item 7 properties */
+    (7.75rem, 61rem, 0deg, 0rem, 0rem),
+    /* Club item 8 properties */
+    (2.8rem, 78rem, -10deg, 0rem, 0rem)
+    /* Club item 9 properties */
+);
+
+/**
+ * Styles for club reputation element
+ **/
+.club__reputation {
+    height: 1.5rem;
+    /* Height of the club reputation element */
+    width: 8rem;
+    /* Width of the club reputation element */
+    @include flex;
+    /* Include a flexbox utility mixin */
+    position: absolute;
+    /* Position the element absolutely within its parent */
+
+    /**
+    * Responsive styles for larger screens
+    **/
+    @include bp-min($ss-mm) {
+        width: 18rem;
+        /* Increase width for larger screens */
+        height: 3.5rem;
+        /* Increase height for larger screens */
+    }
+
+    /**
+    * Loop through club items and apply styles
+    **/
+    @for $index from 1 through length($club-items) {
+        $item: nth($club-items, $index);
+        /* Get current club item properties */
+        $top: nth($item, 1);
+        /* Extract top property from club item */
+        $left: nth($item, 2);
+        /* Extract left property from club item */
+        $rotate: nth($item, 3);
+        /* Extract rotate property from club item */
+        $mq-top: nth($item, 4);
+        /* Extract mobile-top property from club item */
+        $mq-left: nth($item, 5);
+        /* Extract mobile-left property from club item */
+
+        &:nth-of-type(#{$index}) {
+            top: $mq-top;
+            /* Set top position for mobile screens */
+            left: $mq-left;
+            /* Set left position for mobile screens */
+
+            /**
+            * Responsive styles for larger screens
+            **/
+            @include bp-min($ss-mm) {
+                top: $top;
+                /* Set top position for larger screens */
+                left: $left;
+                /* Set left position for larger screens */
+            }
+
+            /**
+            * Apply rotation to club reputation wrapper
+            **/
+            .club__reputation-wrapper {
+                transform: rotate($rotate);
+                /* Apply rotation to club reputation wrapper */
+            }
+        }
+    }
+
+    /**
+    * Hide specific club items for certain screen sizes
+    **/
+    &:nth-of-type(1),
+    &:nth-of-type(8),
+    &:nth-of-type(9) {
+        display: none;
+        /* Hide specific club items for mobile screens */
+
+        @include bp-min($ss-mm) {
+            @include flex;
+            /* Display items as flex for larger screens */
+        }
+    }
+
+    /**
+    * Styles for club reputation wrapper
+    **/
+    &-wrapper {
+        border-radius: 2.25rem;
+        /* Border radius for the club reputation wrapper */
+        @include equal(100%);
+        /* Make width and height equal for the wrapper */
+        @include flex;
+        /* Apply flexbox styles */
+        padding: .0625rem;
+        /* Padding for the wrapper */
+
+        @include bp-min($ss-mm) {
+            padding: .1875rem .375rem;
+            /* Increase padding for larger screens */
+        }
+    }
+
+    /**
+    * Styles for club reputation text
+    **/
+    &-text {
+        border: 1px solid rgba($color: #000000, $alpha: .9);
+        /* Border style for text */
+        @include equal(100%);
+        /* Make width and height equal for text */
+        border-radius: inherit;
+        /* Inherit border radius from parent */
+        @include flex;
+        /* Apply flexbox styles */
+
+        /**
+        * Styles for text within club reputation
+        **/
+        span {
+            font: {
+                family: map-get($map: $ff, $key: typo);
+                /* Set font family for the text */
+                size: 1.25rem;
+                /* Set font size for the text */
+                weight: map-get($map: $fw, $key: reg);
+                /* Set font weight for the text */
+            }
+
+            /**
+            * Responsive styles for larger screens
+            **/
+            @include bp-min($ss-mm) {
+                font-size: 2.5rem;
+                /* Increase font size for larger screens */
+            }
+
+            color: rgba($color: #000000, $alpha: .9);
+            /* Text color */
+        }
+    }
+}

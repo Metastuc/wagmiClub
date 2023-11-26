@@ -1,5 +1,6 @@
-@use "./functions"as *;
-@use "./mixins"as *;
+@use "functions"as *;
+@use "mixins"as *;
+@use "typography"as *;
 
 $ss-sm: 25em;
 $ss-mm: 40em;
@@ -17,8 +18,8 @@ $ss-mm: 40em;
 
     font: {
         size: 1.125rem;
-        family: var(--ff-clash);
-        weight: var(--fw-mid);
+        family: map-get($map: $ff, $key: clash);
+        weight: map-get($map: $fw, $key: mid);
     }
 
     @include bp-min($ss-mm) {
@@ -52,8 +53,8 @@ $ss-mm: 40em;
 
     font: {
         size: .875rem;
-        family: var(--ff-clash);
-        weight: var(--fw-reg);
+        family: map-get($map: $ff, $key: clash);
+        weight: map-get($map: $fw, $key: reg);
     }
 
     @include bp-min($ss-mm) {
@@ -74,13 +75,13 @@ $ss-mm: 40em;
     background-color: transparent;
     color: rgba($color: #fff, $alpha: .75);
     width: 100%;
-    font-family: var(--ff-clash);
+    font-family: map-get($map: $ff, $key: clash);
 }
 
 %badge-edit {
     position: absolute;
     font-size: .4375rem;
-    font-family: var(--ff-clash);
+    font-family: map-get($map: $ff, $key: clash);
     color: rgba($color: #cbcc95, $alpha: .52);
     width: max-content;
 }

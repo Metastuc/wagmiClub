@@ -1,0 +1,115 @@
+/**
+ * Medal component styles.
+ */
+.medal {
+
+    /**
+     * Styles for dropdowns.
+     */
+    &__dropdown {
+        position: relative;
+        /** Relative positioning for dropdowns. */
+        height: 2.25rem;
+        /** Height for dropdown components. */
+
+        /**
+         * Styles for dropdown buttons.
+         */
+        &-button {
+            @include flex;
+            /** Apply flexbox layout. */
+            gap: .3125rem;
+            /** Gap between elements within dropdown buttons. */
+            height: 100%;
+            /** Full height for dropdown buttons. */
+            width: max-content;
+            /** Width to fit content. */
+            padding-inline: .75rem;
+            /** Horizontal padding for dropdown buttons. */
+            background-color: transparent;
+            /** Transparent background for dropdown buttons. */
+            color: rgba($color: #fff, $alpha: .6);
+            /** Text color for dropdown buttons. */
+
+            font: {
+                family: map-get($map: $ff, $key: clash);
+                /** Font family for dropdown buttons. */
+                size: .875rem;
+                /** Font size for dropdown buttons. */
+                weight: map-get($map: $fw, $key: reg);
+                /** Font weight for dropdown buttons. */
+            }
+        }
+
+        /**
+         * Styles for dropdown menus.
+         */
+        &-menu {
+            position: absolute;
+            /** Absolute positioning for dropdown menus. */
+            right: 0;
+            /** Align dropdown menus to the right. */
+            top: .625rem;
+            /** Top position for dropdown menus. */
+            z-index: 1;
+            /** Set z-index for dropdown menus. */
+            padding: .5rem;
+            /** Padding for dropdown menus. */
+            border-radius: .625rem;
+            /** Border radius for dropdown menus. */
+            background-color: rgba($color: #fff, $alpha: .9);
+            /** Background color for dropdown menus. */
+
+            >*:not(:last-child) {
+                margin-bottom: .5rem;
+                /** Bottom margin for menu items except the last one. */
+            }
+
+            /**
+             * Styles for dropdown menu items.
+             */
+            &-item {
+                color: rgba($color: #000, $alpha: .7);
+                /** Text color for menu items. */
+
+                font: {
+                    family: map-get($map: $ff, $key: clash);
+                    /** Font family for menu items. */
+                    size: .75rem;
+                    /** Font size for menu items. */
+                    weight: map-get($map: $fw, $key: reg);
+                    /** Font weight for menu items. */
+                }
+            }
+
+            &.active {
+                /**
+                 * Animation styles for active dropdown menus.
+                 */
+                animation-name: slide-top;
+                /** Set animation name for slide-top effect. */
+                animation-duration: 200ms;
+                /** Animation duration. */
+                animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                /** Animation timing function. */
+                animation-fill-mode: both;
+                /** Apply animation styles to both start and end states. */
+            }
+        }
+
+        /**
+         * Dropdown animation.
+         */
+        @keyframes slide-top {
+            0% {
+                transform: translateY(0);
+                /** Initial state: no vertical translation. */
+            }
+
+            100% {
+                transform: translateY(-10px);
+                /** Final state: translate 10px upward. */
+            }
+        }
+    }
+}

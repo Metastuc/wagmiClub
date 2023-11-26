@@ -1,0 +1,89 @@
+// Import global styles and variables
+@use "@/styles/"as *;
+
+/**
+ * Styles for the primary navigation bar component.
+ */
+.primaryNav {
+    /**
+     * Extending styles from the shared navbar container.
+     * This allows reuse of common navbar styles.
+     */
+    @extend %navbar-container;
+
+    /**
+     * Styles specific to the primary navigation bar on larger screens.
+     */
+    @include bp-min($ss-mm) {
+        background-color: var(--white);
+        /* Background color for the primary navigation bar on larger screens */
+        margin: 0;
+        /* Reset margin */
+        padding: 0;
+        /* Reset padding */
+        height: 6rem;
+        /* Set height for the primary navigation bar */
+        gap: 1rem;
+        /* Set gap between items in the navigation bar */
+    }
+
+    /**
+     * Styles for the wrapper inside the primary navigation bar.
+     */
+    &__wrapper {
+        /**
+         * Applying flexbox layout with space-between alignment
+         * for items inside the navigation bar.
+         */
+        @include flex($j: space-between);
+        /* Apply flexbox layout with space-between justification */
+        @include equal(100%);
+        /* Set equal width for the wrapper */
+
+        /**
+         * Additional styles for larger screens.
+         */
+        @include bp-min($ss-mm) {
+            border-bottom-left-radius: 2rem;
+            /* Border radius for bottom-left corner on larger screens */
+            border-bottom-right-radius: 2rem;
+            /* Border radius for bottom-right corner on larger screens */
+            background-color: var(--black);
+            /* Background color for the wrapper on larger screens */
+            padding: 0 8.75rem 0 3rem;
+            /* Padding for the wrapper on larger screens */
+            border-bottom: 1px solid;
+            /* Border style for the bottom border on larger screens */
+        }
+    }
+
+    /**
+     * Styles specific to the desktop version of the primary navigation bar.
+     */
+    &__desktop {
+        @include flex;
+        /* Apply flexbox layout */
+        gap: 3.25rem;
+        /* Set gap between items in the desktop navigation bar */
+
+        /**
+         * Font styles for desktop navigation items.
+         */
+        font: {
+            size: 1.25rem;
+            /* Font size for desktop navigation items */
+            family: map-get($map: $ff, $key: clash);
+            /* Font family for desktop navigation items */
+            weight: map-get($map: $fw, $key: reg);
+            /* Font weight for desktop navigation items */
+        }
+
+        /**
+         * Hide desktop navigation on smaller screens.
+         */
+        @include bp-max($ss-mm) {
+            display: none;
+            /* Hide desktop navigation on smaller screens */
+        }
+    }
+}

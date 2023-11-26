@@ -1,5 +1,5 @@
 // Import global styles and variables
-@use "../../styles"as *;
+@use "../../styles/"as *;
 
 /**
  * Styles for the logo component.
@@ -21,8 +21,8 @@
              */
             font: {
                 size: 1rem; // Base font size for optimal readability and balance with other UI elements
-                family: var(--ff-clash); // Custom font-family variable for consistent branding and style
-                weight: var(--fw-mid); // Custom font-weight variable for a balanced and medium font thickness
+                family: map-get($map: $ff, $key: clash); // Custom font-family variable for consistent branding and style
+                weight: map-get($map: $fw, $key: mid); // Custom font-weight variable for a balanced and medium font thickness
             }
 
             // Responsive font size for medium screens and above

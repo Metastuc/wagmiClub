@@ -1,0 +1,180 @@
+@use "@/styles"as *;
+
+
+.landing__footer {
+    padding-inline: 1.75rem;
+
+    @include bp-min($ss-mm) {
+        padding-inline: 5rem;
+    }
+
+    &-wrapper {
+        margin: 2.5rem 0 1rem 0;
+
+        @include bp-min($ss-mm) {
+            margin: 11.25rem 0 2rem 0;
+        }
+    }
+
+    &-top {
+        @include flex($d:column);
+        gap: 4.75rem;
+
+        @include bp-min($ss-mm) {
+            @include flex;
+            gap: 3.25rem;
+        }
+    }
+
+    &-text {
+        border-top: 1px solid var(--white);
+        border-bottom: 1px solid var(--white);
+        padding-block: .5rem;
+        margin: 0 3.25rem 0 3.25rem;
+        @include min-w(16.75rem);
+
+        @include bp-min($ss-mm) {
+            padding-block: 1.75rem;
+            margin: 0 0 0 0;
+            @include min-w(27.75rem);
+            @include flex;
+            height: 8rem;
+        }
+
+        p {
+            text-align: center;
+
+            font: {
+                size: .75rem;
+                family: map-get($map: $ff, $key: clash);
+                weight: map-get($map: $fw, $key: reg);
+            }
+
+            @include bp-min($ss-mm) {
+                @include min-w(27.75rem);
+                position: absolute;
+                font-size: 1.25rem;
+            }
+        }
+    }
+
+    &-center {
+        margin: 3rem 0 60px 0;
+
+        @include bp-min($ss-mm) {
+            margin: 6.25rem 0 8.25rem 0;
+        }
+
+        >div {
+            &:first-of-type {
+                margin-bottom: 1rem;
+
+                span {
+                    font-size: 1rem;
+
+                    @include bp-min($ss-mm) {
+                        font-size: 2.25rem;
+                    }
+                }
+            }
+
+            &:last-of-type {
+                margin-top: 1rem;
+                @include flex($a:flex-end, $d:column);
+                gap: 1rem;
+
+                @include bp-min($ss-mm) {
+                    gap: 2.75rem;
+                }
+            }
+        }
+
+        p {
+            width: 18.75rem;
+            text-align: center;
+
+            font: {
+                size: .875rem;
+                family: map-get($map: $ff, $key: clash);
+                weight: map-get($map: $fw, $key: reg);
+            }
+
+            @include bp-min($ss-mm) {
+                width: 50.75rem;
+                font-size: 2.5rem;
+            }
+        }
+
+        button {
+            margin-right: 3rem;
+            border-radius: 45rem;
+            height: 2.5rem;
+            width: 9rem;
+            background-color: var(--green-400);
+
+            font: {
+                size: .875rem;
+                family: map-get($map: $ff, $key: clash);
+                weight: map-get($map: $fw, $key: mid);
+            }
+
+
+            @include bp-min($ss-mm) {
+                height: 3.5rem;
+                width: 16.5rem;
+                margin-right: 8.75rem;
+                font-size: 1.125rem;
+            }
+        }
+    }
+
+    &-bottom {
+        @include flex($d:column);
+        gap: 4rem;
+
+        @include bp-min($ss-mm) {
+            @include flex($j:space-between);
+            padding-right: 5.75rem;
+        }
+
+        &_left {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: .875rem 3.5rem;
+
+            @include bp-min($ss-mm) {
+                display: flex;
+                gap: 2.75rem;
+            }
+
+            a {
+                text-align: center;
+
+                font: {
+                    size: .75rem;
+                    family: map-get($map: $ff, $key: clash);
+                    weight: map-get($map: $fw, $key: reg);
+                }
+
+                @include bp-min($ss-mm) {
+                    font-size: 1.125rem;
+                }
+            }
+        }
+
+        &_right {
+            @include flex;
+            gap: 2rem;
+
+            a {
+                @include equal(.875rem);
+                @include flex;
+
+                @include bp-min($ss-mm) {
+                    @include equal(1rem);
+                }
+            }
+
+        }
+    }
+}

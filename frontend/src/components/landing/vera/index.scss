@@ -1,0 +1,131 @@
+@use "@/styles"as *;
+@import "@/styles/component/vera-club-items";
+
+/**
+ * Styles for the Vera component, displaying reputation clubs on mobile and desktop views.
+ */
+.landing__vera {
+    background-color: var(--black-300);
+    /* Set background color */
+
+    /**
+     * Styles for the wrapper inside the Vera component.
+     */
+    &-wrapper {
+        padding: .75rem 1.25rem;
+        /* Set padding */
+        @include flex($d: column, $a: flex-start);
+        /* Apply flexbox styles */
+        gap: .5rem;
+        /* Set gap between child elements */
+
+        /**
+         * Additional styles for larger screens.
+         */
+        @include bp-min($ss-mm) {
+            padding: 4rem 8rem;
+            /* Increase padding for larger screens */
+            @include flex($d: row, $j: space-between);
+            /* Adjust flex layout */
+        }
+    }
+
+    /**
+     * Styles for text content inside the Vera component.
+     */
+    p {
+        width: 17.75rem;
+        /* Set fixed width */
+        text-align: center;
+        /* Center align text */
+
+        font: {
+            size: .875rem;
+            /* Set font size */
+            family: map-get($map: $ff, $key: clash);
+            /* Set font family */
+            weight: map-get($map: $fw, $key: reg);
+            /* Set font weight */
+        }
+
+        /**
+         * Responsive styles for larger screens.
+         */
+        @include bp-min($ss-mm) {
+            font-size: 1.875rem;
+            /* Increase font size for larger screens */
+            width: 39.25rem;
+            /* Adjust width for larger screens */
+        }
+    }
+
+    /**
+     * Styles for the dynamic content container inside the Vera component.
+     */
+    &-dynamic {
+        @include flex($j: flex-end);
+        /* Apply flexbox styles with flex-end alignment */
+
+        /**
+         * Styles for smaller screens.
+         */
+        @include bp-max($ss-mm) {
+            width: 100%;
+            /* Take full width on smaller screens */
+        }
+
+        /**
+         * Styles for larger screens.
+         */
+        @include bp-min($ss-mm) {
+            width: 50%;
+            /* Take 50% width on larger screens */
+            @include flex;
+            /* Apply flex layout */
+        }
+    }
+
+    /**
+     * Styles for the mobile view of reputation clubs inside the Vera component.
+     */
+    &-mobile {
+        @include flex;
+        /* Apply flex layout */
+        position: relative;
+        /* Position the element relative to its normal position */
+        height: 6.25rem;
+        /* Set fixed height */
+        width: 55%;
+        /* Set width */
+
+        /**
+         * Hide on larger screens.
+         */
+        @include bp-min($ss-mm) {
+            display: none;
+            /* Hide on larger screens */
+        }
+    }
+
+    /**
+     * Styles for the desktop view of reputation clubs inside the Vera component.
+     */
+    &-desktop {
+        display: none;
+        /* Hide by default */
+        position: relative;
+        /* Position the element relative to its normal position */
+        height: 11rem;
+        /* Set fixed height */
+        width: 100%;
+        /* Take full width */
+
+        /**
+         * Show on larger screens.
+         */
+        @include bp-min($ss-mm) {
+            @include flex;
+            /* Apply flex layout */
+        }
+    }
+}

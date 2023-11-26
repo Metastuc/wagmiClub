@@ -1,0 +1,48 @@
+@use "@/styles"as *;
+
+.landing__leaderBoard {
+    margin: 5.25rem 0 3.75rem 0;
+
+    @include bp-min($ss-mm) {
+        display: none;
+    }
+
+    &-wrapper {
+        padding-inline: 2.5rem;
+        @include flex($d:column);
+        gap: 4.25rem;
+    }
+
+    &-top {
+        width: 100%;
+
+        h2 {
+            margin-bottom: 1rem;
+
+            font: {
+                size: 1.125rem;
+                family: map-get($map: $ff, $key: clash);
+                weight: map-get($map: $fw, $key: mid);
+            }
+        }
+
+        div {
+            @include flex;
+        }
+
+        p {
+            text-align: center;
+            width: 17.25rem;
+
+            font: {
+                size: .875rem;
+                family: map-get($map: $ff, $key: clash);
+                weight: map-get($map: $fw, $key: reg);
+            }
+        }
+    }
+
+    &-bottom {
+        width: 100%;
+    }
+}

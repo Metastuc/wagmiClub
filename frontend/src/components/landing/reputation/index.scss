@@ -1,0 +1,185 @@
+@use "@/styles"as *;
+@import "@/styles/component/landing-dropdown";
+@import "@/styles/component/landing-reputation-badge";
+
+/**
+ * Styles for the main reputation board section.
+ */
+.landing__reputationBoard {
+    display: none;
+    /* Hide the reputation board by default on smaller screens */
+
+    @include bp-min($ss-mm) {
+        display: block;
+        /* Display the reputation board on larger screens */
+        margin: 1px 0 0 0;
+        /* Set top margin */
+        background-color: var(--white);
+        /* Background color for the reputation board */
+    }
+
+    /**
+     * Styles for the wrapper element within the reputation board section.
+     */
+    &-wrapper {
+        background-color: var(--black-300);
+        /* Background color for the wrapper */
+        padding: 3rem 6.5rem;
+        /* Padding for the wrapper */
+        @include flex($d:column);
+        /* Apply flexbox layout with column direction */
+    }
+
+    /**
+     * Styles for the header section within the reputation board.
+     */
+    &-header {
+        width: 100%;
+        /* Set full width for the header */
+
+        h2 {
+            font: {
+                size: 2.5rem;
+                /* Font size for the header */
+                family: map-get($map: $ff, $key: clash);
+                /* Font family for the header */
+                weight: map-get($map: $fw, $key: reg);
+                /* Font weight for the header */
+            }
+        }
+    }
+
+    /**
+     * Styles for the text section within the reputation board.
+     */
+    &-text {
+        @include flex;
+        /* Apply flexbox layout */
+        margin: 4.5rem 0 10.75rem 0;
+        /* Margin for the text section */
+
+        p {
+            width: 58.25rem;
+            /* Set width for the text */
+            text-align: center;
+            /* Center align the text */
+
+            font: {
+                size: 1.5rem;
+                /* Font size for the text */
+                family: map-get($map: $ff, $key: clash);
+                /* Font family for the text */
+                weight: map-get($map: $fw, $key: reg);
+                /* Font weight for the text */
+            }
+        }
+    }
+
+    /**
+     * Styles for the board section within the reputation board.
+     */
+    &-board {
+        @include flex($d:column);
+        /* Apply flexbox layout with column direction */
+        width: max-content;
+        /* Set width to fit content */
+
+        /**
+         * Styles for the top section of the board.
+         */
+        &_top {
+            @include flex($j:space-between);
+            /* Apply flexbox layout with space-between justification */
+            width: 56.25rem;
+            /* Set width for the top section */
+            height: 3.5rem;
+            /* Set height for the top section */
+            border-top-right-radius: .625rem;
+            /* Border radius for top-right corner */
+            border-top-left-radius: .625rem;
+            /* Border radius for top-left corner */
+            padding-inline: 2.5rem;
+            /* Horizontal padding for the top section */
+            background-color: #9BF593;
+            /* Background color for the top section */
+        }
+
+        /**
+         * Styles for the bottom section of the board.
+         */
+        &_bottom {
+            border: 3px solid #9BF593;
+            /* Border style for the bottom section */
+            border-radius: 1.25rem;
+            /* Border radius for the bottom section */
+        }
+    }
+
+    /**
+     * Styles for the grid layout within the reputation board.
+     */
+    &-grid {
+        display: grid;
+        /* Use grid layout */
+        grid-template-columns: repeat(6, 1fr);
+        /* Define grid columns */
+        grid-template-rows: repeat(3, 1fr);
+        /* Define grid rows */
+        gap: 2.75rem 2.5rem;
+        /* Set gap between grid items */
+        padding: 2.25rem;
+        /* Padding for the grid */
+
+        >div {
+            width: 11rem;
+            /* Set width for grid items */
+            height: 13rem;
+            /* Set height for grid items */
+        }
+    }
+
+    /**
+     * Styles for the action section within the reputation board.
+     */
+    &-action {
+        margin: 6rem 2.5rem 2rem 0;
+        /* Margin for the action section */
+        @include flex($j:flex-end);
+        /* Apply flexbox layout with end justification */
+
+        button {
+            padding: .25rem;
+            /* Padding for the button */
+            background-color: #9BF593F5;
+            /* Background color for the button */
+            width: 12rem;
+            /* Set width for the button */
+            height: 3.75rem;
+            /* Set height for the button */
+            border-radius: .75rem;
+            /* Border radius for the button */
+
+            span {
+                color: var(--black);
+                /* Text color for the button content */
+                border: 1px solid var(--black);
+                /* Border style for the button content */
+                @include equal(100%);
+                /* Set equal width and height for the button content */
+                @include flex;
+                /* Apply flexbox layout */
+                border-radius: inherit;
+                /* Inherit border radius from parent */
+
+                font: {
+                    size: 1.5rem;
+                    /* Font size for the button content */
+                    family: map-get($map: $ff, $key: clash);
+                    /* Font family for the button content */
+                    weight: map-get($map: $fw, $key: reg);
+                    /* Font weight for the button content */
+                }
+            }
+        }
+    }
+}

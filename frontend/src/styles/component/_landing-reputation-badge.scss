@@ -1,0 +1,150 @@
+/**
+ * Styles for the reputation medal component.
+ */
+.reputation-medal {
+    padding: 1rem;
+    /** Padding for the reputation medal component. */
+    border-radius: 1.5rem;
+    /** Border radius for the reputation medal component. */
+    border: 1px solid var(--white);
+    /** Border styling for the reputation medal component. */
+    box-shadow: 0px 5px 5px rgba($color: #000000, $alpha: .5);
+    /** Box shadow for the reputation medal component. */
+
+    /**
+     * Styles for the wrapper element within the reputation medal component.
+     */
+    &__wrapper {
+        @include equal(100%);
+        /** Make width and height equal for the wrapper element. */
+    }
+
+    /**
+     * Styles for the image element within the reputation medal component.
+     */
+    &__image {
+        @include equal(2.75rem);
+        /** Make width and height equal for the image element. */
+        @include flex;
+        /** Apply flexbox layout to the image element. */
+        overflow: hidden;
+        /** Hide overflowing content within the image element. */
+        border-radius: 50%;
+        /** Border radius for the image element. */
+
+        span {
+            position: relative;
+            /** Relative positioning for the content within the image element. */
+            @include flex;
+            /** Apply flexbox layout to the content within the image element. */
+            border-radius: inherit;
+            /** Inherit border radius for the content within the image element. */
+            @include equal(inherit);
+            /** Make width and height equal for the content within the image element. */
+
+            &::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                /** Position the pseudo-element to cover the entire image element. */
+                border: 1px solid var(--yellow-100);
+                /** Border styling for the pseudo-element. */
+                border-radius: inherit;
+                /** Inherit border radius for the pseudo-element. */
+            }
+        }
+    }
+
+    /**
+     * Styles for the title section within the reputation medal component.
+     */
+    &__title {
+        @include flex($d: column, $a: flex-start);
+        /** Apply flexbox layout with column direction and flex-start alignment for the title section. */
+        gap: .5rem;
+        /** Gap between elements within the title section. */
+        margin: .75rem 0 3.25rem 0;
+        /** Margin for the title section. */
+
+        span {
+            text-transform: capitalize;
+            /** Convert text to capitalized format for the title section. */
+
+            font: {
+                family: map-get($map: $ff, $key: clash);
+                /** Font family for the title section text. */
+                weight: map-get($map: $fw, $key: reg);
+                /** Font weight for the title section text. */
+            }
+
+            &:nth-of-type(1) {
+                font-size: 1rem;
+                /** Font size for the first span element within the title section. */
+                color: var(--white);
+                /** Text color for the first span element within the title section. */
+            }
+
+            &:nth-of-type(2) {
+                font-size: .875rem;
+                /** Font size for the second span element within the title section. */
+                color: #FFFFFF99;
+                /** Text color for the second span element within the title section. */
+            }
+        }
+    }
+
+    /**
+     * Styles for the footer section within the reputation medal component.
+     */
+    &__footer {
+        @include flex($j: space-between);
+        /** Apply flexbox layout with space-between justification for the footer section. */
+    }
+
+    /**
+     * Styles for the medal element within the reputation medal component.
+     */
+    &__medal {
+        @include flex;
+        /** Apply flexbox layout to the medal element. */
+        gap: .25rem;
+        /** Gap between elements within the medal element. */
+
+        span {
+            @include flex;
+            /** Apply flexbox layout to the content within the medal element. */
+
+            font: {
+                size: 1.125rem;
+                /** Font size for the content within the medal element. */
+                family: map-get($map: $ff, $key: clash);
+                /** Font family for the content within the medal element. */
+                weight: map-get($map: $fw, $key: reg);
+                /** Font weight for the content within the medal element. */
+            }
+        }
+    }
+
+    /**
+     * Styles for the button element within the reputation medal component.
+     */
+    &__button {
+        background-color: transparent;
+        /** Transparent background for the button element. */
+        border: 1px solid var(--white);
+        /** Border styling for the button element. */
+        @include equal(1.25rem);
+        /** Make width and height equal for the button element. */
+        @include flex;
+        /** Apply flexbox layout to the button element. */
+        border-radius: .3125rem;
+        /** Border radius for the button element. */
+
+        span {
+            @include flex;
+            /** Apply flexbox layout to the content within the button element. */
+            padding-bottom: .5rem;
+            /** Bottom padding for the content within the button element. */
+        }
+    }
+}

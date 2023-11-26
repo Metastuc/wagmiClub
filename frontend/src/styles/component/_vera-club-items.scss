@@ -1,0 +1,161 @@
+/**
+ * Styles for Vera reputation element.
+ */
+.landing__vera__reputation {
+    height: 1.5rem;
+    /* Height of the Vera reputation element */
+    width: 6.25rem;
+    /* Width of the Vera reputation element */
+    @include flex;
+    /* Include a flexbox utility mixin */
+    position: absolute;
+    /* Position the element absolutely within its parent */
+
+    /**
+     * Responsive styles for larger screens.
+     */
+    @include bp-min($ss-mm) {
+        width: 18rem;
+        /* Increase width for larger screens */
+        height: 3.5rem;
+        /* Increase height for larger screens */
+    }
+
+    /**
+     * Styles for Vera reputation wrapper.
+     */
+    &-wrapper {
+        border-radius: 2.25rem;
+        /* Border radius for the Vera reputation wrapper */
+        @include equal(100%);
+        /* Make width and height equal for the wrapper */
+        @include flex;
+        /* Apply flexbox styles */
+        padding: .0625rem;
+        /* Padding for the wrapper */
+
+        /**
+         * Responsive styles for larger screens.
+         */
+        @include bp-min($ss-mm) {
+            padding: .1875rem .375rem;
+            /* Increase padding for larger screens */
+        }
+    }
+
+    /**
+     * Styles for Vera reputation text.
+     */
+    &-text {
+        border: 1px solid rgba($color: #000000, $alpha: .9);
+        /* Border style for text */
+        @include equal(100%);
+        /* Make width and height equal for text */
+        border-radius: inherit;
+        /* Inherit border radius from parent */
+        @include flex;
+        /* Apply flexbox styles */
+
+        /**
+         * Styles for text within Vera reputation.
+         */
+        span {
+            font: {
+                family: map-get($map: $ff, $key: typo);
+                /* Set font family for the text */
+                size: 1.125rem;
+                /* Set font size for the text */
+                weight: map-get($map: $fw, $key: reg);
+                /* Set font weight for the text */
+            }
+
+            /**
+             * Responsive styles for larger screens.
+             */
+            @include bp-min($ss-mm) {
+                font-size: 2.5rem;
+                /* Increase font size for larger screens */
+            }
+
+            color: rgba($color: #000000, $alpha: .9);
+            /* Text color */
+        }
+    }
+}
+
+/**
+ * Styles for Vera on mobile devices.
+ */
+.landing__vera-mobile {
+    $mobile-items: ( //
+            (1rem, .5rem, -10deg),
+            (2.75rem, 6.25rem, 12deg),
+            (3.5rem, 0rem, 0deg),
+        );
+
+    .landing__vera__reputation {
+        @for $index from 1 through length($mobile-items) {
+            $item: nth($mobile-items, $index);
+            /* Get current Vera item properties */
+            $top: nth($item, 1);
+            /* Extract top property from Vera item */
+            $left: nth($item, 2);
+            /* Extract left property from Vera item */
+            $rotate: nth($item, 3);
+            /* Extract rotate property from Vera item */
+
+            &:nth-of-type(#{$index}) {
+                top: $top;
+                /* Set top position for larger screens */
+                left: $left;
+                /* Set left position for larger screens */
+
+                /**
+                 * Apply rotation to Vera reputation wrapper.
+                 */
+                .landing__vera__reputation-wrapper {
+                    transform: rotate($rotate);
+                    /* Apply rotation to Vera reputation wrapper */
+                }
+            }
+        }
+    }
+}
+
+/**
+ * Styles for Vera on desktop devices.
+ */
+.landing__vera-desktop {
+    $desktop-items: ( //
+            (2rem, 1rem, 5deg),
+            (2rem, 20rem, -10deg),
+            (7rem, 4rem, 0deg),
+        );
+
+    .landing__vera__reputation {
+        @for $index from 1 through length($desktop-items) {
+            $item: nth($desktop-items, $index);
+            /* Get current Vera item properties */
+            $top: nth($item, 1);
+            /* Extract top property from Vera item */
+            $left: nth($item, 2);
+            /* Extract left property from Vera item */
+            $rotate: nth($item, 3);
+
+            &:nth-of-type(#{$index}) {
+                top: $top;
+                /* Set top position for larger screens */
+                left: $left;
+                /* Set left position for larger screens */
+
+                /**
+                 * Apply rotation to Vera reputation wrapper.
+                 */
+                .landing__vera__reputation-wrapper {
+                    transform: rotate($rotate);
+                    /* Apply rotation to Vera reputation wrapper */
+                }
+            }
+        }
+    }
+}

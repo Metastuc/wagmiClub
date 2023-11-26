@@ -1,11 +1,10 @@
-:root {
-    // fonts
-    --ff-clash: 'Clash Display',
-        sans-serif;
-    --ff-typo: 'TypoGraphica',
-    sans-serif;
+// imports
+@import url('https://fonts.cdnfonts.com/css/typographica');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500&display=swap');
 
-    // font-weight
-    --fw-reg:400;
-    --fw-mid:500;
-}
+// font-family
+$ff: (clash: ("Clash Display", sans-serif), typo: ("TypoGraphica", sans-serif), syne: ("Syne", sans-serif));
+
+// font-weight
+$fw: (reg: 400, mid: 500, sbd: 600);
