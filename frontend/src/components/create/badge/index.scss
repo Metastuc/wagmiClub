@@ -1,0 +1,124 @@
+@use "@/styles"as *;
+
+/**
+ * Styles for the badge component.
+ */
+.badge {
+
+    /**
+     * Styles for text and textarea elements within the badge component.
+     */
+    &__text,
+    &__textarea {
+
+        /**
+         * Styles for field elements within text and textarea.
+         */
+        &-field {
+
+            /**
+             * Applying flexbox layout with column direction and flex-start alignment.
+             */
+            @include flex($d: column, $a: flex-start);
+            margin-block: 2rem;
+            /* Setting vertical margin. */
+        }
+
+        /**
+         * Styles for label elements within text and textarea.
+         */
+        &-label {
+
+            /**
+             * Font styles for the label.
+             */
+            font: {
+                size: 0.8125rem;
+                family: map-get($map: $ff, $key: clash);
+                weight: map-get($map: $fw, $key: mid);
+            }
+        }
+
+        /**
+         * Styles for wrapper elements within text and textarea.
+         */
+        &-wrapper {
+
+            /**
+             * Extending styles from %badge-wrapper and applying flexbox layout with justify-content set to flex-start.
+             */
+            @extend %badge-wrapper;
+            @include flex($j: flex-start);
+            position: relative;
+            /* Positioning */
+            margin: 0.5rem 0 0.25rem 0;
+            /* Setting margin. */
+        }
+
+        /**
+         * Styles for input elements within text and textarea.
+         */
+        &-input {
+
+            /**
+             * Extending styles from %badge-input and setting transition properties.
+             */
+            @extend %badge-input;
+            font-size: .875rem;
+            /* Font size */
+            transition: all ease-in-out 150ms;
+            /* Transition effect */
+
+            /**
+             * Styles for input with class .input.
+             */
+            &.input {
+                height: 2.25rem;
+                /* Setting height */
+                padding-inline: .75rem;
+                /* Setting horizontal padding */
+            }
+
+            /**
+             * Styles for input with class .textarea.
+             */
+            &.textarea {
+                height: 4.5rem;
+                /* Setting height */
+                padding: .25rem;
+                /* Setting padding */
+            }
+        }
+
+        /**
+         * Styles for edit elements within text and textarea.
+         */
+        &-edit {
+
+            /**
+             * Extending styles from %badge-edit and setting position from the right.
+             */
+            @extend %badge-edit;
+            right: .75rem;
+            /* Setting position from the right. */
+        }
+
+        /**
+         * Styles for error elements within text and textarea.
+         */
+        &-error {
+
+            /**
+             * Font styles for error messages.
+             */
+            font-size: 0.5rem;
+            /* Font size */
+            font-family: map-get($map: $ff, $key: clash);
+            /* Font family */
+            font-weight: 100;
+            /* Font weight */
+            color: #ffc0cb;
+            /* Text color */
+        }
+    }
+}

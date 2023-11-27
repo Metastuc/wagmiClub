@@ -1,0 +1,101 @@
+@use "@/styles"as *;
+
+/**
+     * Styles for the tab switch section in create component.
+     */
+.create .tab-switch {
+    @include flex($j: flex-end);
+    /** Apply flexbox with flex-end alignment. */
+    width: 100%;
+    /** Full width for the tab switch section. */
+    padding-inline-end: 1rem;
+    /** Right padding for the tab switch section. */
+
+    /**
+         * Styles for the tab switch buttons and background.
+         */
+    &__wrapper {
+        @include flex;
+        /** Apply flexbox layout. */
+        border-radius: .3125rem;
+        /** Border radius for the tab switch wrapper. */
+        overflow: hidden;
+        /** Hide overflowing content. */
+        position: relative;
+        /** Relative positioning for child elements. */
+        background-color: var(--black-300);
+        /** Background color for the tab switch wrapper. */
+    }
+
+    /**
+         * Styles for the tab switch buttons.
+         */
+    &__button {
+        @include flex;
+        /** Apply flexbox layout. */
+        padding-block: .5rem;
+        /** Vertical padding for tab switch buttons. */
+        padding-inline: 1.5rem;
+        /** Horizontal padding for tab switch buttons. */
+        background-color: transparent;
+        /** Transparent background for tab switch buttons. */
+
+        /**
+             * Active state styles for tab switch buttons.
+             */
+        &.active {
+            border-radius: .3125rem;
+            /** Border radius for active tab switch button. */
+
+            span {
+                color: var(--white);
+                /** Text color for active tab switch button. */
+            }
+        }
+
+        span {
+            font-family: map-get($map: $ff, $key: clash);
+            /** Font family for tab switch button text. */
+            font-size: .625rem;
+            /** Font size for tab switch button text. */
+            text-transform: capitalize;
+            /** Capitalize text in tab switch buttons. */
+            font-weight: map-get($map: $fw, $key: mid);
+            /** Font weight for tab switch button text. */
+            color: rgba($color: #fff, $alpha: .6);
+            /** Text color for tab switch buttons. */
+            z-index: 1;
+            /** Set z-index for tab switch button text. */
+        }
+    }
+
+    /**
+         * Background styles for the active tab switch button.
+         */
+    &__bg {
+        position: absolute;
+        /** Absolute positioning for the background. */
+        background-color: var(--black-400);
+        /** Background color for the active tab switch button. */
+        top: 0;
+        /** Align background to the top. */
+        left: 50%;
+        /** Initial left position for the background. */
+        width: 50%;
+        /** Initial width for the background. */
+        height: 100%;
+        /** Full height for the background. */
+        border-radius: inherit;
+        /** Inherit border radius from parent. */
+        transition: all ease-in-out 200ms;
+        /** Transition effect for smooth changes. */
+
+        /**
+             * Active state styles for the background.
+             */
+        &.active {
+            left: 0;
+            /** Move background to the left when active. */
+        }
+    }
+}

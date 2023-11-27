@@ -1,0 +1,134 @@
+@use "@/styles"as *;
+@import "@/styles/component/medal-dropdown";
+
+/**
+ * Medal component styles.
+ */
+.medal {
+
+    /**
+     * Styles for text, select, and textarea fields.
+     */
+    &__text,
+    &__select,
+    &__textarea {
+
+        /**
+         * Styles for the field wrapper.
+         */
+        &-field {
+            @include flex($d: column, $a: flex-start);
+            /** Apply flexbox with column direction and flex-start alignment. */
+            margin-block: 2rem;
+            /** Vertical margin for the field. */
+        }
+
+        /**
+         * Label styles for text, select, and textarea fields.
+         */
+        &-label {
+            font: {
+                family: map-get($map: $ff, $key: clash);
+                /** Font family for the label. */
+                size: 0.8125rem;
+                /** Font size for the label. */
+                weight: map-get($map: $fw, $key: mid);
+                /** Font weight for the label. */
+            }
+        }
+
+        /**
+         * Error message styles for text, select, and textarea fields.
+         */
+        &-error {
+            color: #ffc0cb;
+            /** Text color for error messages. */
+
+            font: {
+                size: 0.5rem;
+                /** Font size for error messages. */
+                family: map-get($map: $ff, $key: clash);
+                /** Font family for error messages. */
+                weight: 100;
+                /** Font weight for error messages. */
+            }
+        }
+    }
+
+    /**
+     * Styles for text and textarea fields.
+     */
+    &__text,
+    &__textarea {
+
+        /**
+         * Wrapper styles for text and textarea fields.
+         */
+        &-wrapper {
+            @extend %badge-wrapper;
+            /** Reuse badge wrapper styles. */
+            @include flex($j: flex-start);
+            /** Apply flexbox with justify-content: flex-start. */
+            position: relative;
+            /** Relative positioning for the wrapper. */
+            margin: 0.5rem 0 0.25rem 0;
+            /** Spacing for the wrapper. */
+        }
+
+        /**
+         * Input styles for text and textarea fields.
+         */
+        &-input {
+            @extend %badge-input;
+            /** Reuse badge input styles. */
+            font-size: .875rem;
+            /** Font size for the input fields. */
+            transition: all ease-in-out 150ms;
+            /** Transition effect for smooth changes. */
+
+            &.input {
+                height: 2.25rem;
+                /** Height for text input. */
+                padding-inline: .75rem;
+                /** Horizontal padding for text input. */
+            }
+
+            &.textarea {
+                height: 4.5rem;
+                /** Height for textarea input. */
+                padding: .25rem;
+                /** Padding for textarea input. */
+            }
+        }
+
+        /**
+         * Edit button styles for text and textarea fields.
+         */
+        &-edit {
+            @extend %badge-edit;
+            /** Reuse badge edit styles. */
+            right: .75rem;
+            /** Position edit button to the right. */
+        }
+    }
+
+    /**
+     * Styles for select fields.
+     */
+    &__select {
+
+        /**
+         * Wrapper styles for select fields.
+         */
+        &-wrapper {
+            @extend %badge-wrapper;
+            /** Reuse badge wrapper styles. */
+            margin: 0.5rem 0 0.25rem 0;
+            /** Spacing for the wrapper. */
+            width: 100%;
+            /** Full width for select fields. */
+            overflow: visible;
+            /** Allow overflow for select fields. */
+        }
+    }
+}

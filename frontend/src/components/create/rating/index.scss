@@ -1,0 +1,39 @@
+@use "@/styles"as *;
+
+/**
+ * Styles for the badge rating component.
+ */
+.badge__rating {
+
+    /**
+     * Applying flexbox layout with justify-content set to flex-start and defining gap between child elements.
+     */
+    @include flex($j: flex-start);
+    gap: .875rem;
+
+    /**
+     * Styles for the label within the rating component.
+     */
+    &-label {
+
+        /**
+         * Font styles for the label.
+         */
+        font: {
+            size: 0.8125rem;
+            family: map-get($map: $ff, $key: clash);
+            weight: map-get($map: $fw, $key: mid);
+        }
+    }
+
+    /**
+     * Styles for the wrapper within the rating component.
+     */
+    &-wrapper {
+
+        /**
+         * Setting bottom padding for the wrapper.
+         */
+        padding-bottom: .25rem;
+    }
+}

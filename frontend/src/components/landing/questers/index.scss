@@ -71,15 +71,29 @@
                 @include flex;
                 gap: 2.25rem;
 
+                @include bp-max($ss-mm) {
+                    gap: 1.25rem;
+                }
+
                 div {
                     position: relative;
                     @include flex($d: column);
                     gap: .25rem;
+                    @include equal(7.25rem);
+
+                    @include bp-max($ss-mm) {
+                        @include equal(3.75rem)
+                    }
 
                     >i {
                         position: absolute;
                         top: -.5rem;
-                        right: -.5rem;
+                        right: .75rem;
+
+                        @include bp-max($ss-mm) {
+                            right: 0rem;
+                            top: 0rem;
+                        }
                     }
 
                     img {
@@ -105,7 +119,9 @@
                         }
 
                         @include bp-max($ss-mm) {
-                            font: size .5rem;
+                            font: {
+                                size: .5rem
+                            }
                         }
 
                         color: rgba(255, 255, 255, 0.87);
@@ -425,7 +441,7 @@
 
                 @include bp-max($ss-mm) {
                     width: 26.25rem;
-                    height: 6.5rem;
+                    height: 5.5rem;
                 }
 
                 &:nth-of-type(1) {

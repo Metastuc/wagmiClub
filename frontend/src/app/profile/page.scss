@@ -1,0 +1,30 @@
+@use "../../styles/"as *;
+
+.profile {
+    padding-inline: 2.5rem;
+
+    &__wrapper {
+        @include equal(100%);
+        @include flex($d: column);
+        margin-block: 6rem;
+        border: 1px solid lighten($color: #000000, $amount: 15);
+        border-radius: 1.5rem;
+        background-color: var(--black-300);
+        padding: 2rem 1.5rem;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: "";
+            @include equal(calc(100% + .75rem));
+            border: 1px solid lighten($color: #000000, $amount: 15);
+            z-index: -1;
+            border-radius: inherit;
+            background-color: inherit;
+        }
+
+        >* {
+            width: 100%;
+        }
+    }
+}

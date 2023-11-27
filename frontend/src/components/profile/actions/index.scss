@@ -1,0 +1,38 @@
+@use "@/styles/"as *;
+
+.profile__actions {
+    &__wrapper {
+        @include flex($j:space-between);
+    }
+
+    &__left {
+        @include equal(3.75rem);
+
+        div {
+            @include equal(3.5rem);
+            border-radius: 50%;
+            overflow: hidden;
+            @include flex;
+        }
+    }
+
+    &__right {
+        @include flex();
+        gap: 1rem;
+
+        >* {
+            height: 1rem;
+            width: 3rem;
+            @include flex;
+            border-radius: .5rem;
+            background-color: #C6D2B9B0;
+            color: rgba(0, 0, 0, 0.87);
+
+            font: {
+                size: .5rem;
+                family: map-get($map: $ff, $key: clash);
+                weight: map-get($map: $fw, $key: mid);
+            }
+        }
+    }
+}

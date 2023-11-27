@@ -1,0 +1,120 @@
+@use "@/styles/"as *;
+
+.profile__bio {
+    margin-block: 1rem;
+
+    &__wrapper {
+        @include flex($d:column, $j:flex-start);
+
+        >* {
+            width: 100%;
+        }
+    }
+
+    &__top {
+        @include flex($d:column, $a:flex-start);
+
+        h1 {
+            @include flex;
+            gap: .25rem;
+            color: #F6FFF8;
+
+            font: {
+                size: 1rem;
+                weight: map-get($map: $fw, $key: mid);
+                family: map-get($map: $ff, $key: clash);
+            }
+        }
+
+        i {
+            @include equal(.75rem);
+            @include flex;
+        }
+
+        p {
+            color: rgba(255, 255, 255, 0.64);
+
+            font: {
+                size: .5rem;
+                weight: map-get($map: $fw, $key: mid);
+                family: map-get($map: $ff, $key: clash);
+            }
+        }
+    }
+
+    &__center {
+        @include flex($d:column);
+        gap: .25rem;
+        margin-block: .5rem;
+
+        &-text {
+            color: rgba(255, 255, 255, 0.64);
+            width: 100%;
+
+            font: {
+                size: .75rem;
+                weight: map-get($map: $fw, $key: reg);
+                family: map-get($map: $ff, $key: clash);
+            }
+        }
+
+        &-buttons {
+            @include flex($j:flex-start);
+            width: 100%;
+            gap: .5rem;
+
+            >div {
+                @include flex;
+            }
+
+            &-left,
+            &-right {
+                gap: .25rem;
+
+                i {
+                    @include equal(.5rem);
+                    @include flex;
+                }
+
+                p {
+                    color: rgba(149, 149, 149, 0.80);
+
+                    font: {
+                        size: .5rem;
+                        weight: map-get($map: $fw, $key: reg);
+                        family: map-get($map: $ff, $key: clash);
+                    }
+                }
+
+                picture {
+                    @include equal(1rem);
+                    @include flex;
+                }
+            }
+        }
+    }
+
+    &__bottom {
+        @include flex($j:flex-start);
+        gap: 1rem;
+
+        div {
+            @include flex;
+            gap: .125rem;
+
+            font: {
+                size: .5rem;
+                weight: map-get($map: $fw, $key: reg);
+                family: map-get($map: $ff, $key: clash);
+            }
+
+            span {
+                color: rgba(255, 255, 255, 0.50);
+            }
+
+            b {
+                color: var(--white);
+            }
+        }
+    }
+}

@@ -1,1 +1,2 @@
-export * from "./badge"
+export * from "./badge";
+export * from "./medal";

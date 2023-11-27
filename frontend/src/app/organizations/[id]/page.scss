@@ -1,0 +1,134 @@
+@use "@/styles/"as *;
+
+.organizations {
+    padding-inline: 2.5rem;
+
+    &__wrapper {
+        @include equal(100%);
+        @include flex($d: column);
+        margin-block: 6rem;
+        border: 1px solid lighten($color: #000000, $amount: 15);
+        border-radius: 1.5rem;
+        background-color: var(--black-300);
+        padding: 2rem 1.5rem;
+        position: relative;
+
+        &::after {
+            position: absolute;
+            content: "";
+            @include equal(calc(100% + 1rem));
+            border: 1px solid lighten($color: #000000, $amount: 15);
+            z-index: -1;
+            border-radius: inherit;
+            background-color: inherit;
+        }
+    }
+
+    &__close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        border: 1px solid yellow;
+        @include flex;
+        @include equal(1.5rem);
+        font-size: 2rem;
+    }
+
+    &__details {
+        margin-block: .5rem;
+        border: 1px solid red;
+        width: 100%;
+        @include flex($d:column);
+        gap: 1.25rem;
+    }
+
+    &__head-image {
+        height: 10.25rem;
+        width: 14.25rem;
+        @include flex;
+        overflow: hidden;
+        border-radius: 1.25rem;
+        border: 1px solid green;
+    }
+
+    &__main {
+        position: relative;
+        border: 1px solid purple;
+        padding: 3rem 1rem;
+        background-color: var(--white);
+        color: rgba(10, 9, 9, 0.91);
+    }
+
+    &__host {
+        @include flex($d: column, $a:flex-start);
+        gap: .75rem;
+
+        p {
+            text-transform: uppercase;
+
+            font: {
+                family: map-get($map: $ff, $key: clash);
+                size: .75rem;
+                weight: map-get($map: $fw, $key: mid);
+            }
+        }
+
+        div {
+            @include flex;
+            gap: .25rem;
+            @include equal(1.75rem);
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        span {
+            padding: 1rem;
+            border-radius: 1.75rem;
+            background-color: #1010100D;
+
+            font: {
+                family: map-get($map: $ff, $key: clash);
+                size: .75rem;
+                weight: map-get($map: $fw, $key: reg);
+            }
+        }
+    }
+
+    &__name {
+        >span {
+            text-transform: capitalize;
+
+            font: {
+                family: map-get($map: $ff, $key: clash);
+                size: .75rem;
+                weight: map-get($map: $fw, $key: mid);
+            }
+        }
+    }
+
+    &__title {
+        font: {
+            family: map-get($map: $ff, $key: clash);
+            size: .75rem;
+            weight: map-get($map: $fw, $key: mid);
+        }
+
+        margin: 2rem 0 .75rem 0;
+    }
+
+    &__desc {
+        font: {
+            family: map-get($map: $ff, $key: clash);
+            size: .75rem;
+            weight: map-get($map: $fw, $key: reg);
+        }
+
+        >span {
+            font: {
+                family: map-get($map: $ff, $key: clash);
+                size: .75rem;
+                weight: map-get($map: $fw, $key: reg);
+            }
+        }
+    }
+}

@@ -1,0 +1,62 @@
+@use "@/styles"as *;
+@import "@/styles/component/create-file-upload";
+@import "@/styles/component/create-mint-button";
+@import "@/styles/component/chains-dropdown";
+
+.medal {
+    &__form {
+        position: relative;
+    }
+
+    &__chain__select {
+        &-field {
+            border: 1px solid lighten($color: #000000, $amount: 20);
+            position: absolute;
+            top: -11.25rem;
+            height: 2rem;
+            width: 3.75rem;
+            border-radius: .25rem
+        }
+
+        &-wrapper {
+            @include equal(100%);
+
+            >section {
+                @include equal(100%);
+
+                >button {
+                    background-color: transparent;
+
+                    >span {
+                        &:nth-of-type(2) {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        &-label {
+            display: none;
+        }
+
+
+    }
+
+    &__chain__dropdown {
+        &-button {
+            @include flex;
+            @include equal(100%);
+        }
+
+        &-image {
+
+            @include flex;
+            @include equal(1.25rem);
+
+            img {
+                object-fit: contain;
+            }
+        }
+    }
+}
