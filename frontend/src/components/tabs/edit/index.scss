@@ -1,0 +1,73 @@
+@use"@/styles"as *;
+
+/**
+     * Styles for the tab switch component within the .edit component.
+     */
+.tab-switch {
+    margin-block: 2.25rem;
+    /** Vertical margin for the tab switch component. */
+
+    /**
+         * Styles for the wrapper within the tab switch component.
+         */
+    &__wrapper {
+        @include flex($j: flex-start);
+        /** Apply flexbox with flex-start alignment. */
+        gap: 1.5rem;
+        /** Gap between elements within the wrapper. */
+    }
+
+    /**
+         * Styles for individual tab switch items.
+         */
+    &__item {
+        @include flex;
+        /** Apply flexbox layout. */
+        gap: .5rem;
+        /** Gap between elements within tab switch items. */
+
+        &.active>div>span {
+            background-color: black;
+            /** Background color for active tab switch item. */
+        }
+    }
+
+    /**
+         * Styles for the icon within tab switch items.
+         */
+    &__icon {
+        @include flex;
+        /** Apply flexbox layout. */
+        @include equal(.75rem);
+        /** Set equal width and height for the icon. */
+        background-color: rgba($color: #ece6e6, $alpha: .9);
+        /** Background color for the icon. */
+        border-radius: 50%;
+        /** Border radius for the icon. */
+
+        span {
+            @include flex;
+            /** Apply flexbox layout. */
+            @include equal(.5rem);
+            /** Set equal width and height for the inner span. */
+            border: 1px solid white;
+            /** Border style for the inner span. */
+            border-radius: inherit;
+            /** Inherit border radius from the parent. */
+        }
+    }
+
+    /**
+         * Styles for the title text within tab switch items.
+         */
+    &__title {
+        font: {
+            size: .75rem;
+            /** Font size for the title text. */
+            family: var(--ff-clash);
+            /** Font family for the title text. */
+            weight: var(--fw-mid);
+            /** Font weight for the title text. */
+        }
+    }
+}
