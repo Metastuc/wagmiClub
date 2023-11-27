@@ -7,7 +7,7 @@ import { DESKTOP_NAV_LINKS } from "@/assets/data";
 import { useToggle } from "@/hooks";
 import "./index.scss";
 
-// import { connectWallet } from "@/utils/app.mjs";
+import { connectWallet } from "@/utils/app.mjs";
 
 export const Menu = () => {
 	const { status: menuActive, toggleStatus } = useToggle();
@@ -21,12 +21,12 @@ export const Menu = () => {
 	/**
 	 * Handle menu item click event.
 	 */
-	function handleMenuItem() {
+	async function handleMenuItem() {
 		if (menuActive) {
-			toggleStatus();
-			// logIn();
+		  toggleStatus();
+		  await connectWallet();
 		}
-	}
+	  }
 
 	return (
 		<section className="menu">

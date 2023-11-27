@@ -43,7 +43,7 @@ Solidity - writing the smart contracts
 Node.js - writing the backend
 Next.js - writing the frontend
 
-LUKSO Stack
+LUKSO Stack (All LUKSO usage was done from the backend in the API/Index.js file)
 Mandatory Tools
 LSP7Mintable - The LSP7Mintable smart contract was used to represent the medals contract, each medal that was created was deployed on chain as an LSP7Mintable contract. This smart contract was used because of its fungible nature because more than one person can be eligible to a medal. The 'mint()' function was used to mint medals.
 
