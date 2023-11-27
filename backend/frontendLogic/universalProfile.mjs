@@ -31,8 +31,6 @@ const lspFactory = new LSPFactory(provider, {
     //   },
 });
 
-lsp4
-
 export const fetchProfileData = async () => {
     try {
         const owner = await erc725.getOwner();
@@ -132,12 +130,11 @@ const deployLSP8Contract = async() => {
     
   // });
   // await lspFactory.LSP4DigitalAssetMetadata.uploadMetadata()
-  lspFactory.LSP4DigitalAssetMetadata.s
 
   console.log(deployedContracts.LSP8IdentifiableDigitalAsset.address);
 }
 
-// deployLSP8Contract();
+deployLSP8Contract();
 
 const getAdd = async() => {
   const orgAddress = '0x';
@@ -155,4 +152,4 @@ const getAdd = async() => {
 
 }
 
-getAdd();
+// getAdd();

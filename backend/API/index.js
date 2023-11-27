@@ -14,9 +14,6 @@ require('dotenv').config();
 // initializing the needed LUKSO tools
 const { LSPFactory } = require('@lukso/lsp-factory.js');
 
-// NFT.storage
-const { NFTStorage, File, Blob } = require('nft.storage')
-
 // initializing firebase
 const admin = require('firebase-admin');
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
@@ -38,7 +35,56 @@ const db = getFirestore();
 const app = express();
 const port = process.env.PORT || 3000;
 
+// LUKSO provider
 const provider = 'https://rpc.testnet.lukso.network';
+
+// ethers
+const { Wallet, ethers } = require("ethers");
+
+// initializing the LSP8 contract ABI
+const LSP8ABI = [
+  {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes32",
+          "name": "tokenId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "bool",
+          "name": "force",
+          "type": "bool"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "mint",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+]
 
 app.use(express.json());
 
@@ -306,11 +352,10 @@ app.get("/getBoard", async (req, res) => {
 })
 
 app.post("/createProfile", async (req, res) => {
-  // try to get image url here
 
   const profileData = {
     displayname: req.body.name,
-    username: req.body.usernane,
+    username: req.body.username,
     bio: req.body.bio,
     profession: req.body.profession,
     X : req.body.xname,
@@ -333,18 +378,26 @@ app.post("/createProfile", async (req, res) => {
     await users.doc(docId).set(profileData);
     await users.doc(docId).collection("followers").add(wagmiFollow);
     await users.doc(docId).collection("following").add(wagmiFollow);
-
     // const lspFactory = new LSPFactory(provider, {
     //   deployKey: privateKey,
     //   chainId: 4201,
     // });
+
     // const deployedContracts = await lspFactory.UniversalProfile.deploy({
     //   controllerAddresses: [ req.body.address ], // root address (address attached to profile)
-    //   lsp3Profile: profileLink // provision of link to universal profile (provision get endpoint?)
+    //   lsp3Profile: {
+    //     name: req.body.username,
+    //     description: req.body.bio,
+    //     tags: ['wagmi-profile'],
+    //     links: [{
+    //       title: 'My Website',
+    //       url: 'www.my-website.com'
+    //     }]
+    //   }
     // });
 
     // const UPAddress = deployedContracts.LSP0ERC725Account.address;
-    // await users.doc(docId).update({ UPAddress: UPAddress })
+    // await users.doc(docId).update({ UPAddress: UPAddress });
 
     console.log('success');
     const jsonResponse = { status: "successful" };
@@ -363,13 +416,44 @@ app.post("/createBadge/:orgAddress", async (req, res) => {
     // increment the counter
     const orgBadgeRef = db.collection('Badges').doc(orgAddress);
     const orgBadgeDoc = await orgBadgeRef.get();
+    const users = db.collection('users');
+    const userSnapshot = await users.where('address', '==', req.body.receiver).get();
+    const userId = userSnapshot.docs[0].id;
+
+    // does not exist deploy and return
+    // exist return 
     if (!orgBadgeDoc.exists) {
+      // deploy 
+      const lspFactory = new LSPFactory(provider, {
+        deployKey: privateKey,
+        chainId: 4201,
+      });
+      const deployedContracts = await lspFactory.LSP8IdentifiableDigitalAsset.deploy({
+        name: "WAGMI BADGE",
+        symbol: "WBG",
+        controllerAddress: orgAddress,
+        tokenIdType: 0,
+      //   digitalAssetMetadata: metadataEndpointURL
+      });
+      const contractAddress = deployedContracts.LSP8IdentifiableDigitalAsset.address;
+
+      // change owner
+      const wallet = new Wallet(privateKey);
+
+      const _provider = new ethers.JsonRpcProvider(provider);
+      const signer = wallet.connect(_provider);
+      const contract = new ethers.Contract(contractAddress, LSP8ABI, signer);
+      const TX = await contract.transferOwnership(orgAddress);
+      const receipt = await TX.wait();
+      console.log(receipt); 
+
       const idCount = 0;
       const data = { contractAddress: contractAddress, idCount: idCount }
       await orgBadgeRef.set(data);
       const tokenRef = orgBadgeRef.collection('tokenIds').doc(idCount);
       await tokenRef.set(req.body);
-      res.status(200).json({ exists: false, contractAddress: contractAddress, id: idCount })
+      await db.collection('users').doc(userId).collection('badges').add(req.body);
+      res.status(200).json({ contractAddress: contractAddress, id: idCount })
       await orgBadgeRef.update({ idCount: 1 })
     } else {
       const orgBadgeData = orgBadgeDoc.data();
@@ -379,7 +463,7 @@ app.post("/createBadge/:orgAddress", async (req, res) => {
       const tokenRef = orgBadgeRef.collection('tokenIds').doc(idCount);
       await tokenRef.set(req.body);
       await orgBadgeRef.update({ idCount: newId })
-      res.status(200).json({ exists: true, contractAddress: contractAddress, id: id })
+      res.status(200).json({ contractAddress: contractAddress, id: id })
   }
   } catch (error) {
     console.log(error);
@@ -420,6 +504,7 @@ app.get("/getUserProfileUsername/:username", async (req, res) => { // change to 
 
 })
 
+
 app.get("/getUserProfileAddress/:address", async (req, res) => { // change to add
   const address = req.params.address;  
 
@@ -433,11 +518,13 @@ app.get("/getUserProfileAddress/:address", async (req, res) => { // change to ad
       res.status(404);
       res.json(Response);
     } else {
-      const userDoc = userSnapshot.data();
+      const userDoc = userSnapshot.docs[0].data();
       // get followers
-      const followerCount = await db.collection('users').doc(userId).collection('followers').count.get();
+      const _followerCount = await db.collection('users').doc(userId).collection('followers').get();
+      const followerCount = _followerCount.size;
       // get following
-      const followingCount = await db.collection('users').doc(userId).collection('following').count.get();
+      const _followingCount = await db.collection('users').doc(userId).collection('following').get();
+      const followingCount = _followingCount.size;
       // get 5 badges
       const badgeList = await db.collection('users').doc(userId).collection('badges').orderBy('Title').limit(5).get();
       if (badgeList.empty) {
@@ -456,9 +543,9 @@ app.get("/getUserProfileAddress/:address", async (req, res) => { // change to ad
       }
       const _badgeList = [];
 
-      for (let i = 0; i < 5; i++) {
-        const title = badgeList.docs[0].data().Title;
-        const imageURL = badgeList.docs[0].data().imageURL;
+      for (let i = 0; i < badgeList.docs.length; i++) {
+        const title = badgeList.docs[i].data().Title;
+        const imageURL = badgeList.docs[i].data().imageURL;
         const badgeObj = {title: title, imageURL: imageURL};
         _badgeList.push(badgeObj)
       }
@@ -484,6 +571,23 @@ app.get("/getUserProfileAddress/:address", async (req, res) => { // change to ad
 
   // add extended params to returned value
 
+})
+
+app.get("/checkUser/:address", async (req, res) => {
+  const address = req.params.address;  
+  try {
+    const users = db.collection('users');
+    const userSnapshot = await users.where('address', '==', address).get();
+    
+    if (userSnapshot.empty) {
+      res.status(200).json({ exists: false })
+    } else {
+      res.status(200).json({ exists: true })
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: error.message })
+  }
 })
 
 app.get("/getUPProfile/:username", async (req, res) => {
@@ -689,20 +793,3 @@ const sumDonationAmount = (data, doneeAddress) => {
 
 // Call startServer()
 startServer();
-
-// TODO
-// 1. include user type(organization) ✅
-// 2. create followers subcollection when creating user ✅
-// 3. create follow and unfollow function ✅
-// 4. return No. of followers in returned user object
-// 5. work on uploading file to cloudstorage ⌛
-// 6. checking if address or email is in list
-// 7. reading more about LSPs contract
-// 8. start rewriting contract with LUKSO standard(LSPs)
-// 9. create badge function
-// 10. org name -- doc ref
-// 11. sub-docs -- tokenIds
-
-// new TODO
-// 1. create post endpoint to return UP profile endpoint
-// 2. create response.json with {link: up profile endpoint} for create profile endpoint
