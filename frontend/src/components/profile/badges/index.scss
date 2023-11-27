@@ -1,0 +1,79 @@
+@use "@/styles/"as *;
+
+.profile__badges {
+    &__wrapper {
+
+        h4 {
+            font: {
+                family: map-get($map: $ff, $key: clash);
+                size: .5rem;
+                weight: map-get($map: $fw, $key: mid);
+            }
+
+            margin-bottom: .25rem;
+        }
+
+        >div {
+            @include flex;
+            gap: 1.25rem;
+        }
+    }
+
+    &__badge {
+        position: relative;
+        @include flex($d: column);
+        gap: .25rem;
+        @include equal(3.75rem);
+
+        >i {
+            position: absolute;
+            top: -.5rem;
+            right: .75rem;
+
+            @include bp-max($ss-mm) {
+                right: 0rem;
+                top: 0rem;
+            }
+        }
+
+        img {
+            @include equal(5.75rem);
+            @include flex;
+            border-radius: 50%;
+
+            @include bp-max($ss-mm) {
+                @include equal(1.75rem);
+            }
+        }
+
+        span {
+            @include flex;
+
+            font: {
+                size: .875rem;
+                /* Set font size */
+                family: map-get($map: $ff, $key: clash);
+                /* Set font family */
+                weight: map-get($map: $fw, $key: reg);
+                /* Set font weight */
+            }
+
+            @include bp-max($ss-mm) {
+                font: {
+                    size: .5rem
+                }
+            }
+
+            color: rgba(255, 255, 255, 0.87);
+
+            i {
+                @include flex;
+                @include equal(.5rem);
+
+                @include bp-max($ss-mm) {
+                    @include equal(.25rem);
+                }
+            }
+        }
+    }
+}

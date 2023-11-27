@@ -5,3 +5,5 @@ export * from "./landing";
 export * from "./reusable";
 export * from "./tabs";
 export * from "./explore";
+export * from "./create";
+export * from "./profile";

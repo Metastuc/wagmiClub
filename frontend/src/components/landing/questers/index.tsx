@@ -12,7 +12,7 @@ import "./index.scss";
 export const RenderQuesterBadges = () => {
 	return (
 		<div>
-			{QUESTER_BADGE.map((item, index) => {
+			{QUESTER_BADGE.slice(0, 4).map((item, index) => {
 				const {
 					id,
 					value: { image, name, verified },

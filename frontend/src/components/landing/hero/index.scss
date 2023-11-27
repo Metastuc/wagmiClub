@@ -55,7 +55,7 @@
             top: 0;
             @include flex;
             @include equal(inherit);
-            height: pxToRem(750);
+            height: pxToRem(850);
             overflow: hidden;
             pointer-events: none;
 

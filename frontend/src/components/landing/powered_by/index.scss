@@ -85,17 +85,33 @@
         }
     }
 
+    &-profile {
+        height: 11.5rem;
+        width: 21.5rem;
+        position: relative;
+        overflow: hidden;
+        pointer-events: none;
+
+        >section {
+            position: absolute;
+            top: -6rem;
+            padding: .5rem;
+        }
+    }
+
     &-bottom {
         width: 100%;
         height: 4rem;
         background-color: var(--white);
         color: black;
         @include flex($j:flex-start);
-        padding-left: 18rem;
         gap: 2.5rem;
+        padding-left: 18rem;
+        height: 5.25rem;
 
-        @include bp-min($ss-mm) {
-            height: 5.25rem;
+
+        @include bp-max($ss-mm) {
+            padding: 2rem;
         }
 
         b {
@@ -103,6 +119,10 @@
                 family: map-get($map: $ff, $key: clash);
                 weight: map-get($map: $fw, $key: mid);
                 size: 1.5rem;
+            }
+
+            @include bp-max($ss-mm) {
+                font-size: .75rem;
             }
         }
 
@@ -114,6 +134,10 @@
             }
 
             color: #7981BA;
+
+            @include bp-max($ss-mm) {
+                font-size: 1rem;
+            }
         }
 
         img {
@@ -123,6 +147,10 @@
             &:nth-of-type(1),
             &:nth-of-type(3) {
                 @include equal(3.75rem);
+
+                @include bp-max($ss-mm) {
+                    @include equal(1.5rem);
+                }
             }
 
             &:nth-of-type(2) {

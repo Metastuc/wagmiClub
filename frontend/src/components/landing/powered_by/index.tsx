@@ -1,4 +1,5 @@
 import { Verified } from "@/assets/icons";
+import Profile from "@/app/profile/page";
 import "./index.scss";
 
 export const PoweredBy = ({ group }: { group: string }) => {
@@ -32,7 +33,7 @@ export const PoweredBy = ({ group }: { group: string }) => {
 					<RenderButtons />
 
 					<div className={`${group}__powered-profile`}>
-						profile component
+						<Profile />
 					</div>
 				</div>
 				<div className={`${group}__powered-bottom`}>

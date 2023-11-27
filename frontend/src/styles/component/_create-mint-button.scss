@@ -20,6 +20,12 @@
          * Styles for the submit button.
          */
         &-button {
+            @include flex;
+            /* Apply flexbox layout */
+            border-radius: 0.3125rem;
+            /* Set border radius for the button */
+            background-color: var(--green-300);
+            /* Set background color for the button */
             font-size: 0.75rem;
             /* Set font size for the button text */
             @include flex;
@@ -28,32 +34,26 @@
             /* Set border radius for the button */
             background-color: var(--green-300);
             /* Set background color for the button */
+            width: 10rem;
+            height: 2.75rem;
+            position: relative;
 
-            /**
-             * Styles for the button text.
-             */
             span {
-                height: 2.75rem;
-                /* Set height for the button */
-                /**
-                 * Calculate padding dynamically based on content width and desired height.
-                 */
-                padding-inline: calculateButtonPadding(10rem, 2.75rem);
-                /* Calculate dynamic padding */
-                margin: 0.125rem;
-                /* Set margin for the button text */
-                border: 1px solid rgba($color: #000000, $alpha: 0.5);
-                /* Set border styles */
+                font: {
+                    family: map-get($map: $ff, $key: clash);
+                    weight: map-get($map: $fw, $key: mid);
+                    size: 0.75rem;
+                }
+
                 text-transform: capitalize;
-                /* Capitalize text */
-                @include flex;
-                /* Apply flexbox layout */
-                font-family: map-get($map: $ff, $key: clash);
-                /* Set font family */
-                font-weight: map-get($map: $fw, $key: mid);
-                /* Set font weight */
-                border-radius: calc(0.3125rem - 0.125rem);
-                /* Calculate border radius */
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                border: 1px solid;
+                @include equal(calc(100% - 2px));
+                border-radius: inherit;
             }
         }
     }

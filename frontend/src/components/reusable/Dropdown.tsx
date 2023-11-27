@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useRef, useEffect, FC } from "react";
+import { useState, useRef, useEffect, FC, ChangeEvent } from "react";
 import { Dropdown as ButtonIcon } from "../../assets/icons";
 
 interface props {
 	group: string;
 	options: any[];
-	onChange: (value: string) => void;
+	onChange: (event: any) => void;
 	selectedValue: string;
 }
 
@@ -24,7 +24,8 @@ export const Dropdown: FC<props> = ({
 
 	// Handle option click event and update form values
 	const handleOptionChange = (event: any) => {
-		const selectedOption = event.currentTarget.getAttribute("data-value");
+		// const selectedOption = event.currentTarget.getAttribute("data-value");
+		const selectedOption = event;
 		onChange(selectedOption); // Call parent component's onChange handler
 		setIsOpen(false); // Close the dropdown after selection
 	};
@@ -55,16 +56,34 @@ export const Dropdown: FC<props> = ({
 	// Render dropdown options based on the provided options
 	const renderOptions = () => (
 		<ul className={`${group}__dropdown-menu ${isOpen ? "active" : ""}`}>
-			{options.map(({ id, value: { title, utility } }) => (
-				<li
-					key={id}
-					className={`${group}__dropdown-menu-item`}
-					onClick={handleOptionChange}
-					data-value={title}
-				>
-					<span>{utility}</span>
-				</li>
-			))}
+			{options.map((item) => {
+				const {
+					id,
+					value: { title, utility, image, icon: Icon, bgColor },
+				} = item;
+
+				return (
+					<li
+						key={id}
+						className={`${group}__dropdown-menu-item`}
+						onClick={() => handleOptionChange(title)}
+						data-value={title}
+					>
+						{image || Icon ? (
+							<span style={{ backgroundColor: bgColor }}>
+								{image && (
+									<img
+										src={image}
+										alt={title}
+									/>
+								)}
+								{Icon && <Icon />}
+							</span>
+						) : null}
+						{utility && <span>{utility}</span>}
+					</li>
+				);
+			})}
 		</ul>
 	);
 
@@ -79,7 +98,34 @@ export const Dropdown: FC<props> = ({
 				onClick={toggleDropdown}
 				className={`${group}__dropdown-button`}
 			>
+				{selectedValue &&
+					options.map((item) => {
+						const {
+							id,
+							value: { title, image, bgColor, icon: Icon },
+						} = item;
+						if (title === selectedValue && (image || Icon)) {
+							return (
+								<span
+									key={id}
+									style={{ backgroundColor: bgColor }}
+									className={`${group}__dropdown-image`}
+								>
+									{image && (
+										<img
+											src={image}
+											alt={selectedValue}
+										/>
+									)}
+									{Icon && <Icon />}
+								</span>
+							);
+						}
+						return null;
+					})}
+
 				<span>{selectedValue ? selectedValue : "Choose One"}</span>
+
 				<span className={`${group}__dropdown-icon`}>
 					<ButtonIcon />
 				</span>
