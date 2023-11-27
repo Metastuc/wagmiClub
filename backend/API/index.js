@@ -11,6 +11,9 @@ const { EvmChain } = require("@moralisweb3/common-evm-utils");
 // Import dotenv to use environment variables
 require('dotenv').config();
 
+// initializing the needed LUKSO tools
+const { LSPFactory } = require('@lukso/lsp-factory.js');
+
 // initializing firebase
 const admin = require('firebase-admin');
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
@@ -30,11 +33,15 @@ const storage = multer.memoryStorage();
 const db = getFirestore();
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+
+const provider = 'https://rpc.testnet.lukso.network';
 
 app.use(express.json());
 
 const apiKey = process.env.MORALIS_API;
+
+const privateKey = process.env.privateKey;
 
 // Add this a startServer function that initialises Moralis
 const startServer = async () => {
@@ -42,7 +49,7 @@ const startServer = async () => {
       apiKey: apiKey,
     });
   
-    app.listen(port, () => {
+    app.listen(port, "0.0.0.0", () => {
       console.log(`Example app listening on port ${port}`);
     });
 };
@@ -308,7 +315,7 @@ app.post("/createProfile", async (req, res) => {
     telegram: req.body.telegramname,
     youtube: req.body.youtubename,
     imageURL: req.body.imageURL,
-    add: req.body.address,
+    address: req.body.address,
     accountType: req.body.accountType,
     UPAddress: '0x'
   }
@@ -323,11 +330,12 @@ app.post("/createProfile", async (req, res) => {
     await users.doc(docId).set(profileData);
     await users.doc(docId).collection("followers").add(wagmiFollow);
     await users.doc(docId).collection("following").add(wagmiFollow);
-    const lspFactory = new LSPFactory(ethereum, {
+    const lspFactory = new LSPFactory(provider, {
+      deployKey: privateKey,
       chainId: 4201,
     });
 
-    const baseAPIURL = 'jdjd'; // initialize this later
+    const baseAPIURL = 'https://wagmi-backend.up.railway.app'; // initialize this later
     const profileEndpoint = '/getUPProfile/';
     const profileLink = baseAPIURL + profileEndpoint + req.body.usernane;
 

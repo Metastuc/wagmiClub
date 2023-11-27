@@ -1,4 +1,3 @@
-Johnuel, [26/11/2023 12:42]
 -Problem Statement
 -Solution
 -Our Product 
@@ -85,5 +84,4 @@ Project features-
 
 Why Wagmiclub - We are focused on helping professionals build career and onchain reputation that is tamper proof and verifiable,our dapp makes it easy to collect and showcase merit badge,medals and trustscores that is tied to your universal identity and stays forever.
 
-Johnuel, [26/11/2023 12:42]
 Future Project Plans - we look forward to strategic partnerships with web3 organisations and investors to enhance our product adoption and utility, as our user base grows we will continue to evolve and iterate till we can’t code again
