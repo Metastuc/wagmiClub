@@ -1,2 +1,2 @@
-export * from "./details"
-export * from "./socials"
+// export * from "./details"
+// export * from "./socials"
