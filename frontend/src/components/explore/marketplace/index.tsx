@@ -15,14 +15,17 @@ export const MarketPlace = ({
 	items,
 }: {
 	group: string;
-	items?: number;
+	items?: number | undefined;
 }) => {
 	const [selected, setSelected] = useState("Advisor");
-	const {activeTab, handleTabClick, tabIsActive } = useTabSwitcher("badges");
+	const { activeTab, handleTabClick, tabIsActive } = useTabSwitcher("badges");
 	const [users, setUsers] = useState<any>([]);
 
 	useEffect(() => {
-		function displayUsers(allUsers: any[], numberToDisplay: number) {
+		function displayUsers(
+			allUsers: any[],
+			numberToDisplay: number | undefined,
+		) {
 			if (numberToDisplay === 0 || numberToDisplay === null) {
 				return allUsers;
 			}
