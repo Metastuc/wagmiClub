@@ -14,6 +14,9 @@ require('dotenv').config();
 // initializing the needed LUKSO tools
 const { LSPFactory } = require('@lukso/lsp-factory.js');
 
+// NFT.storage
+const { NFTStorage, File, Blob } = require('nft.storage')
+
 // initializing firebase
 const admin = require('firebase-admin');
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
@@ -317,7 +320,7 @@ app.post("/createProfile", async (req, res) => {
     imageURL: req.body.imageURL,
     address: req.body.address,
     accountType: req.body.accountType,
-    UPAddress: '0x'
+    // UPAddress: '0x'
   }
 
   const wagmiFollow = {
@@ -330,22 +333,18 @@ app.post("/createProfile", async (req, res) => {
     await users.doc(docId).set(profileData);
     await users.doc(docId).collection("followers").add(wagmiFollow);
     await users.doc(docId).collection("following").add(wagmiFollow);
-    const lspFactory = new LSPFactory(provider, {
-      deployKey: privateKey,
-      chainId: 4201,
-    });
 
-    const baseAPIURL = 'https://wagmi-backend.up.railway.app'; // initialize this later
-    const profileEndpoint = '/getUPProfile/';
-    const profileLink = baseAPIURL + profileEndpoint + req.body.usernane;
+    // const lspFactory = new LSPFactory(provider, {
+    //   deployKey: privateKey,
+    //   chainId: 4201,
+    // });
+    // const deployedContracts = await lspFactory.UniversalProfile.deploy({
+    //   controllerAddresses: [ req.body.address ], // root address (address attached to profile)
+    //   lsp3Profile: profileLink // provision of link to universal profile (provision get endpoint?)
+    // });
 
-    const deployedContracts = await lspFactory.UniversalProfile.deploy({
-      controllerAddresses: [ req.body.address ], // root address (address attached to profile)
-      lsp3Profile: profileLink // provision of link to universal profile (provision get endpoint?)
-    });
-
-    const UPAddress = deployedContracts.LSP0ERC725Account.address;
-    await users.doc(docId).update({ UPAddress: UPAddress })
+    // const UPAddress = deployedContracts.LSP0ERC725Account.address;
+    // await users.doc(docId).update({ UPAddress: UPAddress })
 
     console.log('success');
     const jsonResponse = { status: "successful" };
