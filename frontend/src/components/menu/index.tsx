@@ -7,7 +7,7 @@ import { DESKTOP_NAV_LINKS } from "@/assets/data";
 import { useToggle } from "@/hooks";
 import "./index.scss";
 
-import { logIn } from "@/utils/app.mjs";
+// import { logIn } from "@/utils/app.mjs";
 
 export const Menu = () => {
 	const { status: menuActive, toggleStatus } = useToggle();
@@ -24,7 +24,7 @@ export const Menu = () => {
 	function handleMenuItem() {
 		if (menuActive) {
 			toggleStatus();
-			logIn();
+			// logIn();
 		}
 	}
 
