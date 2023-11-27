@@ -1,0 +1,16 @@
+@use "@/styles"as *;
+
+
+.explore {
+    @include bp-min($ss-mm) {
+        display: none;
+    }
+
+    &__wrapper {
+        padding-inline: 2rem;
+    }
+
+    &__tabs-display {
+        margin-block: 2.25rem;
+    }
+}

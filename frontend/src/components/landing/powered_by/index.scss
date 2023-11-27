@@ -87,10 +87,11 @@
 
     &-profile {
         height: 11.5rem;
-        width: 21.5rem;
+        width: 23rem;
         position: relative;
         overflow: hidden;
         pointer-events: none;
+        @include flex;
 
         >section {
             position: absolute;

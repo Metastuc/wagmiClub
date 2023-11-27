@@ -1,0 +1,45 @@
+@use "@/styles"as *;
+
+/* Styles for the explore tabs container */
+.explore__tabs {
+    overflow: hidden;
+    /* Set overflow property to hidden */
+    border-radius: .5625rem;
+    /* Set border radius */
+
+    /* Styles for the wrapper inside explore tabs */
+    &-wrapper {
+        height: 2rem;
+        /* Set height to 2rem */
+        @include flex($j: space-between);
+        /* Apply flex layout with space-between alignment */
+        background-color: var(--black-200);
+        /* Set background color using a variable */
+        padding-inline: 2.25rem;
+        /* Set horizontal padding */
+    }
+
+    /* Styles for the buttons inside explore tabs */
+    &-button {
+        background-color: transparent;
+        /* Set background color to transparent */
+        color: var(--white);
+        /* Set text color using a variable */
+
+        /* Styles for active buttons */
+        &.active {
+            color: var(--yellow-100);
+            /* Change text color for active buttons using a variable */
+        }
+
+        /* Styles for the text inside the buttons */
+        span {
+            font-size: .875rem;
+            /* Set font size using a variable */
+            font-family: map-get($map: $ff, $key: clash);
+            /* Set font family using a variable */
+            font-weight: var(--fw-mid);
+            /* Set font weight using a variable */
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import { ORGANIZATION_MEDALS } from "@/assets/data";
-import { Badge } from "@/components";
+import { useTabSwitcher } from "@/hooks";
+import { Badge, OnchainTabs } from "@/components";
 import "./index.scss";
 
 export const RenderOrgMedals = function ({ group }: { group: string }) {
@@ -24,5 +25,22 @@ export const RenderOrgMedals = function ({ group }: { group: string }) {
 	);
 };
 export const OnChain = ({ group }: { group: string }) => {
-	return <div>OnChain</div>;
+	const { activeTab, handleTabClick, tabIsActive } = useTabSwitcher("active");
+
+	return (
+		<section className={`${group}`}>
+			<div className={`${group}__wrapper`}>
+				<>
+					{/* Tab switcher component for switching between personal, details, and socials tabs */}
+					<OnchainTabs
+						group={group}
+						onTabChange={handleTabClick}
+						tabIsActive={tabIsActive}
+					/>
+				</>
+
+				<RenderOrgMedals group={group} />
+			</div>
+		</section>
+	);
 };

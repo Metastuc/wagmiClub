@@ -15,7 +15,7 @@ export const MarketPlace = ({
 	items,
 }: {
 	group: string;
-	items: number;
+	items?: number;
 }) => {
 	const [selected, setSelected] = useState("Advisor");
 	const {activeTab, handleTabClick, tabIsActive } = useTabSwitcher("badges");

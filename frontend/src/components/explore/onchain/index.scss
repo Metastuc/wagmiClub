@@ -1,0 +1,10 @@
+@use"@/styles"as *;
+@import "@/styles/component/organization_badge";
+
+.onchain {
+
+    &__medals {
+        @include flex($d:column);
+        gap: 3rem;
+    }
+}
